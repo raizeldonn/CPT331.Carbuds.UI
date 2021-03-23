@@ -4,3 +4,18 @@
 @import './bs-theme.scss';
 @import '~bootstrap/scss/bootstrap';
 
+body {
+    font-family: 'Raleway', sans-serif !important;
+}
+
+.ds-1{
+    -webkit-box-shadow: 4px 4px 4px -2px rgba(0,0,0,0.45);
+    -moz-box-shadow: 4px 4px 4px -2px rgba(0,0,0,0.45);
+    box-shadow: 4px 4px 4px -2px rgba(0,0,0,0.45);
+}
+
+.ds-2{
+    -webkit-box-shadow: 11px 11px 13px 3px rgba(0,0,0,0.39);
+    -moz-box-shadow: 11px 11px 13px 3px rgba(0,0,0,0.39);
+    box-shadow: 11px 11px 13px 3px rgba(0,0,0,0.39);
+}
