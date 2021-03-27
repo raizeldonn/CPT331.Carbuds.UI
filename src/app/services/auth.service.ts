@@ -74,6 +74,9 @@ export class AuthService {
       email: tokenDecoded['email']
     };
 
+    this.idToken = token;
+    localStorage.setItem('idToken', this.idToken);
+
     if(!this.tokenExpired()){
       this.amLoggedIn.next(true); 
       //todo
