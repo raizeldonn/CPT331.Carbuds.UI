@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark" *ngIf="amLoggedIn">
     <a class="navbar-brand" href="https://getbootstrap.com/docs/4.0/examples/starter-template/#">Carbuds</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
         aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -7,9 +7,17 @@
 
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
+
+            <li class="nav-item" *ngFor="let link of navLinks">
+                <span class="nav-link" (click)="onNavLinkClick(link)">
+                    <i class="{{link.faIcon}} mr-1"></i> {{link.title}}
+                </span>
+            </li>
+
             <li class="nav-item">
-                <a class="nav-link" href="https://getbootstrap.com/docs/4.0/examples/starter-template/#">Home <span
-                        class="sr-only">(current)</span></a>
+                <span class="nav-link" (click)="onLogoutClick()">
+                    <i class="fas fa-sign-out-alt"></i> Log out
+                </span>
             </li>
 
             <!-- <li class="nav-item dropdown">

@@ -9,6 +9,7 @@ import { PostLoginResponse } from '../contracts/auth/post.login.response.model';
 import { environment } from 'src/environments/environment';
 import { BehaviorSubject } from 'rxjs';
 import { PostLoginRequest } from '../contracts/auth/post.login.request.model';
+import { Navlink } from '../models/common/navlink.model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,22 @@ export class AuthService {
   private idToken: string = '';
   public idTokenProps?: IdTokenProps;
   public amLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public visibleNavlinks: BehaviorSubject<Navlink[]> = new BehaviorSubject<Navlink[]>([]);
+
+  private navLinks: Navlink[] = [
+    {
+      title: 'Manage Vehicles',
+      path: 'admin/vehicles',
+      faIcon: 'fas fa-car',
+      requiredPermission: 'carbuds-admins'
+    },
+    {
+      title: 'Search Vehicles',
+      path: 'search',
+      faIcon: 'fas fa-search',
+      requiredPermission: null
+    }
+  ]; 
 
   constructor(private _http: HttpClient, private _router: Router, private _toastr: ToastrService) {
 
@@ -25,8 +42,6 @@ export class AuthService {
       this.idToken = localStorage.getItem('idToken') ?? '';
       this.setIdTokenProps(this.idToken);      
     };
-
-    //this.permittedNavLinks.next(this.updateMyNavLinks());
   } 
 
   public async login(username: string, password: string): Promise<PostLoginResponse>{
@@ -46,9 +61,7 @@ export class AuthService {
     this.idTokenProps = undefined;
     
     localStorage.removeItem('idToken');
-
-    //todo
-    //this.permittedNavLinks.next(this.updateMyNavLinks());
+    this.visibleNavlinks.next(this.updateMyNavLinks());
 
     this.amLoggedIn.next(false);
   }
@@ -69,7 +82,7 @@ export class AuthService {
       userId: tokenDecoded['sub'],
       username : tokenDecoded['cognito:username'],
       displayName : tokenDecoded['given_name'],
-      cognitoGroups: tokenDecoded['cognito:groups'],
+      cognitoGroups: tokenDecoded['cognito:groups'] ?? [],
       tokenExpiry: tokenDecoded['exp'],
       email: tokenDecoded['email']
     };
@@ -79,8 +92,7 @@ export class AuthService {
 
     if(!this.tokenExpired()){
       this.amLoggedIn.next(true); 
-      //todo
-      //this.permittedNavLinks.next(this.updateMyNavLinks());
+      this.visibleNavlinks.next(this.updateMyNavLinks());
     }
     else{
       this._toastr.error('Your access token has expired, please sign in again', 'Access Expired');
@@ -88,5 +100,34 @@ export class AuthService {
       this._router.navigateByUrl('login');   
     }
   }  
+
+  private updateMyNavLinks(): Navlink[]{    
+    let myNavLinks: Navlink[] = [];
+
+    for(let link of this.navLinks){
+      if(this.canIAccesslink(link)){
+        myNavLinks.push(link);
+      }
+    }
+
+    return myNavLinks;
+  }
+
+  private canIAccesslink(link: Navlink): boolean {
+    if(!this.idToken){
+      return false;
+    }
+    
+    if(!link.requiredPermission){
+      return true;
+    }    
+
+    let permission = link.requiredPermission ?? '';
+    if(this.idTokenProps && this.idTokenProps.cognitoGroups.find(p => p.toLowerCase() == permission.toLowerCase())) {
+      return true;
+    }   
+
+    return false;
+  }
 
 }
