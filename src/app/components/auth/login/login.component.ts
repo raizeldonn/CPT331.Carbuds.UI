@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit {
 
   public loginForm: FormGroup;
 
-  constructor(private _authService: AuthService, private _toastr: ToastrService) {
+  constructor(private _authService: AuthService, private _toastr: ToastrService, private _router: Router) {
     this.loginForm = new FormGroup({
 			emailAddress: new FormControl('', Validators.required),
 			password: new FormControl('', Validators.required)
@@ -24,6 +25,7 @@ export class LoginComponent implements OnInit {
   }
 
   public async onSubmitLoginForm() {
+    
     if(this.loginForm.valid){
 			try {
 
@@ -31,6 +33,7 @@ export class LoginComponent implements OnInit {
 				
 				if (loginResponse.success) {				
 					this._authService.setIdTokenProps(loginResponse.idToken);
+          this._router.navigateByUrl('search');
 				}
 				else {
 					this._toastr.error(loginResponse.errorMessage, 'Unable to Sign In');
