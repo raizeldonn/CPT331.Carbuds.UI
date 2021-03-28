@@ -25,7 +25,6 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
   }
 
   public onNavLinkClick(link:Navlink){

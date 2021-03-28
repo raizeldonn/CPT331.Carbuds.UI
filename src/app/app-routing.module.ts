@@ -23,7 +23,7 @@ const routes: Routes = [
         path: 'vehicles',
         component: CarAdminOverviewComponent,
         data: {
-          allowedGroups: ['carbuds-admins']
+          requiredGroups: ['carbuds-admins']
         },
         canActivate: [AuthGuard]
       }

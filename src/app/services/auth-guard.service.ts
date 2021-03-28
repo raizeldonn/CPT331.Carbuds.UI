@@ -52,11 +52,11 @@ export class AuthGuardService implements CanActivate {
 
   private checkUserPermissionsForRoute(routeTo: ActivatedRouteSnapshot, userProps: IdTokenProps): boolean{
     
-    if(routeTo.data.allowedGroups == null){
+    if(routeTo.data.requiredGroups == null){
       return true;
     }
 
-    for(let group of routeTo.data.allowedGroups){
+    for(let group of routeTo.data.requiredGroups){
       if(userProps.cognitoGroups.find(g => g.toLowerCase() == group.toLowerCase())){
         //user has permission for this component
         return true;
