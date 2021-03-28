@@ -3,6 +3,7 @@
 /* Importing Bootstrap SCSS file. */
 @import './bs-theme.scss';
 @import '~bootstrap/scss/bootstrap';
+@import '~ngx-toastr/toastr-bs4-alert';
 
 body {
     font-family: 'Raleway', sans-serif !important;
