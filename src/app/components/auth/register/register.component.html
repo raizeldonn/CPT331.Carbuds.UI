@@ -1,0 +1,43 @@
+<div class="row">
+    <div class="col-12">
+        <div class="carbuds-logo"></div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 col-md-4 offset-md-4 col-lg-2 offset-lg-5">
+        <div class="card p-2 ds-1 login-card">            
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmitRegisterForm()">
+                <div class="row">
+                    <div class="col-12">
+                        <label for="loginFormFirstName" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="registerFormFirstName"
+                            placeholder="Jill Citizen" formControlName="firstName">
+                    </div>
+
+                    <div class="col-12">
+                        <label for="loginFormEmailAddress" class="form-label">Email address</label>
+                        <input type="email" class="form-control" id="registerFormEmailAddress"
+                            placeholder="jill@example.com" formControlName="emailAddress">
+                    </div>
+
+                    <div class="col-12 mt-2">
+                        <label for="registerFormPassword" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="registerFormPassword"
+                            placeholder="********" formControlName="password">
+                    </div>
+
+                    <div class="col-12 mt-4">
+                        <button class="btn btn-primary btn-block">
+                            <i class="fas fa-unlock-alt"></i> <span> Register </span>
+                        </button>
+                    </div>
+
+                    <div class="col-12 mt-4">
+                        <p>Already have an account? <a (click)="onLoginClick()">login</a></p>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
