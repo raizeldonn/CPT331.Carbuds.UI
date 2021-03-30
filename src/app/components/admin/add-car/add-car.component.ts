@@ -16,6 +16,13 @@ export class AddCarComponent implements OnInit {
 			carMake: new FormControl('', Validators.required),
 			carModel: new FormControl('', Validators.required),
       carYear: new FormControl('', Validators.required),
+      carTransmission: new FormControl('', Validators.required),
+      carKilometers: new FormControl('', Validators.required),
+      carLocation: new FormControl('', Validators.required),
+      carDoors: new FormControl('', Validators.required),
+      carSeats: new FormControl('', Validators.required),
+      carPriceHour: new FormControl('', Validators.required),
+      carPriceDay: new FormControl('', Validators.required),
       carImage: new FormControl('', Validators.required)
 		});
   }
@@ -37,6 +44,8 @@ export class AddCarComponent implements OnInit {
       )}
       
     else{
+      //console log just here as placeholder
+      //will add validation
       console.log("invalid form")
     }
   }
