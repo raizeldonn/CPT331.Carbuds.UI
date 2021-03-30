@@ -12,6 +12,7 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { NavbarComponent } from './components/common/navbar/navbar.component';
 import { CarSearchComponent } from './components/car-search/car-search.component';
 import { CarAdminOverviewComponent } from './components/admin/car-admin-overview/car-admin-overview.component';
+import { AddCarComponent } from './components/admin/add-car/add-car.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { CarAdminOverviewComponent } from './components/admin/car-admin-overview
     LoginComponent,
     NavbarComponent,
     CarSearchComponent,
-    CarAdminOverviewComponent
+    CarAdminOverviewComponent,
+    AddCarComponent 
   ],
   imports: [
     BrowserModule,
