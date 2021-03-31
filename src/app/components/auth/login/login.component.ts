@@ -24,6 +24,11 @@ export class LoginComponent implements OnInit {
 
   }
 
+  public onRegisterClick(){
+    this._router.navigateByUrl('register');
+  }
+
+
   public async onSubmitLoginForm() {
     
     if(this.loginForm.valid){
