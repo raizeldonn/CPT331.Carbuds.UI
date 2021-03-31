@@ -19,11 +19,13 @@ export class AddCarComponent implements OnInit {
       carTransmission: new FormControl('', Validators.required),
       carKilometers: new FormControl('', Validators.required),
       carLocation: new FormControl('', Validators.required),
+      carBody: new FormControl('', Validators.required),
       carDoors: new FormControl('', Validators.required),
       carSeats: new FormControl('', Validators.required),
       carPriceHour: new FormControl('', Validators.required),
       carPriceDay: new FormControl('', Validators.required),
-      carImage: new FormControl('', Validators.required)
+      carImage: new FormControl('', Validators.required),
+      carStatus: new FormControl('', Validators.required)
 		});
   }
 
@@ -34,13 +36,22 @@ export class AddCarComponent implements OnInit {
     
     if(this.addCarForm.valid){
 			console.log("form valid. form submitted");
-      console.log(this.addCarForm.value['carMake']);
+      console.log(this.addCarForm);
 
-      this._carService.addCar(
+      this._carService.createCar(
         this.addCarForm.value['carMake'],
         this.addCarForm.value['carModel'],
         this.addCarForm.value['carYear'],
-        this.addCarForm.value['carImage']
+        this.addCarForm.value['carTransmission'],
+        this.addCarForm.value['carKilometers'],
+        this.addCarForm.value['carLocation'],
+        this.addCarForm.value['carBody'],
+        this.addCarForm.value['carDoors'],
+        this.addCarForm.value['carSeats'],
+        this.addCarForm.value['carPriceHour'],
+        this.addCarForm.value['carPriceDay'],
+        this.addCarForm.value['carImage'],
+        this.addCarForm.value['carStatus']
       )}
       
     else{
