@@ -50,6 +50,22 @@
                         </select>
                     </div>
 
+                    <div class="col-12 mt-2">
+                        <label for="body" class="form-label">Body Type</label>
+                        <select name="body" id="body" class="form-select" 
+                        class="form-control" formControlName="carBody">
+                            <option value="sedan">Sedan</option>
+                            <option value="coupe">Coupe</option>
+                            <option value="SUV">SUV</option>
+                            <option value="sports car">Sports Car</option>
+                            <option value="station wagon">Station Wagon</option>
+                            <option value="hatchback">Hatchback</option>
+                            <option value="convertible">Convertible</option>
+                            <option value="mini van">Mini Van</option>
+                            <option value="pickup truck">Pickup Truck</option>
+                        </select>
+                    </div>
+
                     <div class="col-6 mt-2">
                         <label for="doors" class="form-label">Doors</label>
                         <input type="number" class="form-control" id="doors"
@@ -79,6 +95,15 @@
                         <label for="carImage" class="form-label">Car Image</label>
                         <input type="file" class="form-control" id="carImage"
                             formControlName="carImage">
+                    </div>
+
+                    <div class="col-12 mt-2">
+                        <label for="status" class="form-label">Status</label>
+                        <select name="status" id="status" class="form-select" 
+                        class="form-control" formControlName="carStatus">
+                            <option value="true">Active</option>
+                            <option value="false">Inactive</option>
+                        </select>
                     </div>
 
                     <div class="col-12 mt-4">
