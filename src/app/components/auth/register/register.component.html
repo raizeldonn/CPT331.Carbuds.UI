@@ -10,13 +10,13 @@
             <form [formGroup]="registerForm" (ngSubmit)="onSubmitRegisterForm()">
                 <div class="row">
                     <div class="col-12">
-                        <label for="loginFormFirstName" class="form-label">Name</label>
+                        <label for="registerFormFirstName" class="form-label">Username</label>
                         <input type="text" class="form-control" id="registerFormFirstName"
-                            placeholder="Jill Citizen" formControlName="firstName">
+                            placeholder="Jill Citizen" formControlName="username">
                     </div>
 
                     <div class="col-12">
-                        <label for="loginFormEmailAddress" class="form-label">Email address</label>
+                        <label for="registerFormEmailAddress" class="form-label">Email address</label>
                         <input type="email" class="form-control" id="registerFormEmailAddress"
                             placeholder="jill@example.com" formControlName="emailAddress">
                     </div>
