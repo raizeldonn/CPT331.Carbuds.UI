@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CarService } from 'src/app/services/car.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-car',
@@ -11,7 +12,7 @@ export class AddCarComponent implements OnInit {
 
   public addCarForm: FormGroup;
 
-  constructor( private _carService: CarService ) {
+  constructor( private _carService: CarService, private _toastr: ToastrService) {
     this.addCarForm = new FormGroup({
 			carMake: new FormControl('', Validators.required),
 			carModel: new FormControl('', Validators.required),
@@ -35,30 +36,33 @@ export class AddCarComponent implements OnInit {
   public async onSubmitAddCarForm() {
     
     if(this.addCarForm.valid){
-			console.log("form valid. form submitted");
-      console.log(this.addCarForm);
+      try{
+        
+        let addCarResponse = await this._carService.addCar(
+          this.addCarForm.value['carMake'],
+          this.addCarForm.value['carModel'],
+          this.addCarForm.value['carYear'],
+          this.addCarForm.value['carTransmission'],
+          this.addCarForm.value['carKilometers'],
+          this.addCarForm.value['carLocation'],
+          this.addCarForm.value['carBody'],
+          this.addCarForm.value['carDoors'],
+          this.addCarForm.value['carSeats'],
+          this.addCarForm.value['carPriceHour'],
+          this.addCarForm.value['carPriceDay'],
+          this.addCarForm.value['carImage'],
+          this.addCarForm.value['carStatus']);
 
-      this._carService.createCar(
-        this.addCarForm.value['carMake'],
-        this.addCarForm.value['carModel'],
-        this.addCarForm.value['carYear'],
-        this.addCarForm.value['carTransmission'],
-        this.addCarForm.value['carKilometers'],
-        this.addCarForm.value['carLocation'],
-        this.addCarForm.value['carBody'],
-        this.addCarForm.value['carDoors'],
-        this.addCarForm.value['carSeats'],
-        this.addCarForm.value['carPriceHour'],
-        this.addCarForm.value['carPriceDay'],
-        this.addCarForm.value['carImage'],
-        this.addCarForm.value['carStatus']
-      )}
-      
-    else{
-      //console log just here as placeholder
-      //will add validation
-      console.log("invalid form")
-    }
+          if (addCarResponse.success) {				
+            console.log('success!')
+          }
+          else {
+            this._toastr.error(addCarResponse.errorMessage, 'Unable to add car');
+          }
+        } catch (e) {
+          this._toastr.error(e, 'Unable to add car');
+        }
+      }
   }
 
 }

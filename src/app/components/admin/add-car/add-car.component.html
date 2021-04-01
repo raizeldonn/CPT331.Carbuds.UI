@@ -1,28 +1,28 @@
 <div class="row">
-    <div class="col-12 col-md-4 offset-md-4 col-lg-2 offset-lg-5">
+    <div class="container">
         <div class="card p-2 ds-1 login-card">            
             <form [formGroup]="addCarForm" (ngSubmit)="onSubmitAddCarForm()">
                 <div class="row">
 
-                    <div class="col-12">
+                    <div class="col-md-6 mt-2">
                         <label for="carMake" class="form-label">Car Make</label>
                         <input type="text" class="form-control" id="carMake"
                             formControlName="carMake">
                     </div>
 
-                    <div class="col-12 mt-2">
+                    <div class="col-md-6 mt-2">
                         <label for="carModel" class="form-label">Car Model</label>
                         <input type="text" class="form-control" id="carModel"
                             formControlName="carModel">
                     </div>
 
-                    <div class="col-12 mt-2">
+                    <div class="col-md-6 mt-2">
                         <label for="carYear" class="form-label">Car Year</label>
                         <input type="text" class="form-control" id="carYear"
                             formControlName="carYear">
                     </div>
 
-                    <div class="col-12 mt-2">
+                    <div class="col-md-6 mt-2">
                         <label for="transmission" class="form-label">Transmission</label>
                         <select name="transmission" id="transmission" class="form-select" 
                         class="form-control" formControlName="carTransmission">
@@ -31,7 +31,7 @@
                         </select>
                     </div>
 
-                    <div class="col-12 mt-2">
+                    <div class="col-md-6 mt-2">
                         <label for="kilometers" class="form-label">Initial Kilometres</label>
                         <input type="number" class="form-control" id="kilometers"
                             formControlName="carKilometers">
@@ -39,7 +39,7 @@
 
                     <!--TODO the adress list will come from the adresses stored in the list
                     the admin will select asdress on the map via the ádd parking location functionality-->
-                    <div class="col-12 mt-2">
+                    <div class="col-md-6 mt-2">
                         <label for="location" class="form-label">Location</label>
                         <select name="location" id="location" class="form-select" 
                         class="form-control" formControlName="carLocation">
@@ -50,7 +50,7 @@
                         </select>
                     </div>
 
-                    <div class="col-12 mt-2">
+                    <div class="col-md-6 mt-2">
                         <label for="body" class="form-label">Body Type</label>
                         <select name="body" id="body" class="form-select" 
                         class="form-control" formControlName="carBody">
@@ -66,44 +66,44 @@
                         </select>
                     </div>
 
-                    <div class="col-6 mt-2">
-                        <label for="doors" class="form-label">Doors</label>
-                        <input type="number" class="form-control" id="doors"
-                            formControlName="carDoors">
-                    </div>
-
-                    <div class="col-6 mt-2">
-                        <label for="seats" class="form-label">Seats</label>
-                        <input type="number" class="form-control" id="seats"
-                            formControlName="carSeats">
-                    </div>
-
-                    <div class="col-6 mt-2">
-                        <label for="priceHour" class="form-label">Price Per Hour</label>
-                        <input type="number" class="form-control" id="priceHour"
-                        placeholder="$" formControlName="carPriceHour">
-                    </div>
-
-                    <div class="col-6 mt-2">
-                        <label for="priceDay" class="form-label">Price Per Day</label>
-                        <input type="number" class="form-control" id="PriceDay"
-                        placeholder="$" formControlName="carPriceDay">
-                    </div>
-
-
-                    <div class="col-12 mt-2">
-                        <label for="carImage" class="form-label">Car Image</label>
-                        <input type="file" class="form-control" id="carImage"
-                            formControlName="carImage">
-                    </div>
-
-                    <div class="col-12 mt-2">
+                    <div class="col-md-6 mt-2">
                         <label for="status" class="form-label">Status</label>
                         <select name="status" id="status" class="form-select" 
                         class="form-control" formControlName="carStatus">
                             <option value="true">Active</option>
                             <option value="false">Inactive</option>
                         </select>
+                    </div>
+
+                    <div class="col-md-3 col-6 mt-2">
+                        <label for="doors" class="form-label">Doors</label>
+                        <input type="number" class="form-control" id="doors"
+                            formControlName="carDoors">
+                    </div>
+
+                    <div class="col-md-3 col-6 mt-2">
+                        <label for="seats" class="form-label">Seats</label>
+                        <input type="number" class="form-control" id="seats"
+                            formControlName="carSeats">
+                    </div>
+
+                    <div class="col-md-3 col-6 mt-2">
+                        <label for="priceHour" class="form-label">Price Per Hour</label>
+                        <input type="number" class="form-control" id="priceHour"
+                        placeholder="$" formControlName="carPriceHour">
+                    </div>
+
+                    <div class="col-md-3 col-6 mt-2">
+                        <label for="priceDay" class="form-label">Price Per Day</label>
+                        <input type="number" class="form-control" id="PriceDay"
+                        placeholder="$" formControlName="carPriceDay">
+                    </div>
+
+
+                    <div class="col-md-6 mt-2">
+                        <label for="carImage" class="form-label">Car Image</label>
+                        <input type="file" class="form-control" id="carImage"
+                            formControlName="carImage">
                     </div>
 
                     <div class="col-12 mt-4">

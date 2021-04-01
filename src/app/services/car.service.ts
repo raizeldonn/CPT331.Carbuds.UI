@@ -17,34 +17,29 @@ export class CarService {
 
     constructor(private _http: HttpClient){}
 
-    public createCar( make: string, model: string, year: number, transmission: string,
+    public async addCar(make: string, model: string, year: number, transmission: string,
         kilometers: number, body: string, location: string, doors: number,
-        seats: number, priceHour: number, priceDay: number, imageId: string, isActive: boolean){
-        this.car = {
-            uuid: "eca23f2a-f7e6-47d2-b570-171d93b5e0b5",
-            make: make,
-            model: model,
-            year: year,
-            transmission: transmission,
-            kilometers: kilometers,
-            body: body,
-            location: location,
-            doors: doors,
-            seats: seats,
-            priceHour: priceHour,
-            priceDay: priceDay,
-            imageId: imageId,
-            isActive: isActive
-        };
-
-        return this.car;
-
-    }
-
-    public async addCar(car: Car): Promise<PostAddUpdateCarResponse>{
+        seats: number, priceHour: number, priceDay: number, imageId: string, isActive: boolean): Promise<PostAddUpdateCarResponse>{
     
+            this.car = {
+                uuid: "eca78f2a-f7e6-47d2-b570-171d93b5e0b5",
+                make: make,
+                model: model,
+                year: year,
+                transmission: transmission,
+                kilometers: kilometers,
+                body: body,
+                location: location,
+                doors: doors,
+                seats: seats,
+                priceHour: priceHour,
+                priceDay: priceDay,
+                imageId: imageId,
+                isActive: isActive
+            };
+
         let request: PostAddUpdateCarRequest = {
-          car: car
+          car: this.car
         }
     
         let response = await this._http.post<PostAddUpdateCarResponse>(`${environment.apiBaseUrl}/api/cars`, request).toPromise();    
