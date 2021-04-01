@@ -1,1 +1,19 @@
-<p>car-admin-overview works!</p>
+<!-- <h3>{{car.make | uppercase}} Details</h3>
+<div><span>Model: </span>{{car.model}}</div>
+<div><span>Reservations: </span>{{car.reservations}}</div>
+<div><span>Kilometres: </span>{{car.kilometres}}</div>
+<div><span>Year: </span>{{car.year}}</div> -->
+
+
+<h2>All Cars</h2>
+<br>
+<ul class="cars" style="list-style-type:none; padding-left: 0;">
+  <li *ngFor="let car of cars">
+    <p> <b>{{car.year}} {{car.make}} {{car.model}}</b>
+    <br>{{car.reservations}} Reservations 
+    <br>{{car.kilometres}} km
+    <br>
+    <br>
+  </li>
+</ul>
+
