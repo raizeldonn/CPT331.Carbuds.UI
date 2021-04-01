@@ -1,5 +1,5 @@
 import { BaseResponse } from "../base.response.model";
 
-export interface PostCreateUserResponse extends BaseResponse {
+export interface PostSignUpResponse extends BaseResponse {
     isSuccess: boolean;
 }
