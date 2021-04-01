@@ -4,6 +4,7 @@ import { CarAdminOverviewComponent } from './components/admin/car-admin-overview
 import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { CarSearchComponent } from './components/car-search/car-search.component';
+import { ProfileComponent } from './components/user/profile/profile.component';
 
 import { AuthGuardService as AuthGuard } from './services/auth-guard.service';
 
@@ -19,6 +20,11 @@ const routes: Routes = [
   {
     path: 'search',
     component: CarSearchComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
     canActivate: [AuthGuard]
   },
   {
