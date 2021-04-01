@@ -1,3 +1,33 @@
+<h2>All Cars</h2>
+
+<tbody>
+  <tr *ngFor="let car of cars">
+    <td>
+      "Image" placeholder
+    </td>
+    <td>
+      <p> <b>{{car.year}} {{car.make}} {{car.model}}</b>
+        <br>{{car.reservations}} Reservations 
+        <br>{{car.kilometres}} km
+      </p>
+    </td>
+    <td>
+      ">" placeholder
+    </td>
+  </tr>
+</tbody>
+
+<div>
+  
+</div>
+
+<!-- <div class="btn-group btn-group-toggle">
+  <label class="btn-primary" ngbButtonLabel>
+    <input type="checkbox" ngbButton [(ngModel)]="model.left"> Left (pre-checked)
+  </label>
+</div> -->
+
+
 <!-- <h3>{{car.make | uppercase}} Details</h3>
 <div><span>Model: </span>{{car.model}}</div>
 <div><span>Reservations: </span>{{car.reservations}}</div>
@@ -5,7 +35,7 @@
 <div><span>Year: </span>{{car.year}}</div> -->
 
 
-<h2>All Cars</h2>
+<!-- 
 <br>
 <ul class="cars" style="list-style-type:none; padding-left: 0;">
   <li *ngFor="let car of cars">
@@ -15,5 +45,15 @@
     <br>
     <br>
   </li>
-</ul>
+</ul> -->
 
+<!-- <thead>
+  <tr *ngFor="let car of cars">
+    <th scope="col">
+      <p> <b>{{car.year}} {{car.make}} {{car.model}}</b>
+        <br>{{car.reservations}} Reservations 
+        <br>{{car.kilometres}} km
+      </p>
+    </th>
+  </tr>
+</thead> -->
