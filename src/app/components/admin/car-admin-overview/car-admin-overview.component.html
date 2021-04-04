@@ -11,45 +11,19 @@
       </p>
     </td>
     <td>
-      ">" placeholder
+        <!-- Button Instance  -->
+        <!-- <div class="btn-group btn-group-toggle">
+          <label class="btn-primary" ngbButtonLabel>
+            <input type="checkbox" ngbButton [(ngModel)]="model.left"> >
+          </label>
+        </div>  -->
+        <a [title]="cars" [routerLink]="['/cars', car.uuid]">
+          <span style="color:black"><h3>&#62;</h3></span>
+        </a>
+
     </td>
   </tr>
+
 </tbody>  
 </div>
 
-<!-- <div class="btn-group btn-group-toggle">
-  <label class="btn-primary" ngbButtonLabel>
-    <input type="checkbox" ngbButton [(ngModel)]="model.left"> Left (pre-checked)
-  </label>
-</div> -->
-
-
-<!-- <h3>{{car.make | uppercase}} Details</h3>
-<div><span>Model: </span>{{car.model}}</div>
-<div><span>Reservations: </span>{{car.reservations}}</div>
-<div><span>Kilometres: </span>{{car.kilometres}}</div>
-<div><span>Year: </span>{{car.year}}</div> -->
-
-
-<!-- 
-<br>
-<ul class="cars" style="list-style-type:none; padding-left: 0;">
-  <li *ngFor="let car of cars">
-    <p> <b>{{car.year}} {{car.make}} {{car.model}}</b>
-    <br>{{car.reservations}} Reservations 
-    <br>{{car.kilometres}} km
-    <br>
-    <br>
-  </li>
-</ul> -->
-
-<!-- <thead>
-  <tr *ngFor="let car of cars">
-    <th scope="col">
-      <p> <b>{{car.year}} {{car.make}} {{car.model}}</b>
-        <br>{{car.reservations}} Reservations 
-        <br>{{car.kilometres}} km
-      </p>
-    </th>
-  </tr>
-</thead> -->

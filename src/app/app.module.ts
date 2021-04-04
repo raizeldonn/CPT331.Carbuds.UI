@@ -14,6 +14,7 @@ import { CarSearchComponent } from './components/car-search/car-search.component
 import { CarAdminOverviewComponent } from './components/admin/car-admin-overview/car-admin-overview.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { NgbdButtonsCheckbox } from './buttons-checkbox';
+import { CarDetailsComponent } from './components/car-details/car-details.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { NgbdButtonsCheckbox } from './buttons-checkbox';
     CarSearchComponent,
     CarAdminOverviewComponent,
     RegisterComponent,
-    NgbdButtonsCheckbox
+    NgbdButtonsCheckbox,
+    CarDetailsComponent
   ],
   imports: [
     BrowserModule,
