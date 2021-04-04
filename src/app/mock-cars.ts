@@ -1,13 +1,13 @@
-import { Car } from 'src/app/car';
+import { Car } from 'src/app/models/car/car.model';
 
 export const CARS: Car[] = [
-  { year: 2020, make: 'Mazda', model: 'CX5', reservations: 7, kilometres: 11574 },
-  { year: 2019, make: 'Subaru', model: 'Impreza', reservations: 7, kilometres: 19000 },
-  { year: 2020, make: 'Mazda', model: '2', reservations: 7, kilometres: 4000 },
-  { year: 2017, make: 'Subaru', model: 'Forrester', reservations: 7, kilometres: 12000 },
-];
 
+  { uuid: '1', make: 'Mazda', model: 'CX5', year: 2020, imageId: 'img001' },
+  { uuid: '2', make: 'Subaru', model: 'Impreza', year: 2017, imageId: 'img002' },
+  { uuid: '3', make: 'Mazda', model: '2', year: 2019, imageId: 'img003' },
+  { uuid: '4', make: 'Subaru', model: 'Forrester', year: 2018, imageId: 'img004' }
 
+]
 
 
 

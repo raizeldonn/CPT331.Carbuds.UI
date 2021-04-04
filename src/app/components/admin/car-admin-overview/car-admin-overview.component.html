@@ -1,24 +1,20 @@
 <h2>All Cars</h2>
 
+<div>
 <tbody>
   <tr *ngFor="let car of cars">
     <td>
-      "Image" placeholder
+      {{car.imageId}}
     </td>
     <td>
       <p> <b>{{car.year}} {{car.make}} {{car.model}}</b>
-        <br>{{car.reservations}} Reservations 
-        <br>{{car.kilometres}} km
       </p>
     </td>
     <td>
       ">" placeholder
     </td>
   </tr>
-</tbody>
-
-<div>
-  
+</tbody>  
 </div>
 
 <!-- <div class="btn-group btn-group-toggle">
