@@ -5,7 +5,7 @@ import { AddCarComponent } from './components/admin/add-car/add-car.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { CarSearchComponent } from './components/car-search/car-search.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CarDetailsComponent } from './components/car-details/car-details.component';
 
 import { AuthGuardService as AuthGuard } from './services/auth-guard.service';
 
@@ -13,6 +13,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'admin',
+    component: CarAdminOverviewComponent
   },
   {
     path: 'register',
@@ -33,28 +37,21 @@ const routes: Routes = [
           requiredGroups: ['carbuds-admins']
         },
         canActivate: [AuthGuard]
-      },
-      {
-        path: 'vehicles/add',
-        component: AddCarComponent,
-        data: {
-          requiredGroups: ['carbuds-admins']
-        },
-        canActivate: [AuthGuard]
       }
     ]
   },
   { path: '', 
     redirectTo: 'login',
     pathMatch : 'full'
+  },
+  { path: 'cars/:car.uuid', 
+    component: CarDetailsComponent 
   }  
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes),
-    FormsModule,
-    ReactiveFormsModule
+    RouterModule.forRoot(routes)
   ],
   exports: [RouterModule]
 })
