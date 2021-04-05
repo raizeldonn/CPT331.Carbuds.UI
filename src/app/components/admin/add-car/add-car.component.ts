@@ -63,6 +63,9 @@ export class AddCarComponent implements OnInit {
           this._toastr.error(e, 'Unable to add car');
         }
       }
+      else{
+        console.log('invalid')
+      }
   }
 
 }
