@@ -26,7 +26,7 @@ import { AddCarComponent } from './components/admin/add-car/add-car.component';
     CarAdminOverviewComponent,
     RegisterComponent,
     NgbdButtonsCheckbox,
-    CarDetailsComponent
+    CarDetailsComponent,
     AddCarComponent 
   ],
   imports: [
