@@ -37,14 +37,6 @@ const routes: Routes = [
           requiredGroups: ['carbuds-admins']
         },
         canActivate: [AuthGuard]
-      },
-      {
-        path: 'vehicles/add',
-        component: AddCarComponent,
-        data: {
-          requiredGroups: ['carbuds-admins']
-        },
-        canActivate: [AuthGuard]
       }
     ]
   },
