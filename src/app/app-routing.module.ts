@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CarAdminOverviewComponent } from './components/admin/car-admin-overview/car-admin-overview.component';
+import { AddCarComponent } from './components/admin/add-car/add-car.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { CarSearchComponent } from './components/car-search/car-search.component';
@@ -36,6 +37,14 @@ const routes: Routes = [
           requiredGroups: ['carbuds-admins']
         },
         canActivate: [AuthGuard]
+      },
+      {
+        path: 'vehicles/add',
+        component: AddCarComponent,
+        data: {
+          requiredGroups: ['carbuds-admins']
+        },
+        canActivate: [AuthGuard]
       }
     ]
   },
@@ -49,7 +58,11 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes),
+    FormsModule,
+    ReactiveFormsModule
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

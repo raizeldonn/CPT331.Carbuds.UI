@@ -15,6 +15,7 @@ import { CarAdminOverviewComponent } from './components/admin/car-admin-overview
 import { RegisterComponent } from './components/auth/register/register.component';
 import { NgbdButtonsCheckbox } from './buttons-checkbox';
 import { CarDetailsComponent } from './components/car-details/car-details.component';
+import { AddCarComponent } from './components/admin/add-car/add-car.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { CarDetailsComponent } from './components/car-details/car-details.compon
     RegisterComponent,
     NgbdButtonsCheckbox,
     CarDetailsComponent
+    AddCarComponent 
   ],
   imports: [
     BrowserModule,
