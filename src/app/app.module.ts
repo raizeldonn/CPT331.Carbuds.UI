@@ -13,6 +13,9 @@ import { NavbarComponent } from './components/common/navbar/navbar.component';
 import { CarSearchComponent } from './components/car-search/car-search.component';
 import { CarAdminOverviewComponent } from './components/admin/car-admin-overview/car-admin-overview.component';
 import { RegisterComponent } from './components/auth/register/register.component';
+import { NgbdButtonsCheckbox } from './buttons-checkbox';
+import { CarDetailsComponent } from './components/car-details/car-details.component';
+import { AddCarComponent } from './components/admin/add-car/add-car.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,10 @@ import { RegisterComponent } from './components/auth/register/register.component
     NavbarComponent,
     CarSearchComponent,
     CarAdminOverviewComponent,
-    RegisterComponent
+    RegisterComponent,
+    NgbdButtonsCheckbox,
+    CarDetailsComponent,
+    AddCarComponent 
   ],
   imports: [
     BrowserModule,
