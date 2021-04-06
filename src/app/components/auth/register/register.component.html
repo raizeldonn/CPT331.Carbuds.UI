@@ -10,23 +10,15 @@
             <form [formGroup]="registerForm" (ngSubmit)="onSubmitRegisterForm()">
                 <div class="row">
                     <div class="col-12">
-                        <label for="registerFormFirstName" class="form-label">Username</label>
-                        <input type="text" class="form-control" id="registerFormFirstName"
-                            placeholder="Jill Citizen" formControlName="username">
-                    </div>
-
-                    <div class="col-12">
                         <label for="registerFormEmailAddress" class="form-label">Email address</label>
                         <input type="email" class="form-control" id="registerFormEmailAddress"
                             placeholder="jill@example.com" formControlName="emailAddress">
                     </div>
-
                     <div class="col-12 mt-2">
                         <label for="registerFormPassword" class="form-label">Password</label>
                         <input type="password" class="form-control" id="registerFormPassword"
                             placeholder="********" formControlName="password">
                     </div>
-
                     <div class="col-12 mt-4">
                         <button class="btn btn-primary btn-block">
                             <i class="fas fa-unlock-alt"></i> <span> Register </span>
