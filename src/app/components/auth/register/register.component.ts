@@ -17,7 +17,11 @@ export class RegisterComponent implements OnInit {
   constructor(private _userService: UserService, private _toastr: ToastrService, private _router: Router) {
     this.registerForm = new FormGroup({
 			emailAddress: new FormControl('', Validators.required),
-			password: new FormControl('', Validators.required)
+			password: new FormControl('', Validators.required),
+      name: new FormControl('', Validators.required),
+      paymentCardNumber: new FormControl('', Validators.required),
+      paymentCardExpiry: new FormControl('', Validators.required),
+      paymentCardCvv: new FormControl('', Validators.required)
 		});
   }
 
@@ -33,9 +37,12 @@ export class RegisterComponent implements OnInit {
 
       let request:PostCreateCognitoUserRequest = {
         email: this.registerForm.value['emailAddress'],
-        password: this.registerForm.value['password']
+        password: this.registerForm.value['password'],
+        name: this.registerForm.value['name'],
+        cardNumber: this.registerForm.value['paymentCardNumber'],
+        cardExpiry: this.registerForm.value['paymentCardExpiry'],
+        cardCvv: this.registerForm.value['paymentCardCvv']
       }
-
       var response = await this._userService.createUser(request);
 
       if(!response.success){
