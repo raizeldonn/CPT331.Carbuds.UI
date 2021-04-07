@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import jwt_decode from 'jwt-decode';
 import { IdTokenProps } from '../models/auth/idTokenProps.model';
-import * as moment from 'moment';
+import moment from 'moment';
 import { PostLoginResponse } from '../contracts/auth/post.login.response.model';
 import { environment } from 'src/environments/environment';
 import { BehaviorSubject } from 'rxjs';
