@@ -5,31 +5,52 @@
 </div>
 
 <div class="row">
-    <div class="col-12 col-md-4 offset-md-4 col-lg-2 offset-lg-5">
+    <div class="col-12 col-md-4 offset-md-4">
         <div class="card p-2 ds-1 login-card">            
             <form [formGroup]="registerForm" (ngSubmit)="onSubmitRegisterForm()">
                 <div class="row">
-                    <div class="col-12">
-                        <label for="registerFormFirstName" class="form-label">Username</label>
-                        <input type="text" class="form-control" id="registerFormFirstName"
-                            placeholder="Jill Citizen" formControlName="username">
-                    </div>
-
-                    <div class="col-12">
+                    <div class="col-12 col-md-6 mt-2">
                         <label for="registerFormEmailAddress" class="form-label">Email address</label>
                         <input type="email" class="form-control" id="registerFormEmailAddress"
                             placeholder="jill@example.com" formControlName="emailAddress">
                     </div>
-
-                    <div class="col-12 mt-2">
+                    <div class="col-12 col-md-6 mt-2">
                         <label for="registerFormPassword" class="form-label">Password</label>
                         <input type="password" class="form-control" id="registerFormPassword"
                             placeholder="********" formControlName="password">
                     </div>
+                    <div class="col-12 mt-2">
+                        <label for="registerFormUserName" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="registerFormUserName"
+                            placeholder="Jane Citizen" formControlName="name">
+                    </div>
+                    
+
+                    <div class="col-12 mt-4">
+                        <h5 class="mt-4 mb-0">Payment Details</h5>
+                    </div>
+
+                    <div class="col-12 mt-4">
+                        <label for="registerFormCardNumber" class="form-label">Card Number</label>
+                        <input type="text" class="form-control" id="registerFormCardNumber"
+                            placeholder="xxxxxxxxxxxxxxxx" formControlName="paymentCardNumber">
+                    </div>
+
+                    <div class="col-12 col-md-6 mt-4">
+                        <label for="registerFormCardExpiry" class="form-label">Card Expiry</label>
+                        <input type="text" class="form-control" id="registerFormCardExpiry"
+                            placeholder="mm/yyyy" formControlName="paymentCardExpiry">
+                    </div>
+
+                    <div class="col-12 col-md-6 mt-4">
+                        <label for="registerFormCardCvv" class="form-label">Card CVV</label>
+                        <input type="text" class="form-control" id="registerFormCardCvv"
+                            placeholder="xxx" formControlName="paymentCardCvv">
+                    </div>
 
                     <div class="col-12 mt-4">
                         <button class="btn btn-primary btn-block">
-                            <i class="fas fa-unlock-alt"></i> <span> Register </span>
+                            <span> Register </span>
                         </button>
                     </div>
 

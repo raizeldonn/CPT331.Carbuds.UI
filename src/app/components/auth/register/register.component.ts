@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { AuthService } from 'src/app/services/auth.service';
+import { PostCreateCognitoUserRequest } from 'src/app/contracts/user/post.createCognitoUser.request.model';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-register',
@@ -13,11 +14,14 @@ export class RegisterComponent implements OnInit {
 
   public registerForm: FormGroup;
 
-  constructor(private _authService: AuthService, private _toastr: ToastrService, private _router: Router) {
+  constructor(private _userService: UserService, private _toastr: ToastrService, private _router: Router) {
     this.registerForm = new FormGroup({
-      username: new FormControl('', Validators.required),
 			emailAddress: new FormControl('', Validators.required),
-			password: new FormControl('', Validators.required)
+			password: new FormControl('', Validators.required),
+      name: new FormControl('', Validators.required),
+      paymentCardNumber: new FormControl('', Validators.required),
+      paymentCardExpiry: new FormControl('', Validators.required),
+      paymentCardCvv: new FormControl('', Validators.required)
 		});
   }
 
@@ -29,6 +33,30 @@ export class RegisterComponent implements OnInit {
   }
 
   public async onSubmitRegisterForm() {
+    try {
 
+      let request:PostCreateCognitoUserRequest = {
+        email: this.registerForm.value['emailAddress'],
+        password: this.registerForm.value['password'],
+        name: this.registerForm.value['name'],
+        cardNumber: this.registerForm.value['paymentCardNumber'],
+        cardExpiry: this.registerForm.value['paymentCardExpiry'],
+        cardCvv: this.registerForm.value['paymentCardCvv']
+      }
+      var response = await this._userService.createUser(request);
+
+      if(!response.success){
+        this._toastr.error(response.errorMessage, 'Sorry, there was a problem signing you up!');
+      }
+
+      if(response.success){
+        this._toastr.success('','Signed up Succesfully!');
+        this._router.navigateByUrl('/login');
+      }
+
+
+    } catch (e) {
+      this._toastr.error(e, 'Unable to Complete Signup Process');      
+    }
   }
 }
