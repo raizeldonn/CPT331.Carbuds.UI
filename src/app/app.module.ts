@@ -17,6 +17,7 @@ import { ProfileComponent } from './components/user/profile/profile.component';
 import { NgbdButtonsCheckbox } from './buttons-checkbox';
 import { CarDetailsComponent } from './components/car-details/car-details.component';
 import { AddCarComponent } from './components/admin/add-car/add-car.component';
+import { PastBookingsComponent } from './components/user/past-bookings/past-bookings.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { AddCarComponent } from './components/admin/add-car/add-car.component';
     ProfileComponent,
     NgbdButtonsCheckbox,
     CarDetailsComponent,
-    AddCarComponent 
+    AddCarComponent,
+    PastBookingsComponent 
   ],
   imports: [
     BrowserModule,
