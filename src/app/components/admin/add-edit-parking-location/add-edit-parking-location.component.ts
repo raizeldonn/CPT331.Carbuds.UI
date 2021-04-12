@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LngLat, MapMouseEvent } from 'mapbox-gl';
+import { ToastrService } from 'ngx-toastr';
+import { ParkingLocation } from 'src/app/models/parkingLocations/parkingLocation.model';
+import { ParkingLocationService } from 'src/app/services/parking-location.service';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-add-edit-parking-location',
@@ -9,11 +13,11 @@ import { LngLat, MapMouseEvent } from 'mapbox-gl';
 })
 export class AddEditParkingLocationComponent implements OnInit {
 
-  public mapMarkerLocation: LngLat = new LngLat(144.944192, -37.816675);
+  public mapMarkerLocation: LngLat = new LngLat(144.96723200872293, -37.81774788707633);
 
   public addParkingForm: FormGroup;
 
-  constructor() {
+  constructor(private _parkingLocationService: ParkingLocationService, private _toastr: ToastrService) {
     this.addParkingForm = new FormGroup({
       locationName: new FormControl('', Validators.required)
     });
@@ -23,19 +27,31 @@ export class AddEditParkingLocationComponent implements OnInit {
     
   }
 
-  public onMarkerClick(){
-    alert('Foo')
-  }
-
   public onMapClick(event: MapMouseEvent){
-    
     let clickedLocation = event.lngLat;
-
     if(clickedLocation){
-      console.log(clickedLocation);
       this.mapMarkerLocation = new LngLat(clickedLocation.lng, clickedLocation.lat);
     }
+  }
 
+  public async onSubmitParkingLocationForm(){
+    if(this.addParkingForm.valid){
+      let locationToAdd: ParkingLocation = {
+        uuid: uuidv4(),
+        friendlyName: this.addParkingForm.value['locationName'],
+        latitude: this.mapMarkerLocation.lat,
+        longitude: this.mapMarkerLocation.lng
+      }
+
+      console.log(locationToAdd);
+      let resp = await this._parkingLocationService.addEditLocation(locationToAdd);
+      if(resp.success){
+        this._toastr.success('','Parking Location Saved');
+      }
+      else{
+        this._toastr.error(resp.errorMessage, 'Error Saving Parking Location');
+      }
+    }
   }
 
 }
