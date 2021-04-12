@@ -1,18 +1,22 @@
 <div class="row">
+    <div class="col-12">
+        Click on the Map below to select a Parking Location
+    </div>
     <div class="col-12 mt-2">
         <mgl-map
         [style]="'mapbox://styles/mapbox/streets-v9'"
         [zoom]="[12]"
         [center]="[144.944192, -37.816675]"
+        (click)="onMapClick($event)"
         >
         <mgl-marker
-        [lngLat]="[144.944192, -37.816675]"
+        [lngLat]="mapMarkerLocation"
         >
             <div
             (click)="onMarkerClick()"
             class="marker"
             >
-            Hello
+            P
             </div>
         </mgl-marker>
         </mgl-map>
