@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { LngLat, MapMouseEvent } from 'mapbox-gl';
 import { ToastrService } from 'ngx-toastr';
 import { ParkingLocation } from 'src/app/models/parkingLocations/parkingLocation.model';
@@ -17,7 +18,7 @@ export class AddEditParkingLocationComponent implements OnInit {
 
   public addParkingForm: FormGroup;
 
-  constructor(private _parkingLocationService: ParkingLocationService, private _toastr: ToastrService) {
+  constructor(private _parkingLocationService: ParkingLocationService, private _toastr: ToastrService, public _activeModal: NgbActiveModal) {
     this.addParkingForm = new FormGroup({
       locationName: new FormControl('', Validators.required)
     });
@@ -25,7 +26,7 @@ export class AddEditParkingLocationComponent implements OnInit {
 
   ngOnInit(): void {
     
-  }
+  } 
 
   public onMapClick(event: MapMouseEvent){
     let clickedLocation = event.lngLat;
@@ -47,11 +48,16 @@ export class AddEditParkingLocationComponent implements OnInit {
       let resp = await this._parkingLocationService.addEditLocation(locationToAdd);
       if(resp.success){
         this._toastr.success('','Parking Location Saved');
+        this._activeModal.close(locationToAdd);
       }
       else{
         this._toastr.error(resp.errorMessage, 'Error Saving Parking Location');
       }
     }
+  }
+
+  public onCancelClick(){
+    this._activeModal.dismiss(null);
   }
 
 }
