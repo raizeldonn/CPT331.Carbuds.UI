@@ -1,0 +1,35 @@
+<div class="row">
+    <div class="col-8">
+      <h2>All Parking Locations</h2>
+    </div>
+    <div class="col-4">
+      <div class="btn btn-block btn-primary" (click)="onAddParkingLocationClick()">
+        + Add Parking Locations
+      </div>
+    </div>
+  </div>
+  
+  
+  <div class="row">
+    <div class="col-12">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Latitude</th>
+            <th scope="col">Longitude</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let loc of locations">
+            <th scope="row" >{{loc.friendlyName}}</th>
+            <td>{{loc.latitude}}</td>
+            <td>{{loc.longitude}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+  
+  

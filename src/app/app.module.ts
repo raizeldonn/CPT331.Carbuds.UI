@@ -13,9 +13,11 @@ import { NavbarComponent } from './components/common/navbar/navbar.component';
 import { CarSearchComponent } from './components/car-search/car-search.component';
 import { CarAdminOverviewComponent } from './components/admin/car-admin-overview/car-admin-overview.component';
 import { RegisterComponent } from './components/auth/register/register.component';
-import { NgbdButtonsCheckbox } from './buttons-checkbox';
 import { CarDetailsComponent } from './components/car-details/car-details.component';
 import { AddCarComponent } from './components/admin/add-car/add-car.component';
+import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
+import { AddEditParkingLocationComponent } from './components/admin/add-edit-parking-location/add-edit-parking-location.component';
+import { ParkingLocationOverviewComponent } from './components/admin/parking-location-overview/parking-location-overview.component';
 
 @NgModule({
   declarations: [
@@ -25,9 +27,10 @@ import { AddCarComponent } from './components/admin/add-car/add-car.component';
     CarSearchComponent,
     CarAdminOverviewComponent,
     RegisterComponent,
-    NgbdButtonsCheckbox,
     CarDetailsComponent,
-    AddCarComponent 
+    AddCarComponent,
+    AddEditParkingLocationComponent,
+    ParkingLocationOverviewComponent 
   ],
   imports: [
     BrowserModule,
@@ -39,6 +42,9 @@ import { AddCarComponent } from './components/admin/add-car/add-car.component';
     NgbModule,
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-full-width'
+    }),
+    NgxMapboxGLModule.withConfig({
+      accessToken: 'pk.eyJ1IjoiYmlncm9seSIsImEiOiJja243ZWVpZHcwbjl2Mm5sMHUwZnhkb256In0.L41CKQQqIZc2jTfuZDo4Og', 
     })
   ],
   providers: [],

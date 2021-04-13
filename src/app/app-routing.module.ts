@@ -8,6 +8,8 @@ import { CarSearchComponent } from './components/car-search/car-search.component
 import { CarDetailsComponent } from './components/car-details/car-details.component';
 
 import { AuthGuardService as AuthGuard } from './services/auth-guard.service';
+import { AddEditParkingLocationComponent } from './components/admin/add-edit-parking-location/add-edit-parking-location.component';
+import { ParkingLocationOverviewComponent } from './components/admin/parking-location-overview/parking-location-overview.component';
 
 const routes: Routes = [
   {
@@ -37,6 +39,14 @@ const routes: Routes = [
           requiredGroups: ['carbuds-admins']
         },
         canActivate: [AuthGuard]
+      },
+      {
+        path: 'parkingLocations',
+        component: ParkingLocationOverviewComponent,
+        data: {
+          requiredGroups: ['carbuds-admins']
+        },
+        canActivate: [AuthGuard]
       }
     ]
   },
@@ -46,7 +56,7 @@ const routes: Routes = [
   },
   { path: 'cars/:car.uuid', 
     component: CarDetailsComponent 
-  }  
+  }
 ];
 
 @NgModule({
