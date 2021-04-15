@@ -7,6 +7,7 @@ import {PostAddUpdateCarResponse} from '../contracts/car/post.addUpdateCar.respo
 import { environment } from 'src/environments/environment';
 import { GetListCarsResponse } from '../contracts/car/get.listCars.response.model';
 import { AuthService } from './auth.service';
+import { GetOneCarResponse } from '../contracts/car/get.oneCar.response.model';
 
 
 @Injectable({
@@ -30,6 +31,13 @@ export class CarService {
     public async listAllCars(): Promise<GetListCarsResponse>{
       let response = await this._http.get<GetListCarsResponse>( `${environment.apiBaseUrl}/api/cars/list`, { headers: this._authService.generateAuthHeader() }).toPromise();
       return response;
+    }
+
+    public async getOneCar(): Promise<GetOneCarResponse>{
+      //replace the hard-coded UUID with selected car
+      let response = await this._http.get<GetOneCarResponse>( `${environment.apiBaseUrl}/api/cars/2f5c9512-ac93-41dd-8dee-6c9703825b74`, { headers: this._authService.generateAuthHeader() }).toPromise();
+      return response;
+     
     }
     
 }

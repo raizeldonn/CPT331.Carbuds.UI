@@ -18,6 +18,7 @@ import { AddCarComponent } from './components/admin/add-car/add-car.component';
 import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
 import { AddEditParkingLocationComponent } from './components/admin/add-edit-parking-location/add-edit-parking-location.component';
 import { ParkingLocationOverviewComponent } from './components/admin/parking-location-overview/parking-location-overview.component';
+import { CarInfoComponent } from './components/reserve/car-info/car-info.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ParkingLocationOverviewComponent } from './components/admin/parking-loc
     CarDetailsComponent,
     AddCarComponent,
     AddEditParkingLocationComponent,
-    ParkingLocationOverviewComponent 
+    ParkingLocationOverviewComponent,
+    CarInfoComponent 
   ],
   imports: [
     BrowserModule,

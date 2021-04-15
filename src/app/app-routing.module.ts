@@ -6,6 +6,7 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { CarSearchComponent } from './components/car-search/car-search.component';
 import { CarDetailsComponent } from './components/car-details/car-details.component';
+import { CarInfoComponent } from './components/reserve/car-info/car-info.component';
 
 import { AuthGuardService as AuthGuard } from './services/auth-guard.service';
 import { AddEditParkingLocationComponent } from './components/admin/add-edit-parking-location/add-edit-parking-location.component';
@@ -23,6 +24,10 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
+  },
+  {
+    path: 'car-info',
+    component: CarInfoComponent
   },
   {
     path: 'search',
