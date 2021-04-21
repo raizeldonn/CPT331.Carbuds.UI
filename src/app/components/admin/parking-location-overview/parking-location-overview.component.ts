@@ -34,14 +34,34 @@ export class ParkingLocationOverviewComponent implements OnInit {
   }
 
   public onAddParkingLocationClick(){
-
     const modalRef = this._modalService.open(AddEditParkingLocationComponent, {size: 'xl', backdrop: 'static'});
+    modalRef.componentInstance.parkingRecord = undefined;
     //modalRef.componentInstance.name = 'World';
     modalRef.closed.subscribe(addedLoc => {
       if(addedLoc != null){
         this.locations.push(addedLoc);
       }
-    })
+    });
+  }
+
+  public onEditParkingLocationClick(location: ParkingLocation){
+    const modalRef = this._modalService.open(AddEditParkingLocationComponent, {size: 'xl', backdrop: 'static'});
+    modalRef.componentInstance.parkingRecord = location;
+  }
+
+  public async onDeleteParkingLocationClick(location: ParkingLocation){
+    const userConfirmation = window.confirm(`Are you sure you want to delete the following location? ${location.friendlyName}`);
+    if(userConfirmation){
+      const deleteResp = await this._plService.deleteLocation(location.uuid);
+
+      if(deleteResp.success){
+        this._toastr.success('','Location deleted');
+        this.getLocationList();
+      }
+      else{
+        this._toastr.error(deleteResp.errorMessage, 'Error deleting Location');
+      }
+    }
   }
 
 }
