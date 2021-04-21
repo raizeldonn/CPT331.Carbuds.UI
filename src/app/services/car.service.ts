@@ -7,6 +7,8 @@ import {PostAddUpdateCarResponse} from '../contracts/car/post.addUpdateCar.respo
 import { environment } from 'src/environments/environment';
 import { GetListCarsResponse } from '../contracts/car/get.listCars.response.model';
 import { AuthService } from './auth.service';
+import { DeleteCarResponse } from '../contracts/car/delete.car.response.model';
+import { DeleteCarRequest } from '../contracts/car/delete.car.request.model';
 
 
 @Injectable({
@@ -32,4 +34,14 @@ export class CarService {
       return response;
     }
     
+    public async deleteCar(carUuid: string): Promise<DeleteCarResponse>{
+      let request: DeleteCarRequest = {
+        carUuid: carUuid
+      };
+      const requestHeaders = {
+        headers: this._authService.generateAuthHeader(), body: request
+      };
+      let resp = await this._http.delete<DeleteCarResponse>(`${environment.apiBaseUrl}/api/cars`, requestHeaders).toPromise();
+      return resp;
+    }
 }

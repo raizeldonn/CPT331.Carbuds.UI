@@ -32,19 +32,13 @@ export class ParkingLocationService {
   }
 
   public async deleteLocation(locationUuid: string): Promise<DeleteParkingLocationResponse>{
-    
     let request: DeleteParkingLocationRequest = {
       locationUuid: locationUuid
     };
-
     const requestHeaders = {
       headers: this._authService.generateAuthHeader(), body: request
     };
-
-    // let response = await this._http.request<DeleteParkingLocationResponse>('delete', `${environment.apiBaseUrl}/api/parkingLocation`, { headers: this._authService.generateAuthHeader(), body: request});
-
     let resp = await this._http.delete<DeleteParkingLocationResponse>(`${environment.apiBaseUrl}/api/parkingLocation`, requestHeaders).toPromise();
-
     return resp;
   }  
 }

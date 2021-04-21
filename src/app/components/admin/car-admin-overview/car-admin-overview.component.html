@@ -20,6 +20,7 @@
           <th scope="col">Model</th>
           <th scope="col">Transmission</th>
           <th scope="col">Active</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -29,6 +30,12 @@
           <td>{{car.model}}</td>
           <td>{{car.transmission}}</td>
           <td>{{car.isActive ? 'Active' : 'Inactive'}}</td>
+          <th>
+            <div class="btn-group" role="group">
+              <button type="button" class="btn btn-danger" (click)="onDeleteCarClick(car)"> Delete </button>
+              <button type="button" class="btn btn-info" (click)="onEditCarClick(car)"> Edit </button>
+            </div>
+          </th>
         </tr>
       </tbody>
     </table>

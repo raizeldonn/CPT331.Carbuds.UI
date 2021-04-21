@@ -14,6 +14,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 export class AddCarComponent implements OnInit {
 
   public addCarForm: FormGroup;
+  public carRecord?: Car;
 
   constructor(private _carService: CarService, private _toastr: ToastrService, public _activeModal: NgbActiveModal) {
     this.addCarForm = new FormGroup({
@@ -34,6 +35,26 @@ export class AddCarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(this.carRecord != undefined){
+      const carStatus = this.carRecord.isActive ? 'Active' : 'Inactive';
+      
+      this.addCarForm.setValue({
+        carMake: this.carRecord.make,
+        carModel: this.carRecord.model,
+        carYear: this.carRecord.year,
+        carTransmission: this.carRecord.transmission,
+        carKilometers: this.carRecord.kilometers,
+        carLocation: this.carRecord.location,
+        carBody: this.carRecord.body,
+        carDoors: this.carRecord.doors,
+        carSeats: this.carRecord.seats,
+        carPriceHour: this.carRecord.priceHour,
+        carPriceDay: this.carRecord.priceDay,
+        carImage: '',
+        carStatus: carStatus
+      });
+      
+    }
   }
 
   public async onSubmitAddCarForm() {
@@ -41,9 +62,11 @@ export class AddCarComponent implements OnInit {
     if (this.addCarForm.valid) {
       try {
         
-        let carActive: boolean = this.addCarForm.value['carStatus'] == 'Active' ? true : false;
+        const carActive: boolean = this.addCarForm.value['carStatus'] == 'Active' ? true : false;
+        const carId = this.carRecord != undefined ? this.carRecord.uuid : uuidv4()
+
         let carToAdd: Car = {
-          uuid: uuidv4(),
+          uuid: carId,
           make: this.addCarForm.value['carMake'],
           model: this.addCarForm.value['carModel'],
           year: this.addCarForm.value['carYear'],
