@@ -1,1 +1,15 @@
-<p>car-search works!</p>
+<h1>Search for a car</h1>
+<mgl-map
+[style]="'mapbox://styles/mapbox/streets-v9'"
+[zoom]="[12]"
+[zoom]="[10]"
+[center]="[144.96723200872293, -37.81774788707633]"
+>
+<mgl-marker *ngFor="let mark of markers"
+[lngLat]="mark"
+>
+    <div class="marker">
+    C
+    </div>
+</mgl-marker>
+</mgl-map>

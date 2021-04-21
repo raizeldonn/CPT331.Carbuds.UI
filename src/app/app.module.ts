@@ -18,6 +18,9 @@ import { NgbdButtonsCheckbox } from './buttons-checkbox';
 import { CarDetailsComponent } from './components/car-details/car-details.component';
 import { AddCarComponent } from './components/admin/add-car/add-car.component';
 import { PastBookingsComponent } from './components/user/past-bookings/past-bookings.component';
+import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
+import { AddEditParkingLocationComponent } from './components/admin/add-edit-parking-location/add-edit-parking-location.component';
+import { ParkingLocationOverviewComponent } from './components/admin/parking-location-overview/parking-location-overview.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,10 @@ import { PastBookingsComponent } from './components/user/past-bookings/past-book
     NgbdButtonsCheckbox,
     CarDetailsComponent,
     AddCarComponent,
-    PastBookingsComponent 
+    PastBookingsComponent,
+    AddEditParkingLocationComponent,
+    ParkingLocationOverviewComponent
+
   ],
   imports: [
     BrowserModule,
@@ -43,6 +49,9 @@ import { PastBookingsComponent } from './components/user/past-bookings/past-book
     NgbModule,
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-full-width'
+    }),
+    NgxMapboxGLModule.withConfig({
+      accessToken: 'pk.eyJ1IjoiYmlncm9seSIsImEiOiJja243ZWVpZHcwbjl2Mm5sMHUwZnhkb256In0.L41CKQQqIZc2jTfuZDo4Og', 
     })
   ],
   providers: [],
