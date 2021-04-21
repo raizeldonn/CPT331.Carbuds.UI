@@ -26,7 +26,6 @@ export class AddEditParkingLocationComponent implements OnInit {
   } 
 
   ngOnInit(): void {
-    console.log(this.parkingRecord);
     if(this.parkingRecord != undefined){
       this.addParkingForm.setValue({
         locationName: this.parkingRecord.friendlyName
