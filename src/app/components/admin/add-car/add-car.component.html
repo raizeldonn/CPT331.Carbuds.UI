@@ -42,10 +42,8 @@
                     <label for="location" class="form-label">Location</label>
                     <select name="location" id="location" class="form-select" 
                     class="form-control" formControlName="carLocation">
-                        <option value="elsternwick">21 Elsternwick Road</option>
-                        <option value="stKilda">37 St Kilda Road</option>
-                        <option value="portPhillip">196 Port Phillip Avenue</option>
-                        <option value="brighton">87 Brighton Street</option>
+                        <option *ngFor="let location of availableParkingLocations" 
+                        value="{{location.uuid}}">{{location.friendlyName}}</option>
                     </select>
                 </div>
         

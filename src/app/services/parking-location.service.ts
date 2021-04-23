@@ -1,8 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { DeleteParkingLocationRequest } from '../contracts/parkingLocations/delete.parkingLocation.Request.model';
+import { DeleteParkingLocationRequest } from '../contracts/parkingLocations/delete.parkingLocation.request.model';
 import { DeleteParkingLocationResponse } from '../contracts/parkingLocations/delete.parkingLocation.response.model';
+import { GetAvailableParkingLocationsResponse } from '../contracts/parkingLocations/get.availableParkingLocations.response.model';
 import { GetListParkingLocationsResponse } from '../contracts/parkingLocations/get.listParkingLocationsResponse.model';
 import { PostAddUpdateParkingLocationRequest } from '../contracts/parkingLocations/post.addUpdateParkingLocation.request';
 import { PostAddUpdateParkingLocationResponse } from '../contracts/parkingLocations/post.addUpdateParkingLocation.response.model';
@@ -41,4 +42,9 @@ export class ParkingLocationService {
     let resp = await this._http.delete<DeleteParkingLocationResponse>(`${environment.apiBaseUrl}/api/parkingLocation`, requestHeaders).toPromise();
     return resp;
   }  
+
+  public async listAvailabelParkingLocations(): Promise<GetAvailableParkingLocationsResponse>{
+    let response = await this._http.get<GetAvailableParkingLocationsResponse>( `${environment.apiBaseUrl}/api/parkingLocation/list/available`, { headers: this._authService.generateAuthHeader() }).toPromise();
+    return response;
+  }
 }

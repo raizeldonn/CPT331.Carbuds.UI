@@ -5,6 +5,8 @@ import { ToastrService } from 'ngx-toastr';
 import { Car } from 'src/app/models/car/car.model';
 import { v4 as uuidv4 } from 'uuid';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ParkingLocationService } from 'src/app/services/parking-location.service';
+import { ParkingLocation } from 'src/app/models/parkingLocations/parkingLocation.model';
 
 @Component({
   selector: 'app-add-car',
@@ -15,8 +17,9 @@ export class AddCarComponent implements OnInit {
 
   public addCarForm: FormGroup;
   public carRecord?: Car;
+  public availableParkingLocations: ParkingLocation[] = [];
 
-  constructor(private _carService: CarService, private _toastr: ToastrService, public _activeModal: NgbActiveModal) {
+  constructor(private _carService: CarService, private _toastr: ToastrService, public _activeModal: NgbActiveModal, private _plService: ParkingLocationService) {
     this.addCarForm = new FormGroup({
       carMake: new FormControl('', Validators.required),
       carModel: new FormControl('', Validators.required),
@@ -32,9 +35,14 @@ export class AddCarComponent implements OnInit {
       carImage: new FormControl(''),
       carStatus: new FormControl('', Validators.required)
     });
+
+    
   }
 
   ngOnInit(): void {
+    
+    this.getAvailableParkingLocations();
+    
     if(this.carRecord != undefined){
       const carStatus = this.carRecord.isActive ? 'Active' : 'Inactive';
       
@@ -54,6 +62,16 @@ export class AddCarComponent implements OnInit {
         carStatus: carStatus
       });
       
+    }
+  }
+
+  public async getAvailableParkingLocations(){
+    const queryResponse = await this._plService.listAvailabelParkingLocations();
+    if(queryResponse.success){
+      this.availableParkingLocations = queryResponse.parkingLocations;
+    }
+    else{
+      this._toastr.error(queryResponse.errorMessage, 'Error getting Locations to Allocate this Car to');
     }
   }
 
