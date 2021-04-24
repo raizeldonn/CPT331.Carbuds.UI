@@ -41,8 +41,6 @@ export class AddCarComponent implements OnInit {
 
   ngOnInit(): void {
     
-    this.getAvailableParkingLocations();
-    
     if(this.carRecord != undefined){
       const carStatus = this.carRecord.isActive ? 'Active' : 'Inactive';
       
@@ -63,15 +61,35 @@ export class AddCarComponent implements OnInit {
       });
       
     }
+
+    this.getAvailableParkingLocations();
+
   }
 
   public async getAvailableParkingLocations(){
     const queryResponse = await this._plService.listAvailabelParkingLocations();
     if(queryResponse.success){
       this.availableParkingLocations = queryResponse.parkingLocations;
+      
+      if(this.carRecord != undefined){
+        this.getCurrentParkingLocation();
+      }
+
     }
     else{
       this._toastr.error(queryResponse.errorMessage, 'Error getting Locations to Allocate this Car to');
+    }
+  }
+
+  private async getCurrentParkingLocation(){
+    if(this.carRecord != undefined){
+      const locationQueryResp = await this._plService.getParkingLocation(this.carRecord.location);
+      if(locationQueryResp.success && locationQueryResp.location != null){
+        this.availableParkingLocations.push(locationQueryResp.location);
+      }
+      else{
+        this._toastr.error(locationQueryResp.errorMessage, 'Error getting Car current location');
+      }
     }
   }
 
