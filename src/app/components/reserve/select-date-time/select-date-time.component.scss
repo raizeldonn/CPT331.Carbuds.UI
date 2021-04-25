@@ -1,0 +1,10 @@
+.main{
+    height: 90vh;
+    padding: 5%;
+}
+
+::ng-deep .cdk-overlay-container {     z-index:2000; }
+
+mat-form-field{
+    width:60%;
+}
