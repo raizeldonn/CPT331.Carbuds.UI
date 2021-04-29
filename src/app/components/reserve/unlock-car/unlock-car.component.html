@@ -1,0 +1,40 @@
+<div class="container main">
+
+    <div class="row">
+        <div class="col">
+            <div style=" text-align: right; color:red; font-size: 1.5em;">
+                <i class="fas fa-times-circle" (click)="onCancelClick();$event.preventDefault()"></i>
+            </div>
+        </div>
+    </div>
+
+
+        <p>Your code to unlock your car is:</p>
+
+
+    <div class="row justify-content-center">
+        <div class="col-2 box">
+            1
+        </div>
+        <div class="col-2 box">
+            4
+        </div>
+        <div class="col-2 box">
+            8
+        </div>
+        <div class="col-2 box">
+            1
+        </div>
+    </div>
+
+
+        <p class='small'>You have 15 minutes to unlock your car</p>
+
+    <div class="row">
+        <i class="fas fa-info-circle" (mouseenter)="showInfo()"></i>
+        <span>see any damages? report them before you start driving to avoid penalty.</span>
+    </div>
+
+
+
+</div>

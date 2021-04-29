@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { UnlockCarComponent} from '../unlock-car/unlock-car.component'
 
 @Component({
   selector: 'app-my-booking',
@@ -21,7 +22,8 @@ export class MyBookingComponent implements OnInit {
 
   public onUnlockCarClick(){
     this._activeModal.dismiss(null);
-    // give a code to unlock the car
+    const modalRef = this._modalService.open(UnlockCarComponent, {size: 'm', backdrop: 'static'});
+    modalRef.componentInstance.name = 'World';
   }
 
   public viewOnMapClick(){

@@ -15,12 +15,6 @@ interface Food {
 
 export class SelectDateTimeComponent implements OnInit {
 
-  foods: Food[] = [
-    {value: 'steak-0', viewValue: 'Steak'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'}
-  ];
-
   //min and max validation
   minDate:Date = new Date();
   maxDate: Date = new Date(new Date().getFullYear() + 1, 11, 31)
