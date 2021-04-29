@@ -1,1 +1,68 @@
-<p>my-booking works!</p>
+<div class="container main">
+
+    <div class="row">
+        <div class="col">
+            <h3>My Booking</h3>
+        </div>
+        <div class="col-1">
+            <div style=" text-align: right; color:red; font-size: 1.5em;">
+                <i class="fas fa-times-circle" (click)="onCancelClick();$event.preventDefault()"></i>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col">
+            <h5>Booking</h5>
+        </div>
+    </div>
+
+
+    <div class="row box">
+        <div class="col">
+            <p>From</p>
+            <p class='emphasize'>2:30 PM</p> <!--{{booking.startTime}}-->
+            <p>Thursday, 29 April</p> <!--{{booking.startDate}}-->
+        </div>
+        <div class="col">
+            <p>To</p>
+            <p class='emphasize'>4:30 PM</p> <!--{{booking.endTime}}-->
+            <p>Friday, 30 April</p> <!--{{booking.endDate}}-->
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <h5>Location</h5>
+        </div>
+    </div>
+
+    <div class="row box">
+        <div class="col">
+            <p class='emphasize'>2 KM away</p> <!-- rolys job : ) -->
+            <p>57 George Street, West Richmond</p> <!--{{booking.location}}-->
+            <div (click)="viewOnMapClick()" class='view-on-map'>
+                <i class="fas fa-map-marker-alt"></i>
+                <span> view on map</span> <!-- rolys job : ) -->
+            </div>
+        </div>
+    </div>
+
+    <div class="row buttons-div">
+        <div class="col-6 cancel">
+            <div (click)="onCancelClick()" class="btn btn-block btn-primary btn-cancel">
+                Cancel
+            </div>
+        </div>
+        <div class="col-6 unlock">
+            <div (click)="onUnlockCarClick()" class="btn btn-block btn-primary">
+                Unlock Car
+            </div>
+        </div>
+    </div>
+    
+    
+    
+    
+</div>
