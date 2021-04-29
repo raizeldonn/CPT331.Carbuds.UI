@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NumberLiteralType } from 'typescript';
 
 @Component({
   selector: 'app-unlock-car',
@@ -8,17 +9,19 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class UnlockCarComponent implements OnInit {
 
-  constructor( public _activeModal: NgbActiveModal ) { }
+  public num1: Number = Math.round(Math.random() * 10);
+  public num2: Number = Math.round(Math.random() * 10);
+  public num3: Number = Math.round(Math.random() * 10);
+  public num4: Number = Math.round(Math.random() * 10);
+
+  constructor( public _activeModal: NgbActiveModal ) { 
+  }
 
   ngOnInit(): void {
   }
 
   public onCancelClick(){
     this._activeModal.dismiss(null);
-  }
-
-  public showInfo(){
-    console.log("show info")
   }
 
 }

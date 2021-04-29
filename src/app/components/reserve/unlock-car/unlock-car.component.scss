@@ -27,11 +27,10 @@ p{
 }
 
 span{
-    visibility: hidden;
+    visibility:hidden;
+    font-size: 12px;
 }
 
-i:hover{
-    span{
-        visibility: visible;
-    }
+i:hover + span{
+    visibility:visible;
 }
