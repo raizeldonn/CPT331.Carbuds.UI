@@ -26,6 +26,7 @@ import { AddEditParkingLocationComponent } from './components/admin/add-edit-par
 import { ParkingLocationOverviewComponent } from './components/admin/parking-location-overview/parking-location-overview.component';
 import { CarInfoComponent } from './components/reserve/car-info/car-info.component';
 import { SelectDateTimeComponent } from './components/reserve/select-date-time/select-date-time.component';
+import { MyBookingComponent } from './components/reserve/my-booking/my-booking.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { SelectDateTimeComponent } from './components/reserve/select-date-time/s
     AddEditParkingLocationComponent,
     ParkingLocationOverviewComponent,
     CarInfoComponent,
-    SelectDateTimeComponent 
+    SelectDateTimeComponent,
+    MyBookingComponent 
   ],
   imports: [
     BrowserModule,

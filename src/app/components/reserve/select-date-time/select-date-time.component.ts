@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { MyBookingComponent} from '../my-booking/my-booking.component'
 
 interface Food {
   value: string;
@@ -32,7 +33,7 @@ export class SelectDateTimeComponent implements OnInit {
   }
 
 
-  constructor( public _activeModal: NgbActiveModal ) {
+  constructor( public _activeModal: NgbActiveModal, private _modalService: NgbModal ) {
 
     
    }
@@ -42,6 +43,17 @@ export class SelectDateTimeComponent implements OnInit {
 
   public onCancelClick(){
     this._activeModal.dismiss(null);
+  }
+
+  public onReserveCarClick(){
+    this._activeModal.dismiss(null);
+    const modalRef = this._modalService.open(MyBookingComponent, {size: 'm', backdrop: 'static'});
+    modalRef.componentInstance.name = 'World';
+    //modalRef.closed.subscribe(addedCar => {
+    //  if(addedCar != null){
+    //    this.cars.push(addedCar);
+    //  }
+    //})
   }
 
 }
