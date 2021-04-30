@@ -16,7 +16,16 @@
             <th scope="col">Cost</th>
           </tr>
         </thead>
-        <!-- <tbody>
+        <tbody>
+          <tr *ngFor="let item of bookingList">
+            <th scope="row" >{{item.taken}}</th>
+            <td>{{item.returned}}</td>
+            <td>{{item.location}}</td>
+            <td>{{item.car}}</td>
+            <td>{{item.cost}}</td>
+          </tr>
+        </tbody>
+          <!-- <tbody>
           <tr *ngFor="let booking of bookings">
             <th scope="row" >{{booking.date}}</th>
             <td>{{booking.loation}}</td>
