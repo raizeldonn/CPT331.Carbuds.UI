@@ -11,8 +11,6 @@ import { ParkingLocationService } from 'src/app/services/parking-location.servic
   styleUrls: ['./car-search.component.scss']
 })
 export class CarSearchComponent implements OnInit {
-  public mapMarkerLocation: LngLat = new LngLat(144.96723200872293, -37.81774788707633);
-  public mapMarkerLocation1: LngLat = new LngLat(144.96723200872293, -37.71774788707633);
   public markers: LngLat[] = [];
   public locations: ParkingLocation[] = [];
 
@@ -40,5 +38,8 @@ export class CarSearchComponent implements OnInit {
       const newMarker = new LngLat(loc.longitude, loc.latitude);
       this.markers.push(newMarker);
     }
+  }
+  public markerClicked(mark: LngLat){
+    console.log(mark);
   }
 }

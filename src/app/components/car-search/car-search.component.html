@@ -8,7 +8,7 @@
 <mgl-marker *ngFor="let mark of markers"
 [lngLat]="mark"
 >
-    <div class="marker">
+    <div class="marker" (click)="markerClicked(mark)">
     C
     </div>
 </mgl-marker>
