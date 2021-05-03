@@ -15,17 +15,25 @@ import { v4 as uuidv4 } from 'uuid';
 export class AddEditParkingLocationComponent implements OnInit {
 
   public mapMarkerLocation: LngLat = new LngLat(144.96723200872293, -37.81774788707633);
-
+  public mapCenter: LngLat = new LngLat(144.96723200872293, -37.81774788707633);
   public addParkingForm: FormGroup;
+  public parkingRecord?: ParkingLocation;
 
   constructor(private _parkingLocationService: ParkingLocationService, private _toastr: ToastrService, public _activeModal: NgbActiveModal) {
     this.addParkingForm = new FormGroup({
       locationName: new FormControl('', Validators.required)
-    });
+    });    
   } 
 
   ngOnInit(): void {
-    
+    if(this.parkingRecord != undefined){
+      this.addParkingForm.setValue({
+        locationName: this.parkingRecord.friendlyName
+      });
+
+      this.mapMarkerLocation = new LngLat(this.parkingRecord.longitude, this.parkingRecord.latitude);
+      this.mapCenter = new LngLat(this.parkingRecord.longitude, this.parkingRecord.latitude);
+    }
   } 
 
   public onMapClick(event: MapMouseEvent){
@@ -37,8 +45,11 @@ export class AddEditParkingLocationComponent implements OnInit {
 
   public async onSubmitParkingLocationForm(){
     if(this.addParkingForm.valid){
+      
+      let saveUuid = this.parkingRecord != undefined ? this.parkingRecord.uuid : uuidv4();
+      
       let locationToAdd: ParkingLocation = {
-        uuid: uuidv4(),
+        uuid: saveUuid,
         friendlyName: this.addParkingForm.value['locationName'],
         latitude: this.mapMarkerLocation.lat,
         longitude: this.mapMarkerLocation.lng

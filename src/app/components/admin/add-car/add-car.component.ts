@@ -5,6 +5,8 @@ import { ToastrService } from 'ngx-toastr';
 import { Car } from 'src/app/models/car/car.model';
 import { v4 as uuidv4 } from 'uuid';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ParkingLocationService } from 'src/app/services/parking-location.service';
+import { ParkingLocation } from 'src/app/models/parkingLocations/parkingLocation.model';
 
 @Component({
   selector: 'app-add-car',
@@ -14,8 +16,10 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 export class AddCarComponent implements OnInit {
 
   public addCarForm: FormGroup;
+  public carRecord?: Car;
+  public availableParkingLocations: ParkingLocation[] = [];
 
-  constructor(private _carService: CarService, private _toastr: ToastrService, public _activeModal: NgbActiveModal) {
+  constructor(private _carService: CarService, private _toastr: ToastrService, public _activeModal: NgbActiveModal, private _plService: ParkingLocationService) {
     this.addCarForm = new FormGroup({
       carMake: new FormControl('', Validators.required),
       carModel: new FormControl('', Validators.required),
@@ -31,9 +35,62 @@ export class AddCarComponent implements OnInit {
       carImage: new FormControl(''),
       carStatus: new FormControl('', Validators.required)
     });
+
+    
   }
 
   ngOnInit(): void {
+    
+    if(this.carRecord != undefined){
+      const carStatus = this.carRecord.isActive ? 'Active' : 'Inactive';
+      
+      this.addCarForm.setValue({
+        carMake: this.carRecord.make,
+        carModel: this.carRecord.model,
+        carYear: this.carRecord.year,
+        carTransmission: this.carRecord.transmission,
+        carKilometers: this.carRecord.kilometers,
+        carLocation: this.carRecord.location,
+        carBody: this.carRecord.body,
+        carDoors: this.carRecord.doors,
+        carSeats: this.carRecord.seats,
+        carPriceHour: this.carRecord.priceHour,
+        carPriceDay: this.carRecord.priceDay,
+        carImage: '',
+        carStatus: carStatus
+      });
+      
+    }
+
+    this.getAvailableParkingLocations();
+
+  }
+
+  public async getAvailableParkingLocations(){
+    const queryResponse = await this._plService.listAvailabelParkingLocations();
+    if(queryResponse.success){
+      this.availableParkingLocations = queryResponse.parkingLocations;
+      
+      if(this.carRecord != undefined){
+        this.getCurrentParkingLocation();
+      }
+
+    }
+    else{
+      this._toastr.error(queryResponse.errorMessage, 'Error getting Locations to Allocate this Car to');
+    }
+  }
+
+  private async getCurrentParkingLocation(){
+    if(this.carRecord != undefined){
+      const locationQueryResp = await this._plService.getParkingLocation(this.carRecord.location);
+      if(locationQueryResp.success && locationQueryResp.location != null){
+        this.availableParkingLocations.push(locationQueryResp.location);
+      }
+      else{
+        this._toastr.error(locationQueryResp.errorMessage, 'Error getting Car current location');
+      }
+    }
   }
 
   public async onSubmitAddCarForm() {
@@ -41,9 +98,11 @@ export class AddCarComponent implements OnInit {
     if (this.addCarForm.valid) {
       try {
         
-        let carActive: boolean = this.addCarForm.value['carStatus'] == 'Active' ? true : false;
+        const carActive: boolean = this.addCarForm.value['carStatus'] == 'Active' ? true : false;
+        const carId = this.carRecord != undefined ? this.carRecord.uuid : uuidv4()
+
         let carToAdd: Car = {
-          uuid: uuidv4(),
+          uuid: carId,
           make: this.addCarForm.value['carMake'],
           model: this.addCarForm.value['carModel'],
           year: this.addCarForm.value['carYear'],

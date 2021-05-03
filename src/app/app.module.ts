@@ -4,13 +4,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatNativeDateModule} from '@angular/material/core';
-import {MatInputModule} from '@angular/material/input';
-import {MatSelectModule} from '@angular/material/select';
-
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -19,8 +17,11 @@ import { NavbarComponent } from './components/common/navbar/navbar.component';
 import { CarSearchComponent } from './components/car-search/car-search.component';
 import { CarAdminOverviewComponent } from './components/admin/car-admin-overview/car-admin-overview.component';
 import { RegisterComponent } from './components/auth/register/register.component';
+import { ProfileComponent } from './components/user/profile/profile.component';
+import { NgbdButtonsCheckbox } from './buttons-checkbox';
 import { CarDetailsComponent } from './components/car-details/car-details.component';
 import { AddCarComponent } from './components/admin/add-car/add-car.component';
+import { PastBookingsComponent } from './components/user/past-bookings/past-bookings.component';
 import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
 import { AddEditParkingLocationComponent } from './components/admin/add-edit-parking-location/add-edit-parking-location.component';
 import { ParkingLocationOverviewComponent } from './components/admin/parking-location-overview/parking-location-overview.component';
@@ -37,14 +38,18 @@ import { UnlockCarComponent } from './components/reserve/unlock-car/unlock-car.c
     CarSearchComponent,
     CarAdminOverviewComponent,
     RegisterComponent,
+    ProfileComponent,
+    NgbdButtonsCheckbox,
     CarDetailsComponent,
     AddCarComponent,
+    PastBookingsComponent,
     AddEditParkingLocationComponent,
     ParkingLocationOverviewComponent,
     CarInfoComponent,
     SelectDateTimeComponent,
     MyBookingComponent,
-    UnlockCarComponent 
+    UnlockCarComponent,
+    ParkingLocationOverviewComponent
   ],
   imports: [
     BrowserModule,
