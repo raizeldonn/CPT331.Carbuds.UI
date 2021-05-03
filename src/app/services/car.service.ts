@@ -35,13 +35,11 @@ export class CarService {
       return response;
     }
 
-    public async getOneCar(): Promise<GetOneCarResponse>{
-      //replace the hard-coded UUID with selected car
-      let response = await this._http.get<GetOneCarResponse>( `${environment.apiBaseUrl}/api/cars/2f5c9512-ac93-41dd-8dee-6c9703825b74`, { headers: this._authService.generateAuthHeader() }).toPromise();
+    public async getCarByCarId(carUuid: string): Promise<GetOneCarResponse>{
+      let response = await this._http.get<GetOneCarResponse>( `${environment.apiBaseUrl}/api/cars/getByCarId${carUuid}`, { headers: this._authService.generateAuthHeader() }).toPromise();
       return response;
-     
     }
-    
+
     public async deleteCar(carUuid: string): Promise<DeleteCarResponse>{
       let request: DeleteCarRequest = {
         carUuid: carUuid

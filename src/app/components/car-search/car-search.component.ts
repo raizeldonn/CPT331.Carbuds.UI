@@ -6,6 +6,9 @@ import { LngLat } from 'mapbox-gl';
 import { ToastrService } from 'ngx-toastr';
 import { ParkingLocation } from 'src/app/models/parkingLocations/parkingLocation.model';
 import { ParkingLocationService } from 'src/app/services/parking-location.service';
+import { Car } from 'src/app/models/car/car.model';
+import { CarService } from 'src/app/services/car.service';
+
 
 @Component({
   selector: 'app-car-search',
@@ -15,11 +18,15 @@ import { ParkingLocationService } from 'src/app/services/parking-location.servic
 export class CarSearchComponent implements OnInit {
   public markers: LngLat[] = [];
   public locations: ParkingLocation[] = [];
+  public cars: Car[] = [];
+  public carsWithLocations: Car[] = [];
+  public locationsWithCars: ParkingLocation[] = [];
 
-  constructor(private _plService: ParkingLocationService, private _toastr: ToastrService, private _modalService: NgbModal) { 
+  constructor(private _plService: ParkingLocationService, private _toastr: ToastrService, private _modalService: NgbModal, private _carService: CarService) { 
   }
 
   ngOnInit(): void {
+    this.getCarList()
     this.getLocationList()
   }
 
@@ -44,13 +51,45 @@ export class CarSearchComponent implements OnInit {
       this._toastr.error(locationResp.errorMessage, 'Unable to get list of Locations.');
     }
   }
-  public populateMarkers(){
-    for (let loc of this.locations){
-      const newMarker = new LngLat(loc.longitude, loc.latitude);
-      this.markers.push(newMarker);
+
+  public async getCarList(){
+    const locationResp = await this._carService.listAllCars();
+
+    if(locationResp.success){
+      this.cars = locationResp.cars;
+    }
+    else{
+      this._toastr.error(locationResp.errorMessage, 'Unable to get list of Locations.');
     }
   }
-  public markerClicked(mark: LngLat){
-    console.log(mark);
+// Only works if there is only one car per location
+  public populateMarkers(){
+
+    for (let car of this.cars){
+      for (let loc of this.locations){
+        if(car.location == loc.uuid){
+          this.locationsWithCars.push(loc);
+          this.carsWithLocations.push(car);
+          const newMarker = new LngLat(loc.longitude, loc.latitude);
+          this.markers.push(newMarker);
+        }
+      }
+    }
+  }
+
+  public markerClicked(marker: LngLat){
+    var index = 0;
+    var carUuid;
+    for (let mark of this.markers){
+      if (mark == marker){
+        carUuid = this.carsWithLocations[index].uuid;
+      }
+      else{
+        index+=1;
+      }
+    }
+    const modalRef = this._modalService.open(CarInfoComponent, {size: 'm', backdrop: 'static'});
+    modalRef.componentInstance.carUuid = carUuid;
+    modalRef.componentInstance.name = 'World';
   }
 }

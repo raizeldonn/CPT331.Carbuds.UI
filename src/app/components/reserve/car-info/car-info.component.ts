@@ -11,7 +11,7 @@ import { SelectDateTimeComponent } from '../select-date-time/select-date-time.co
   styleUrls: ['./car-info.component.scss']
 })
 export class CarInfoComponent implements OnInit {
-
+  public carUuid: string = "";
   public car!: Car;
 
   constructor( private _carService: CarService, private _toastr: ToastrService, 
@@ -22,16 +22,16 @@ export class CarInfoComponent implements OnInit {
   }
 
   public async getCarData(){
-    try {
-
-      let getCarResponse = await this._carService.getOneCar();
-      if (getCarResponse.success) {
-        this.car = getCarResponse.car;
+    try {        
+        let getCarResponse = await this._carService.getCarByCarId(this.carUuid);
+        if (getCarResponse.success) {
+          this.car = getCarResponse.car;
+        }
+        else {
+          this._toastr.error(getCarResponse.errorMessage, 'Unable to Get Car by parking ID');
+        }
       }
-      else {
-        this._toastr.error(getCarResponse.errorMessage, 'Unable to Get Single Car');
-      }
-    } catch (e) {
+     catch (e) {
       this._toastr.error(e, 'Unable to Get Single Car');
     }
   }
