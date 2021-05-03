@@ -39,6 +39,18 @@ export class AuthService {
       path: 'search',
       faIcon: 'fas fa-search',
       requiredPermission: null
+    },
+    {
+      title: 'My Profile',
+      path: 'profile',
+      faIcon: 'fas fa-user',
+      requiredPermission: 'carbuds-users'
+    },
+    {
+      title: 'Past Bookings',
+      path: 'user/past-bookings',
+      faIcon: 'far fa-calendar-check',
+      requiredPermission: 'carbuds-users'
     }
   ]; 
 
