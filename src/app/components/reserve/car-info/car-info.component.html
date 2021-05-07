@@ -1,0 +1,104 @@
+<div class="container main">
+
+    <div class="row">
+        <div class="col">
+            <h3>Vehicle Details</h3>
+        </div>
+        <div class="col-1">
+            <div style=" text-align: right; color:red; font-size: 1.5em;">
+                <i class="fas fa-times-circle" (click)="onCancelClick();$event.preventDefault()"></i>
+            </div>
+        </div>
+      </div>
+
+
+<div class="container" style="font-size: 84px; text-align: center;">
+    <i class="fas fa-car-side"></i>
+</div>
+
+<!--year, model, name-->
+<h6>{{car?.year}} {{car?.make}} {{car?.model}}</h6>
+
+<div class="container">
+
+    <div class="row">
+      <div class="col-2" style="font-size: 25px;">
+        <i class="fas fa-cog"></i>
+      </div>
+      <div class="col-10">
+        <!--transmission-->
+        <div>{{car?.transmission}}</div>
+      </div>
+    </div>
+
+    <!--<i class="fas fa-tachometer-alt"></i>-->
+    <div class="row">
+        <div class="col-2" style="font-size: 25px;">
+            <i class="fas fa-tachometer-alt"></i>
+          </div>
+        <div class="col-10">
+          <!--kilometres-->
+          <div>{{car?.kilometers}}</div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-2" style="font-size: 25px;">
+            <i class="fas fa-car-side"></i>
+        </div>
+        <div class="col-10">
+          <!--body type-->
+          <div>{{car?.body}}</div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-2" style="font-size: 25px;">
+            <i class="fas fa-door-closed"></i>
+        </div>
+        <div class="col-10">
+          <!--doors-->
+          <div>{{car?.doors}}</div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-2" style="font-size: 25px;">
+            <i class="fas fa-chair"></i>
+        </div>
+        <div class="col-10">
+          <!--seats-->
+          <div>{{car?.seats}}</div>
+        </div>
+      </div>
+
+</div>
+
+<hr class="thin">
+
+<div class="container">
+
+    <div class="row">
+      <div class="col">
+        <div>Price Per Hour</div>
+      </div>
+      <div class="col" style="text-align: right;">
+        <div>${{car?.priceHour}}</div>
+      </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+          <div>Price Per Day</div>
+        </div>
+        <div class="col" style="text-align: right;">
+           <div> ${{car?.priceDay}}</div>
+        </div>
+      </div>
+</div>
+
+<div (click)="onReserveCarClick()" class="btn btn-block btn-primary col-8">
+    Reserve
+</div>
+
+</div>

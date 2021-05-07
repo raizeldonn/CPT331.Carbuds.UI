@@ -1,0 +1,153 @@
+<div class="container main">
+
+    <div class="row">
+        <div class="col">
+            <h3>Reserve Car</h3>
+        </div>
+        <div class="col-1">
+            <div style=" text-align: right; color:red; font-size: 1.5em;">
+                <i class="fas fa-times-circle" (click)="onCancelClick();$event.preventDefault()"></i>
+            </div>
+        </div>
+      </div>
+
+
+<h4>Start:</h4>
+
+<!--date picker-->
+<mat-form-field appearance="fill">
+  <mat-label>Choose a start date</mat-label>
+  <input matInput [min]="minDate" [max]="maxDate"  [matDatepickerFilter]="dateFilter" [matDatepicker]="picker">
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+<br>
+
+<!--time picker-->
+<mat-form-field appearance="fill">
+    <mat-label>Choose a start time</mat-label>
+    <mat-select>
+      <mat-option value="option1">12:00 AM</mat-option>
+      <mat-option value="option2" disabled>12:30 AM</mat-option>
+      <mat-option value="option3">1:00 AM</mat-option>
+      <mat-option value="option3">1:30 AM</mat-option>
+      <mat-option value="option3">2:00 AM</mat-option>
+      <mat-option value="option3">2:30 AM</mat-option>
+      <mat-option value="option3">3:00 AM</mat-option>
+      <mat-option value="option3">3:30 AM</mat-option>
+      <mat-option value="option3">4:00 AM</mat-option>
+      <mat-option value="option3">4:30 AM</mat-option>
+      <mat-option value="option3">5:00 AM</mat-option>
+      <mat-option value="option3">5:30 AM</mat-option>
+      <mat-option value="option3">6:00 AM</mat-option>
+      <mat-option value="option3">6:30 AM</mat-option>
+      <mat-option value="option3">7:00 AM</mat-option>
+      <mat-option value="option3">7:30 AM</mat-option>
+      <mat-option value="option3">8:00 AM</mat-option>
+      <mat-option value="option3">8:30 AM</mat-option>
+      <mat-option value="option3">9:00 AM</mat-option>
+      <mat-option value="option3">9:30 AM</mat-option>
+      <mat-option value="option3">10:00 AM</mat-option>
+      <mat-option value="option3">10:30 AM</mat-option>
+      <mat-option value="option3">11:00 AM</mat-option>
+      <mat-option value="option3">11:30 AM</mat-option>
+      <mat-option value="option3">12:00 PM</mat-option>
+      <mat-option value="option3">12:30 PM</mat-option>
+      <mat-option value="option3">1:00 PM</mat-option>
+      <mat-option value="option3">1:30 PM</mat-option>
+      <mat-option value="option3">2:00 PM</mat-option>
+      <mat-option value="option3">2:30 PM</mat-option>
+      <mat-option value="option3">3:00 PM</mat-option>
+      <mat-option value="option3">3:30 PM</mat-option>
+      <mat-option value="option3">4:00 PM</mat-option>
+      <mat-option value="option3">4:30 PM</mat-option>
+      <mat-option value="option3">5:00 PM</mat-option>
+      <mat-option value="option3">5:30 PM</mat-option>
+      <mat-option value="option3">6:00 PM</mat-option>
+      <mat-option value="option3">6:30 PM</mat-option>
+      <mat-option value="option3">7:00 PM</mat-option>
+      <mat-option value="option3">7:30 PM</mat-option>
+      <mat-option value="option3">8:00 PM</mat-option>
+      <mat-option value="option3">8:30 PM</mat-option>
+      <mat-option value="option3">9:00 PM</mat-option>
+      <mat-option value="option3">9:30 PM</mat-option>
+      <mat-option value="option3">10:00 PM</mat-option>
+      <mat-option value="option3">10:30 PM</mat-option>
+      <mat-option value="option3">11:00 PM</mat-option>
+      <mat-option value="option3">11:30 PM</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <h4>End:</h4>
+
+  <!--date picker-->
+  <mat-form-field appearance="fill">
+    <mat-label>Choose an end date</mat-label>
+    <input matInput [min]="minDate" [max]="maxDate"  [matDatepickerFilter]="dateFilter" [matDatepicker]="picker2">
+    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+    <mat-datepicker #picker2></mat-datepicker>
+  </mat-form-field>
+  <br>
+  
+  <!--time picker-->
+  <mat-form-field appearance="fill">
+      <mat-label>Choose an end time</mat-label>
+      <mat-select>
+        <mat-option value="option1">12:00 AM</mat-option>
+        <mat-option value="option2" disabled>12:30 AM</mat-option>
+        <mat-option value="option3">1:00 AM</mat-option>
+        <mat-option value="option3">1:30 AM</mat-option>
+        <mat-option value="option3">2:00 AM</mat-option>
+        <mat-option value="option3">2:30 AM</mat-option>
+        <mat-option value="option3">3:00 AM</mat-option>
+        <mat-option value="option3">3:30 AM</mat-option>
+        <mat-option value="option3">4:00 AM</mat-option>
+        <mat-option value="option3">4:30 AM</mat-option>
+        <mat-option value="option3">5:00 AM</mat-option>
+        <mat-option value="option3">5:30 AM</mat-option>
+        <mat-option value="option3">6:00 AM</mat-option>
+        <mat-option value="option3">6:30 AM</mat-option>
+        <mat-option value="option3">7:00 AM</mat-option>
+        <mat-option value="option3">7:30 AM</mat-option>
+        <mat-option value="option3">8:00 AM</mat-option>
+        <mat-option value="option3">8:30 AM</mat-option>
+        <mat-option value="option3">9:00 AM</mat-option>
+        <mat-option value="option3">9:30 AM</mat-option>
+        <mat-option value="option3">10:00 AM</mat-option>
+        <mat-option value="option3">10:30 AM</mat-option>
+        <mat-option value="option3">11:00 AM</mat-option>
+        <mat-option value="option3">11:30 AM</mat-option>
+        <mat-option value="option3">12:00 PM</mat-option>
+        <mat-option value="option3">12:30 PM</mat-option>
+        <mat-option value="option3">1:00 PM</mat-option>
+        <mat-option value="option3">1:30 PM</mat-option>
+        <mat-option value="option3">2:00 PM</mat-option>
+        <mat-option value="option3">2:30 PM</mat-option>
+        <mat-option value="option3">3:00 PM</mat-option>
+        <mat-option value="option3">3:30 PM</mat-option>
+        <mat-option value="option3">4:00 PM</mat-option>
+        <mat-option value="option3">4:30 PM</mat-option>
+        <mat-option value="option3">5:00 PM</mat-option>
+        <mat-option value="option3">5:30 PM</mat-option>
+        <mat-option value="option3">6:00 PM</mat-option>
+        <mat-option value="option3">6:30 PM</mat-option>
+        <mat-option value="option3">7:00 PM</mat-option>
+        <mat-option value="option3">7:30 PM</mat-option>
+        <mat-option value="option3">8:00 PM</mat-option>
+        <mat-option value="option3">8:30 PM</mat-option>
+        <mat-option value="option3">9:00 PM</mat-option>
+        <mat-option value="option3">9:30 PM</mat-option>
+        <mat-option value="option3">10:00 PM</mat-option>
+        <mat-option value="option3">10:30 PM</mat-option>
+        <mat-option value="option3">11:00 PM</mat-option>
+        <mat-option value="option3">11:30 PM</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+<!--(click)="onReserveCarClick()"-->
+<div class="btn btn-block btn-primary col-8" (click)="onReserveCarClick()" >
+    Reserve
+</div>
+
+</div>
