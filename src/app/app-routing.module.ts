@@ -8,7 +8,7 @@ import { CarSearchComponent } from './components/car-search/car-search.component
 import { ProfileComponent } from './components/user/profile/profile.component';
 import { CarDetailsComponent } from './components/car-details/car-details.component';
 import { CarInfoComponent } from './components/reserve/car-info/car-info.component';
-import {PastBookingsComponent } from './components/user/past-bookings/past-bookings.component';
+import { ViewBookingsComponent } from './components/user/view-bookings/view-bookings.component';
 import { AuthGuardService as AuthGuard } from './services/auth-guard.service';
 import { ParkingLocationOverviewComponent } from './components/admin/parking-location-overview/parking-location-overview.component';
 import { AddEditParkingLocationComponent } from './components/admin/add-edit-parking-location/add-edit-parking-location.component';
@@ -44,8 +44,8 @@ const routes: Routes = [
     path: 'user',
     children: [
       {
-        path: 'past-bookings',
-        component: PastBookingsComponent,
+        path: 'view-bookings',
+        component: ViewBookingsComponent,
         data: {
           requiredGroups: ['carbuds-users']
         },

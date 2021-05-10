@@ -47,8 +47,8 @@ export class AuthService {
       requiredPermission: 'carbuds-users'
     },
     {
-      title: 'Past Bookings',
-      path: 'user/past-bookings',
+      title: 'View Bookings',
+      path: 'user/view-bookings',
       faIcon: 'far fa-calendar-check',
       requiredPermission: 'carbuds-users'
     }

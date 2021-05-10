@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { MyBookingComponent} from '../my-booking/my-booking.component'
+import { BookingSummaryComponent} from '../booking-summary/booking-summary.component'
 
 interface Food {
   value: string;
@@ -15,6 +15,10 @@ interface Food {
 
 export class SelectDateTimeComponent implements OnInit {
 
+  public carUuid: string = "";
+  public longitude: number | undefined;
+  public latitude: number | undefined;
+
   //min and max validation
   minDate:Date = new Date();
   maxDate: Date = new Date(new Date().getFullYear() + 1, 11, 31)
@@ -28,10 +32,7 @@ export class SelectDateTimeComponent implements OnInit {
 
 
   constructor( public _activeModal: NgbActiveModal, private _modalService: NgbModal ) {
-
-    
    }
-
   ngOnInit(): void {
   }
 
@@ -41,13 +42,7 @@ export class SelectDateTimeComponent implements OnInit {
 
   public onReserveCarClick(){
     this._activeModal.dismiss(null);
-    const modalRef = this._modalService.open(MyBookingComponent, {size: 'm', backdrop: 'static'});
-    modalRef.componentInstance.name = 'World';
-    //modalRef.closed.subscribe(addedCar => {
-    //  if(addedCar != null){
-    //    this.cars.push(addedCar);
-    //  }
-    //})
+    const modalRef = this._modalService.open(BookingSummaryComponent, {size: 'm', backdrop: 'static'});
+    modalRef.componentInstance.carUuid = this.carUuid;
   }
-
 }

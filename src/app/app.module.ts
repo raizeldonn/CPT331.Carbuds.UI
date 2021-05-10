@@ -21,13 +21,14 @@ import { ProfileComponent } from './components/user/profile/profile.component';
 import { NgbdButtonsCheckbox } from './buttons-checkbox';
 import { CarDetailsComponent } from './components/car-details/car-details.component';
 import { AddCarComponent } from './components/admin/add-car/add-car.component';
-import { PastBookingsComponent } from './components/user/past-bookings/past-bookings.component';
+import { ViewBookingsComponent } from './components/user/view-bookings/view-bookings.component';
 import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
 import { AddEditParkingLocationComponent } from './components/admin/add-edit-parking-location/add-edit-parking-location.component';
 import { ParkingLocationOverviewComponent } from './components/admin/parking-location-overview/parking-location-overview.component';
 import { CarInfoComponent } from './components/reserve/car-info/car-info.component';
 import { SelectDateTimeComponent } from './components/reserve/select-date-time/select-date-time.component';
 import { MyBookingComponent } from './components/reserve/my-booking/my-booking.component';
+import { BookingSummaryComponent } from './components/reserve/booking-summary/booking-summary.component';
 import { UnlockCarComponent } from './components/reserve/unlock-car/unlock-car.component';
 
 @NgModule({
@@ -42,14 +43,14 @@ import { UnlockCarComponent } from './components/reserve/unlock-car/unlock-car.c
     NgbdButtonsCheckbox,
     CarDetailsComponent,
     AddCarComponent,
-    PastBookingsComponent,
+    ViewBookingsComponent,
     AddEditParkingLocationComponent,
     ParkingLocationOverviewComponent,
     CarInfoComponent,
     SelectDateTimeComponent,
     MyBookingComponent,
     UnlockCarComponent,
-    ParkingLocationOverviewComponent
+    BookingSummaryComponent
   ],
   imports: [
     BrowserModule,

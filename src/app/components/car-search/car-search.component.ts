@@ -32,12 +32,6 @@ export class CarSearchComponent implements OnInit {
 
   public onCarMapClick(){
     const modalRef = this._modalService.open(CarInfoComponent, {size: 'm', backdrop: 'static'});
-    modalRef.componentInstance.name = 'World';
-    //modalRef.closed.subscribe(addedCar => {
-    //  if(addedCar != null){
-    //    this.cars.push(addedCar);
-    //  }
-    //})
   }
 
   public async getLocationList(){
@@ -90,6 +84,7 @@ export class CarSearchComponent implements OnInit {
     }
     const modalRef = this._modalService.open(CarInfoComponent, {size: 'm', backdrop: 'static'});
     modalRef.componentInstance.carUuid = carUuid;
-    modalRef.componentInstance.name = 'World';
+    modalRef.componentInstance.longitude = marker.lng;
+    modalRef.componentInstance.latitude = marker.lat;
   }
 }
