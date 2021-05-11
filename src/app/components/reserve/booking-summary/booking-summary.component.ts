@@ -85,7 +85,6 @@ export class BookingSummaryComponent implements OnInit {
 
   public getInfo(){
     this.getCar();
-    this.getLocation();
   }
 
   public async getCar(){
@@ -93,6 +92,7 @@ export class BookingSummaryComponent implements OnInit {
       let getCarResponse = await this._carService.getCarByCarId(this.carUuid);
       if (getCarResponse.success) {
         this.car = getCarResponse.car;
+        this.getLocation();
       }
       else {
         this._toastr.error(getCarResponse.errorMessage, 'Unable to Get Car by parking ID');
@@ -105,7 +105,7 @@ export class BookingSummaryComponent implements OnInit {
 
 public async getLocation(){
   try {        
-    let getParkingLocationResponse = await this._plService.getParkingLocation(this.carUuid);
+    let getParkingLocationResponse = await this._plService.getParkingLocation(this.car.location);
     if (getParkingLocationResponse.success) {
       this.location = getParkingLocationResponse.location;
     }
