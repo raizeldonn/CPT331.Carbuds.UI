@@ -39,7 +39,7 @@ export class BookingService {
     }
 
     public async getUserBookings(userEmail: string): Promise<GetListBookingsResponse>{
-      let response = await this._http.get<GetListBookingsResponse>( `${environment.apiBaseUrl}/api/booking/clientbookings${userEmail}`, { headers: this._authService.generateAuthHeader() }).toPromise();
+      let response = await this._http.get<GetListBookingsResponse>( `${environment.apiBaseUrl}/api/booking/clientbookings/${userEmail}`, { headers: this._authService.generateAuthHeader() }).toPromise();
       return response;
     }
 

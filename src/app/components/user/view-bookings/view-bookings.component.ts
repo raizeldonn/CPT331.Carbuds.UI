@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { UnlockCarComponent } from '../../reserve/unlock-car/unlock-car.component';
 import { MyBookingComponent } from '../../reserve/my-booking/my-booking.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-view-bookings',
@@ -18,14 +19,14 @@ export class ViewBookingsComponent implements OnInit {
   public upcomingBookings: Booking[] = [];
   public pastBookings: Booking[] = [];
 
-     constructor(private _bkService: BookingService, private _toastr: ToastrService,  private _modalService: NgbModal) { }
+     constructor(private _bkService: BookingService, private _toastr: ToastrService,  private _modalService: NgbModal, private _authService: AuthService) { }
 
   ngOnInit(): void {
     this.getClientBooking()
   }
 
   public async getClientBooking(){
-    const locationResp = await this._bkService.getUserBookings("testuser@carbuds.io");
+    const locationResp = await this._bkService.getUserBookings(this._authService.idTokenProps?  this._authService.idTokenProps?.email : '');
 
     if(locationResp.success){
       this.clientBookings = locationResp.bookings;
