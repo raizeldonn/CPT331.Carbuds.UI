@@ -30,6 +30,7 @@ import { SelectDateTimeComponent } from './components/reserve/select-date-time/s
 import { MyBookingComponent } from './components/reserve/my-booking/my-booking.component';
 import { BookingSummaryComponent } from './components/reserve/booking-summary/booking-summary.component';
 import { UnlockCarComponent } from './components/reserve/unlock-car/unlock-car.component';
+import { ReturnCarComponent } from './components/reserve/return-car/return-car.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { UnlockCarComponent } from './components/reserve/unlock-car/unlock-car.c
     SelectDateTimeComponent,
     MyBookingComponent,
     UnlockCarComponent,
-    BookingSummaryComponent
+    BookingSummaryComponent,
+    ReturnCarComponent
   ],
   imports: [
     BrowserModule,
