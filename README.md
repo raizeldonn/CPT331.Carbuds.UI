@@ -1,4 +1,11 @@
 # CarbudsUI
+Copyright (C) 16/05/2021 Carbuds Inc.
+
+Carbuds is a Car Share App created by students of RMIT, as part of a capstone unit.
+A fictional carshare company 'Carbuds' has comissioned the team to build its new platform  to be used by its users 
+to search, book and return vehicles in the car share fleet. 
+
+Contributors: Mitchell Young, Craig Lennard, Rolando Chancellor, Raizel Donnebaum
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.5.
 
