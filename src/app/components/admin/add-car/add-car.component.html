@@ -42,10 +42,8 @@
                     <label for="location" class="form-label">Location</label>
                     <select name="location" id="location" class="form-select" 
                     class="form-control" formControlName="carLocation">
-                        <option value="elsternwick">21 Elsternwick Road</option>
-                        <option value="stKilda">37 St Kilda Road</option>
-                        <option value="portPhillip">196 Port Phillip Avenue</option>
-                        <option value="brighton">87 Brighton Street</option>
+                        <option *ngFor="let location of availableParkingLocations" 
+                        value="{{location.uuid}}">{{location.friendlyName}}</option>
                     </select>
                 </div>
         
@@ -113,7 +111,7 @@
         
                 <div class="col-6 mt-4">
                     <button class="btn btn-primary btn-block" [disabled]='!addCarForm.valid'>
-                        <i class="fas fa-car"></i> <span> Add Car </span>
+                        <i class="fas fa-car"></i> <span> Save </span>
                     </button>
                 </div>
         

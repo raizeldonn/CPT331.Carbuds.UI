@@ -1,0 +1,47 @@
+.main{
+    padding: 6% 10%;
+}
+
+.box{
+    padding: 4% 0;
+    border: 2px solid rgb(233, 233, 233);
+    border-radius: 5px;
+    margin-bottom: 12px;
+}
+
+h3{
+    text-align: center;
+    padding-bottom: 0.5em;
+}
+
+h5{
+    font-size: 16px;
+    padding: 0 0 0.3em;
+}
+
+.btn-cancel{
+    background-color: rgb(250,201,184);
+    border-color:  rgb(250,201,184);
+    color: black;
+}
+
+.emphasize{
+    font-weight: 600;
+}
+
+.view-on-map{
+    cursor: pointer;
+    color:rgb(119,41,233);
+}
+
+.cancel{
+    padding-left: 0;
+}
+
+.unlock{
+    padding-right: 0;
+}
+
+.buttons-div{
+    padding-top: 15px;
+}

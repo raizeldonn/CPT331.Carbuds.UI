@@ -1,0 +1,62 @@
+<div class="container main">
+
+    <div class="row">
+        <div class="col">
+            <h3>Reserve Car</h3>
+        </div>
+        <div class="col-1">
+            <div style=" text-align: right; color:red; font-size: 1.5em;">
+                <i class="fas fa-times-circle" (click)="onCancelClick();$event.preventDefault()"></i>
+            </div>
+        </div>
+      </div>
+
+
+<h4>Start:</h4>
+
+<!--date picker-->
+<mat-form-field appearance="fill">
+  <mat-label>Choose a start date</mat-label>
+  <input matInput [min]="minDate" [max]="maxDate"  [matDatepickerFilter]="dateFilter" [matDatepicker]="picker" (dateChange)="startDateChange('change', $event)">
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+<br>
+
+<!--time picker-->
+<mat-form-field appearance="fill">
+    <mat-label>Choose a start time</mat-label>
+    <mat-select [(value)]="startTime" (selectionChange)="startTimeChange()">
+      <mat-option  *ngFor="let time of times"  [value]="time">{{time}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <h4>End:</h4>
+
+  <!--date picker-->
+  <mat-form-field appearance="fill">
+    <mat-label>Choose an end date</mat-label>
+    <input matInput [min]="endMinDate" [max]="maxDate"  [matDatepickerFilter]="dateFilter" [matDatepicker]="picker2" (dateChange)="endDateChange('change', $event)">
+    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+    <mat-datepicker #picker2></mat-datepicker>
+  </mat-form-field>
+  <div>
+
+  </div>
+  <br>
+  
+  <!--time picker-->
+  <mat-form-field appearance="fill">
+      <mat-label>Choose an end time</mat-label>
+      <mat-select [(value)]="endTime" (selectionChange)="endTimeChange()">
+        <mat-option  *ngFor="let time of times"  [value]="time">{{time}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+<!--(click)="onReserveCarClick()"-->
+<button class="btn btn-block btn-primary col-8" [disabled]="!validDates" (click)="onReserveCarClick()" >
+    Reserve
+</button>
+
+</div>

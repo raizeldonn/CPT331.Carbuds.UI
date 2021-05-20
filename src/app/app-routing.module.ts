@@ -2,13 +2,16 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CarAdminOverviewComponent } from './components/admin/car-admin-overview/car-admin-overview.component';
 import { LoginComponent } from './components/auth/login/login.component';
+import { AddCarComponent } from './components/admin/add-car/add-car.component';
 import { RegisterComponent } from './components/auth/register/register.component';
-import { CarSearchComponent } from './components/car-search/car-search.component';
+import { CarSearchComponent } from './components/reserve/car-search/car-search.component';
 import { ProfileComponent } from './components/user/profile/profile.component';
-import { CarDetailsComponent } from './components/car-details/car-details.component';
-import {PastBookingsComponent } from './components/user/past-bookings/past-bookings.component';
-
+import { CarDetailsComponent } from './components/car/car-details/car-details.component';
+import { CarInfoComponent } from './components/car/car-info/car-info.component';
+import { ViewBookingsComponent } from './components/reserve/view-bookings/view-bookings.component';
 import { AuthGuardService as AuthGuard } from './services/auth-guard.service';
+import { ParkingLocationOverviewComponent } from './components/admin/parking-location-overview/parking-location-overview.component';
+import { AddEditParkingLocationComponent } from './components/admin/add-edit-parking-location/add-edit-parking-location.component';
 
 const routes: Routes = [
   {
@@ -24,6 +27,10 @@ const routes: Routes = [
     component: RegisterComponent
   },
   {
+    path: 'car-info',
+    component: CarInfoComponent
+  },
+  {
     path: 'search',
     component: CarSearchComponent,
     canActivate: [AuthGuard]
@@ -37,8 +44,8 @@ const routes: Routes = [
     path: 'user',
     children: [
       {
-        path: 'past-bookings',
-        component: PastBookingsComponent,
+        path: 'view-bookings',
+        component: ViewBookingsComponent,
         data: {
           requiredGroups: ['carbuds-users']
         },
@@ -56,6 +63,14 @@ const routes: Routes = [
           requiredGroups: ['carbuds-admins']
         },
         canActivate: [AuthGuard]
+      },
+      {
+        path: 'parkingLocations',
+        component: ParkingLocationOverviewComponent,
+        data: {
+          requiredGroups: ['carbuds-admins']
+        },
+        canActivate: [AuthGuard]
       }
     ]
   },
@@ -65,7 +80,7 @@ const routes: Routes = [
   },
   { path: 'cars/:car.uuid', 
     component: CarDetailsComponent 
-  }  
+  }
 ];
 
 @NgModule({

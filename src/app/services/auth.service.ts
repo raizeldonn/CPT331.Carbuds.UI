@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import jwt_decode from 'jwt-decode';
 import { IdTokenProps } from '../models/auth/idTokenProps.model';
-import * as moment from 'moment';
+import moment from 'moment';
 import { PostLoginResponse } from '../contracts/auth/post.login.response.model';
 import { environment } from 'src/environments/environment';
 import { BehaviorSubject } from 'rxjs';
@@ -29,6 +29,12 @@ export class AuthService {
       requiredPermission: 'carbuds-admins'
     },
     {
+      title: 'Manage Parking Locations',
+      path: 'admin/parkingLocations',
+      faIcon: 'fas fa-parking',
+      requiredPermission: 'carbuds-admins'
+    },
+    {
       title: 'Search Vehicles',
       path: 'search',
       faIcon: 'fas fa-search',
@@ -41,8 +47,8 @@ export class AuthService {
       requiredPermission: 'carbuds-users'
     },
     {
-      title: 'Past Bookings',
-      path: 'user/past-bookings',
+      title: 'View Bookings',
+      path: 'user/view-bookings',
       faIcon: 'far fa-calendar-check',
       requiredPermission: 'carbuds-users'
     }

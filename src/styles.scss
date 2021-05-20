@@ -4,6 +4,13 @@
 @import './bs-theme.scss';
 @import '~bootstrap/scss/bootstrap';
 @import '~ngx-toastr/toastr-bs4-alert';
+@import '~mapbox-gl/dist/mapbox-gl.css';
+@import '~@mapbox/mapbox-gl-geocoder/lib/mapbox-gl-geocoder.css';
+
+/* Import mapbox styles */
+@import '~mapbox-gl/dist/mapbox-gl.css';
+@import '~@mapbox/mapbox-gl-geocoder/lib/mapbox-gl-geocoder.css';
+
 
 body {
     font-family: 'Raleway', sans-serif !important;
@@ -28,3 +35,6 @@ body {
 
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
