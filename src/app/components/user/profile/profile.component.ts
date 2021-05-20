@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user/user.model';
 import { UserService } from 'src/app/services/user.service';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -15,7 +16,7 @@ export class ProfileComponent implements OnInit {
   // how to fix??
   public user!: User;
 
-  constructor(private _userService: UserService, private _toastr: ToastrService) { }
+  constructor(private _authService: AuthService, private _userService: UserService, private _toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.getUserData();
@@ -24,7 +25,7 @@ export class ProfileComponent implements OnInit {
   public async getUserData(){
     try {
 
-      let userResponse = await this._userService.getUser();
+      let userResponse = await this._userService.getUser(this._authService.idTokenProps?.email!);
       if (userResponse.success) {
         this.user = userResponse.user;
       }

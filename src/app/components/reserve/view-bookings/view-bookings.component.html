@@ -12,9 +12,6 @@
           <thead>
             <tr>
               <th scope="col">Booked for</th>
-              <th scope="col">Pick up Location</th>
-              <th scope="col">Car Description</th>
-              <th scope="col">Car number plate</th>
               <th scope="col">Status</th>
               <th scope="col">Action</th>
             </tr>
@@ -22,9 +19,6 @@
           <tbody>
             <tr *ngFor="let item of currentBookings">
               <th>{{item.startDate}}</th>
-              <td>{{item.pickUpLocationDesc}}</td>
-              <td>{{item.carDesc}}</td>
-              <td>{{item.carPlate}}</td>
               <td>{{item.status}}</td>
               <th scope="col">
                 <div class="d-md-flex">
@@ -46,9 +40,6 @@
           <thead>
             <tr>
               <th scope="col">Booked for</th>
-              <th scope="col">Pick up Location</th>
-              <th scope="col">Car Description</th>
-              <th scope="col">Car number plate</th>
               <th scope="col">Status</th>
               <th scope="col">Action</th>
             </tr>
@@ -56,9 +47,6 @@
           <tbody>
             <tr *ngFor="let item of upcomingBookings">
               <th>{{item.startDate}}</th>
-              <td>{{item.pickUpLocationDesc}}</td>
-              <td>{{item.carDesc}}</td>
-              <td>{{item.carPlate}}</td>
               <td>{{item.status}}</td>
               <th scope="col">
                 <div class="d-md-flex">
@@ -80,9 +68,6 @@
           <thead>
             <tr>
               <th scope="col">Booked for</th>
-              <th scope="col">Pick up Location</th>
-              <th scope="col">Car Description</th>
-              <th scope="col">Car number plate</th>
               <th scope="col">Status</th>
               <th scope="col">Action</th>
             </tr>
@@ -90,9 +75,6 @@
           <tbody>
             <tr *ngFor="let item of pastBookings">
               <th>{{item.startDate}}</th>
-              <td>{{item.pickUpLocationDesc}}</td>
-              <td>{{item.carDesc}}</td>
-              <td>{{item.carPlate}}</td>
               <td>{{item.status}}</td>
               <th scope="col">
                 <div class="d-md-flex">
