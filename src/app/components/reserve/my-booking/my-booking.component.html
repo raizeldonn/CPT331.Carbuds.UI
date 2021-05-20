@@ -39,7 +39,7 @@
     <div class="row box">
         <div class="col">
             <p class='emphasize'>2 KM away</p> <!-- rolys job : ) -->
-            <p>{{booking.pickUpLocationDesc}}</p>
+            <p>{{location.friendlyName}}</p>
             <div (click)="viewOnMapClick()" class='view-on-map'>
                 <i class="fas fa-map-marker-alt"></i>
                 <span>view on map</span>
@@ -56,11 +56,11 @@
     <div class="row box">
         <div class="col">
             <p>Car description</p>
-            <p class='emphasize'>{{booking.carDesc}}</p>
+            <p class='emphasize'>{{car.make}} {{car.model}}</p>
         </div>
         <div class="col">
             <p>Number Plate</p>
-            <p class='emphasize'>{{booking.carPlate}}</p>
+            <p class='emphasize'>DE23KH</p>
         </div>
     </div>
     <div class="row buttons-div">
@@ -74,7 +74,7 @@
                 Unlock Car
             </div>
         </div>
-        <div *ngIf="booking.status == 'current'" class="col-6 unlock">
+        <div *ngIf="booking.status == 'active'" class="col-6 unlock">
             <div (click)="onReturnCarClick()" class="btn btn-block btn-primary">
                 Return Car
             </div>

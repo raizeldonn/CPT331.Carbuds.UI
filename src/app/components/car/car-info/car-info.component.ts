@@ -3,7 +3,7 @@ import { Car } from 'src/app/models/car/car.model';
 import { ToastrService } from 'ngx-toastr';
 import { CarService } from 'src/app/services/car.service';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { SelectDateTimeComponent } from '../select-date-time/select-date-time.component'
+import { SelectDateTimeComponent } from '../../reserve/select-date-time/select-date-time.component'
 
 @Component({
   selector: 'app-car-info',

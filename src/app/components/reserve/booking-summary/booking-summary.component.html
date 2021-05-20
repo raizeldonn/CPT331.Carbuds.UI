@@ -20,13 +20,13 @@
     <div class="row box">
         <div class="col">
             <p>From</p>
-            <p class='emphasize'>2:30 PM</p> <!--{{booking.startTime}}-->
-            <p>Thursday, 29 April</p> <!--{{booking.startDate}}-->
+            <p class='emphasize'>{{startTime}}</p>
+            <p>{{startDate}}</p>
         </div>
         <div class="col">
             <p>To</p>
-            <p class='emphasize'>4:30 PM</p> <!--{{booking.endTime}}-->
-            <p>Friday, 30 April</p> <!--{{booking.endDate}}-->
+            <p class='emphasize'>{{endTime}}</p>
+            <p>{{endDate}}</p>
         </div>
     </div>
 
@@ -55,11 +55,11 @@
     <div class="row box">
         <div class="col">
             <p>Car description</p>
-            <p class='emphasize'>{{car.make!}} {{car.model!}} </p>
+            <p class='emphasize'>{{car.make}} {{car.model}}</p>
         </div>
         <div class="col">
             <p>Number Plate</p>
-            <p class='emphasize'> TODO add plate</p>
+            <p class='emphasize'> my-plate</p>
         </div>
     </div>
     <div class="row buttons-div">

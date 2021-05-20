@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Booking } from 'src/app/models/user/bookings.model';
 import { BookingService } from 'src/app/services/booking.service';
 import { ToastrService } from 'ngx-toastr';
-import { UnlockCarComponent } from '../../reserve/unlock-car/unlock-car.component';
+import { UnlockCarComponent } from '../../car/unlock-car/unlock-car.component';
 import { MyBookingComponent } from '../../reserve/my-booking/my-booking.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from 'src/app/services/auth.service';
@@ -26,8 +26,9 @@ export class ViewBookingsComponent implements OnInit {
   }
 
   public async getClientBooking(){
-    const locationResp = await this._bkService.getUserBookings(this._authService.idTokenProps?  this._authService.idTokenProps?.email : '');
-
+    // modified for demo 
+   //const locationResp = await this._bkService.getUserBookings(this._authService.idTokenProps?  this._authService.idTokenProps?.email : '');
+   const locationResp = await this._bkService.listAllBookings();
     if(locationResp.success){
       this.clientBookings = locationResp.bookings;
       this.sortBookings();
@@ -40,7 +41,7 @@ export class ViewBookingsComponent implements OnInit {
   public sortBookings(){
     for(let booking of this.clientBookings){
       console.log(booking.status);
-      if(booking.status == "Active"){
+      if(booking.status == "active"){
         this.currentBookings.push(booking);
       }
       else if(booking.status == "upcoming"){

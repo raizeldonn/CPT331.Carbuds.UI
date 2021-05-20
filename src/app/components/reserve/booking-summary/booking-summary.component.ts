@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Booking } from 'src/app/models/user/bookings.model';
-import { UnlockCarComponent} from '../unlock-car/unlock-car.component';
+import { UnlockCarComponent} from '../../car/unlock-car/unlock-car.component';
 import { v4 as uuidv4 } from 'uuid';
 import { ToastrService } from 'ngx-toastr';
 import { BookingService } from 'src/app/services/booking.service';
@@ -19,6 +19,11 @@ import { ParkingLocation } from 'src/app/models/parkingLocations/parkingLocation
 })
 export class BookingSummaryComponent implements OnInit {
   public carUuid!: string;
+  public parkingUuid!: string;
+  public startTime!: string;
+  public startDate!: string;
+  public endTime!: string;
+  public endDate: string = "sdfsdfsf";
   public email!: string;
   public booking!: Booking;
   public car!: Car;
@@ -51,18 +56,15 @@ export class BookingSummaryComponent implements OnInit {
 
     let newBooking: Booking = {
       uuid: bookingId,
+      carUuid: this.car.uuid,
+      parkingUuid: this.location.uuid,
       userEmail: this._authService.idTokenProps?.email!,
-      pickUpLocationDesc: this.location?.friendlyName!,
-      startDate: "test",
-      startTime: "test",
-      endDate: "test",
-      endTime: "test",
+      startDate: this.startDate,
+      startTime: this.startTime,
+      endDate: this.endDate,
+      endTime: this.endTime,
       status: "upcoming",
       cost: 123,
-      carPlate: "popogu",// TODO add numberplate to car
-      carDesc: this.car?.make + " " + this.car?.model,
-      latitude: this.location.latitude,
-      longitude: this.location.longitude,
     };
 
     let addBookingResponse = await this._bkService.addEditBooking(newBooking);
