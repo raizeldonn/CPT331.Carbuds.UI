@@ -2,7 +2,7 @@
 
     <div class="row">
         <div class="col">
-            <h3>Booking Details</h3>
+            <h3>Booking Summary</h3>
         </div>
         <div class="col-1">
             <div style=" text-align: right; color:red; font-size: 1.5em;">
@@ -20,13 +20,13 @@
     <div class="row box">
         <div class="col">
             <p>From</p>
-            <p class='emphasize'>{{booking.startTime}}</p>
-            <p>{{booking.startDate}}</p>
+            <p class='emphasize'>{{startTime}}</p>
+            <p>{{startDate}}</p>
         </div>
         <div class="col">
             <p>To</p>
-            <p class='emphasize'>{{booking.endTime}}</p>
-            <p>{{booking.endDate}}</p>
+            <p class='emphasize'>{{endTime}}</p>
+            <p>{{endDate}}</p>
         </div>
     </div>
 
@@ -39,14 +39,13 @@
     <div class="row box">
         <div class="col">
             <p class='emphasize'>2 KM away</p> <!-- rolys job : ) -->
-            <p>{{location.friendlyName}}</p>
+            <p> {{location?.friendlyName}} </p>
             <div (click)="viewOnMapClick()" class='view-on-map'>
                 <i class="fas fa-map-marker-alt"></i>
                 <span>view on map</span>
             </div>
         </div>
     </div>
-
     <div class="row">
         <div class="col">
             <h5>Car Details</h5>
@@ -60,7 +59,7 @@
         </div>
         <div class="col">
             <p>Number Plate</p>
-            <p class='emphasize'>DE23KH</p>
+            <p class='emphasize'> my-plate</p>
         </div>
     </div>
     <div class="row buttons-div">
@@ -69,14 +68,14 @@
                 Cancel
             </div>
         </div>
-        <div *ngIf="booking.status == 'upcoming'" class="col-6 unlock">
-            <div (click)="onUnlockCarClick()" class="btn btn-block btn-primary">
-                Unlock Car
+        <div *ngIf="bookingStatus == 'unConfirmed'" class="col-6 unlock">
+            <div (click)="onConfirmClick()" class="btn btn-block btn-primary">
+                Confirm Booking
             </div>
         </div>
-        <div *ngIf="booking.status == 'active'" class="col-6 unlock">
-            <div (click)="onReturnCarClick()" class="btn btn-block btn-primary">
-                Return Car
+        <div *ngIf="bookingStatus == 'confirmed'" class="col-6 unlock">
+            <div (click)="onUnlockCarClick()" class="btn btn-block btn-primary">
+                Unlock Car
             </div>
         </div>
     </div>

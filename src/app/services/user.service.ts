@@ -8,11 +8,15 @@ import { PostCreateCognitoUserRequest } from '../contracts/user/post.createCogni
 import { PostCreateCognitoUserResponse } from '../contracts/user/post.createCognitoUser.response.model';
 import { User } from 'src/app/models/user/user.model';
 import { IdTokenProps } from '../models/auth/idTokenProps.model';
+import jwt_decode from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+
+  private idToken: string = '';
+  private tokenDecoded: any;
 
   constructor(private _http: HttpClient, private _router: Router, private _toastr: ToastrService) { }
 
@@ -23,9 +27,13 @@ export class UserService {
   }
 
   public async getUser(): Promise<GetUserResponse>{
-    //atm the email is hardcoded
-    //need to figure out how to get the current users email
-    let response = await this._http.get<GetUserResponse>( `${environment.apiBaseUrl}/api/users/turnip@veggies.io`).toPromise();
+
+    if(localStorage.getItem('idToken')){
+      this.idToken = localStorage.getItem('idToken') ?? '';
+      this.tokenDecoded = jwt_decode(this.idToken);
+    };
+    
+    let response = await this._http.get<GetUserResponse>( `${environment.apiBaseUrl}/api/users/${this.tokenDecoded['email']}`).toPromise();
     return response;
   }
   

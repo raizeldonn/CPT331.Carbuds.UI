@@ -50,7 +50,7 @@ export class ParkingLocationService {
   }
 
   public async getParkingLocation(locationUuid: string): Promise<GetParkingLocationResponse>{
-    let response = await this._http.get<GetParkingLocationResponse>( `${environment.apiBaseUrl}/api/parkingLocation?locationUuid=${locationUuid}`, { headers: this._authService.generateAuthHeader() }).toPromise();
+    let response = await this._http.get<GetParkingLocationResponse>( `${environment.apiBaseUrl}/api/parkingLocation/${locationUuid}`, { headers: this._authService.generateAuthHeader() }).toPromise();
     return response;
   }
 }

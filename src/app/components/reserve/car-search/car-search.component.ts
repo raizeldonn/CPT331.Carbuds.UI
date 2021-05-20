@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { CarInfoComponent } from "../reserve/car-info/car-info.component"
+import { CarInfoComponent } from "src/app/components/car/car-info/car-info.component"
 import * as mapboxgl from 'mapbox-gl';
 import { LngLat } from 'mapbox-gl';
 import { ToastrService } from 'ngx-toastr';
@@ -32,12 +32,6 @@ export class CarSearchComponent implements OnInit {
 
   public onCarMapClick(){
     const modalRef = this._modalService.open(CarInfoComponent, {size: 'm', backdrop: 'static'});
-    modalRef.componentInstance.name = 'World';
-    //modalRef.closed.subscribe(addedCar => {
-    //  if(addedCar != null){
-    //    this.cars.push(addedCar);
-    //  }
-    //})
   }
 
   public async getLocationList(){
@@ -90,6 +84,7 @@ export class CarSearchComponent implements OnInit {
     }
     const modalRef = this._modalService.open(CarInfoComponent, {size: 'm', backdrop: 'static'});
     modalRef.componentInstance.carUuid = carUuid;
-    modalRef.componentInstance.name = 'World';
+    modalRef.componentInstance.longitude = marker.lng;
+    modalRef.componentInstance.latitude = marker.lat;
   }
 }

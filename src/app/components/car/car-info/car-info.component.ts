@@ -3,7 +3,7 @@ import { Car } from 'src/app/models/car/car.model';
 import { ToastrService } from 'ngx-toastr';
 import { CarService } from 'src/app/services/car.service';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { SelectDateTimeComponent } from '../select-date-time/select-date-time.component'
+import { SelectDateTimeComponent } from '../../reserve/select-date-time/select-date-time.component'
 
 @Component({
   selector: 'app-car-info',
@@ -12,6 +12,8 @@ import { SelectDateTimeComponent } from '../select-date-time/select-date-time.co
 })
 export class CarInfoComponent implements OnInit {
   public carUuid: string = "";
+  public longitude: number | undefined;
+  public latitude: number | undefined;
   public car!: Car;
 
   constructor( private _carService: CarService, private _toastr: ToastrService, 
@@ -43,12 +45,9 @@ export class CarInfoComponent implements OnInit {
   public onReserveCarClick(){
     this._activeModal.dismiss(null);
     const modalRef = this._modalService.open(SelectDateTimeComponent, {size: 'm', backdrop: 'static'});
-    modalRef.componentInstance.name = 'World';
-    //modalRef.closed.subscribe(addedCar => {
-    //  if(addedCar != null){
-    //    this.cars.push(addedCar);
-    //  }
-    //})
+    modalRef.componentInstance.carUuid = this.carUuid;
+    modalRef.componentInstance.longitude = this.longitude;
+    modalRef.componentInstance.latitude = this.latitude;
   }
 
 }
