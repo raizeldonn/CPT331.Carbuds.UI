@@ -4,4 +4,6 @@ export interface User{
     paymentCardNumber : string;
     paymentCardExpiry: string;
     paymentCardCvv: string;
+    licenseCountry: string;
+    licenseNumber: string;
 }

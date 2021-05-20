@@ -21,7 +21,9 @@ export class RegisterComponent implements OnInit {
       name: new FormControl('', Validators.required),
       paymentCardNumber: new FormControl('', Validators.required),
       paymentCardExpiry: new FormControl('', Validators.required),
-      paymentCardCvv: new FormControl('', Validators.required)
+      paymentCardCvv: new FormControl('', Validators.required),
+      licenseCountry: new FormControl('', Validators.required),
+      licenseNumber: new FormControl('', Validators.required)
 		});
   }
 
@@ -41,7 +43,9 @@ export class RegisterComponent implements OnInit {
         name: this.registerForm.value['name'],
         cardNumber: this.registerForm.value['paymentCardNumber'],
         cardExpiry: this.registerForm.value['paymentCardExpiry'],
-        cardCvv: this.registerForm.value['paymentCardCvv']
+        cardCvv: this.registerForm.value['paymentCardCvv'],
+        licenseCountry: this.registerForm.value['licenseCountry'],
+        licenseNumber: this.registerForm.value['licenseNumber']
       }
       var response = await this._userService.createUser(request);
 

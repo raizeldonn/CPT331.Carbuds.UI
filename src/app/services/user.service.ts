@@ -26,14 +26,9 @@ export class UserService {
     return response;
   }
 
-  public async getUser(): Promise<GetUserResponse>{
+  public async getUser(email: string): Promise<GetUserResponse>{
 
-    if(localStorage.getItem('idToken')){
-      this.idToken = localStorage.getItem('idToken') ?? '';
-      this.tokenDecoded = jwt_decode(this.idToken);
-    };
-    
-    let response = await this._http.get<GetUserResponse>( `${environment.apiBaseUrl}/api/users/${this.tokenDecoded['email']}`).toPromise();
+    let response = await this._http.get<GetUserResponse>( `${environment.apiBaseUrl}/api/users/${email}`).toPromise();
     return response;
   }
   

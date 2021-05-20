@@ -5,4 +5,6 @@ export interface PostCreateCognitoUserRequest {
     cardNumber: string;
     cardExpiry: string;
     cardCvv: string;
+    licenseCountry: string;
+    licenseNumber: string;
 }
