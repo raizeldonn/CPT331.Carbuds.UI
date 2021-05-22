@@ -50,7 +50,9 @@ export class SelectDateTimeComponent implements OnInit {
 
 
   constructor( public _activeModal: NgbActiveModal, private _modalService: NgbModal ) {
-   }
+    
+  }
+
   ngOnInit(): void {
   }
 
