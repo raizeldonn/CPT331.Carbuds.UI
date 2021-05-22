@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Booking } from 'src/app/models/user/bookings.model';
-import { UnlockCarComponent} from '../../car/unlock-car/unlock-car.component';
+import { UnlockCarComponent } from '../../car/unlock-car/unlock-car.component';
 import { v4 as uuidv4 } from 'uuid';
+import moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
 import { BookingService } from 'src/app/services/booking.service';
 import { AuthService } from 'src/app/services/auth.service';
@@ -18,105 +19,84 @@ import { ParkingLocation } from 'src/app/models/parkingLocations/parkingLocation
   styleUrls: ['./booking-summary.component.scss']
 })
 export class BookingSummaryComponent implements OnInit {
-  public carUuid!: string;
+  public car!: Car;
   public parkingUuid!: string;
   public startTime!: string;
   public startDate!: string;
   public endTime!: string;
-  public endDate: string = "sdfsdfsf";
+  public endDate!: string;
   public email!: string;
   public booking!: Booking;
-  public car!: Car;
   public location!: ParkingLocation;
   public bookingStatus = "unConfirmed";
 
   constructor(public _activeModal: NgbActiveModal, private _modalService: NgbModal, private _plService: ParkingLocationService, private _toastr: ToastrService, private _bkService: BookingService,
-     private _authService: AuthService, private _carService: CarService) { }
+    private _authService: AuthService, private _carService: CarService) { }
 
   ngOnInit(): void {
-    this.getInfo()
+    this.getLocation();
   }
 
-  public onCancelClick(){
+  public onCancelClick() {
     this._activeModal.dismiss(null);
-    //also need to cancel the booking
-    //ie remove from db
   }
 
-  public onUnlockCarClick(){
+  public onUnlockCarClick() {
     this._activeModal.dismiss(null);
-    const modalRef = this._modalService.open(UnlockCarComponent, {size: 'm', backdrop: 'static'});
+    const modalRef = this._modalService.open(UnlockCarComponent, { size: 'm', backdrop: 'static' });
   }
 
- public async onConfirmClick()
- {
+  public async onConfirmClick() {
 
-  try {
-    const bookingId = uuidv4();
+    try {
+      const bookingId = uuidv4();
 
-    let newBooking: Booking = {
-      uuid: bookingId,
-      carUuid: this.car.uuid,
-      parkingUuid: this.location.uuid,
-      userEmail: this._authService.idTokenProps?.email!,
-      startDate: this.startDate,
-      startTime: this.startTime,
-      endDate: this.endDate,
-      endTime: this.endTime,
-      status: "upcoming",
-      cost: 123,
-    };
+      console.log(this.startDate);
+      console.log(this.startTime);
 
-    let addBookingResponse = await this._bkService.addEditBooking(newBooking);
+      const startDateTimeLocal = moment(`${this.startDate} ${this.startTime}`, "DD/MM/YYYY hh:mm a");
+      const endDateTimeLocal = moment(`${this.endDate} ${this.endTime}`, "DD/MM/YYYY hh:mm a");
 
-    if (addBookingResponse.success) {
-      this._toastr.success('','Booking Added');
-      this.bookingStatus = "confirmed";
+      let newBooking: Booking = {
+        uuid: bookingId,
+        carUuid: this.car.uuid,
+        parkingUuid: this.location.uuid,
+        userEmail: this._authService.idTokenProps?.email!,
+        startDateTimeUtc: + startDateTimeLocal.utc().format('X'),
+        endDateTimeUtc: + endDateTimeLocal.utc().format('X'),
+        status: "Confirmed",
+        cost: 123,
+      };
+
+      let addBookingResponse = await this._bkService.addEditBooking(newBooking);
+
+      if (addBookingResponse.success) {
+        this._toastr.success('', 'Booking Added');
+      }
+      else {
+        this._toastr.error(addBookingResponse.errorMessage, 'Unable to add booking');
+      }
+    } catch (e) {
+      this._toastr.error(e, 'Unable to add booking');
     }
-    else {
-      this._toastr.error(addBookingResponse.errorMessage, 'Unable to add booking');
-    }
-  } catch (e) {
-    this._toastr.error(e, 'Unable to add booking');
   }
-}
 
-  public viewOnMapClick(){
+  public viewOnMapClick() {
     window.open("https://www.google.com/maps/search/?api=1&query=" + this.location.latitude + "," + this.location.longitude);
   }
 
-  public getInfo(){
-    this.getCar();
-  }
-
-  public async getCar(){
-    try {        
-      let getCarResponse = await this._carService.getCarByCarId(this.carUuid);
-      if (getCarResponse.success) {
-        this.car = getCarResponse.car;
-        this.getLocation();
+  public async getLocation() {
+    try {
+      let getParkingLocationResponse = await this._plService.getParkingLocation(this.car.location);
+      if (getParkingLocationResponse.success) {
+        this.location = getParkingLocationResponse.location;
       }
       else {
-        this._toastr.error(getCarResponse.errorMessage, 'Unable to Get Car by parking ID');
+        this._toastr.error(getParkingLocationResponse.errorMessage, 'Unable to Get Parking Location');
       }
     }
-   catch (e) {
-    this._toastr.error(e, 'Unable to Get Single Car');
-  }
-}
-
-public async getLocation(){
-  try {        
-    let getParkingLocationResponse = await this._plService.getParkingLocation(this.car.location);
-    if (getParkingLocationResponse.success) {
-      this.location = getParkingLocationResponse.location;
-    }
-    else {
-      this._toastr.error(getParkingLocationResponse.errorMessage, 'Unable to Get Parking Location');
+    catch (e) {
+      this._toastr.error(e, 'Unable to Get parking location');
     }
   }
- catch (e) {
-  this._toastr.error(e, 'Unable to Get parking location');
-}
-}
 }

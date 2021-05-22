@@ -8,6 +8,7 @@ import { ParkingLocation } from 'src/app/models/parkingLocations/parkingLocation
 import { ParkingLocationService } from 'src/app/services/parking-location.service';
 import { Car } from 'src/app/models/car/car.model';
 import { CarService } from 'src/app/services/car.service';
+import { CarMapMarker } from 'src/app/models/car/carMapMarker.model';
 
 
 @Component({
@@ -16,11 +17,9 @@ import { CarService } from 'src/app/services/car.service';
   styleUrls: ['./car-search.component.scss']
 })
 export class CarSearchComponent implements OnInit {
-  public markers: LngLat[] = [];
+  public markers: CarMapMarker[] = [];
   public locations: ParkingLocation[] = [];
   public cars: Car[] = [];
-  public carsWithLocations: Car[] = [];
-  public locationsWithCars: ParkingLocation[] = [];
 
   constructor(private _plService: ParkingLocationService, private _toastr: ToastrService, private _modalService: NgbModal, private _carService: CarService) { 
   }
@@ -64,31 +63,22 @@ export class CarSearchComponent implements OnInit {
   public populateMarkers(){
 
     for (let car of this.cars){
-      for (let loc of this.locations){
-        if(car.location == loc.uuid){
-          this.locationsWithCars.push(loc);
-          this.carsWithLocations.push(car);
-          const newMarker = new LngLat(loc.longitude, loc.latitude);
-          this.markers.push(newMarker);
+      const carLocation = this.locations.find(l => l.uuid == car.location);
+      if(carLocation){
+        const newLoc: CarMapMarker = {
+          mapLocation : new LngLat(carLocation.longitude, carLocation.latitude),
+          carUuid : car.uuid
         }
+        this.markers.push(newLoc);
       }
     }
   }
 
-  public markerClicked(marker: LngLat){
-    var index = 0;
-    var carUuid;
-    for (let mark of this.markers){
-      if (mark == marker){
-        carUuid = this.carsWithLocations[index].uuid;
-      }
-      else{
-        index+=1;
-      }
-    }
+  public markerClicked(marker: CarMapMarker){
+    const selectedCar = this.cars.find(c => c.uuid = marker.carUuid);
     const modalRef = this._modalService.open(CarInfoComponent, {size: 'm', backdrop: 'static'});
-    modalRef.componentInstance.carUuid = carUuid;
-    modalRef.componentInstance.longitude = marker.lng;
-    modalRef.componentInstance.latitude = marker.lat;
+    modalRef.componentInstance.car = selectedCar;
+    modalRef.componentInstance.longitude = marker.mapLocation.lng;
+    modalRef.componentInstance.latitude = marker.mapLocation.lat;
   }
 }

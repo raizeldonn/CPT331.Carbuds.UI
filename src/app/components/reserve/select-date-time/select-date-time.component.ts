@@ -2,7 +2,8 @@ import { Time } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { BookingSummaryComponent} from '../booking-summary/booking-summary.component'
+import { Car } from 'src/app/models/car/car.model';
+import { BookingSummaryComponent } from '../booking-summary/booking-summary.component'
 
 interface Food {
   value: string;
@@ -17,14 +18,14 @@ interface Food {
 
 export class SelectDateTimeComponent implements OnInit {
 
-  public carUuid!: string;
+  public car!: Car;
   public parkingUuid!: string;
   public longitude: number | undefined;
   public latitude: number | undefined;
 
   //min and max validation
-  minDate:Date = new Date();
-  endMinDate:Date = new Date();
+  minDate: Date = new Date();
+  endMinDate: Date = new Date();
   maxDate: Date = new Date(new Date().getFullYear() + 1, 11, 31)
   validDates: boolean = false;
   validStartDate: boolean = false;
@@ -33,14 +34,14 @@ export class SelectDateTimeComponent implements OnInit {
   validEndTime: boolean = false;
   startDate!: string;
   endDate!: string;
-  startTime!: string;
-  endTime!: string;
-  times: string[] = ["12:00 AM","12:30 AM", "1:00 AM", "1:30 AM", "2:00 AM",
-"2:30 AM", "3:00 AM", "3:30 AM", "4:00 AM", "4:30 AM", "5:00 AM", "5:30 AM", "6:00 AM", "6:30 AM", "7:00 AM", "7:30 AM", "8:00 AM", "8:30 AM", "9:00 AM", "9:30 AM",
-"10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM", "12:00 PM", "12:30 PM", "1:00 PM", "1:30 PM", "2:00 PM", "2:30 PM", "3:00 PM", "3:30 PM", "4:00 PM", "4:30 PM",
-"5:00 PM", "5:30 PM", "6:00 PM", "6:30 PM", "7:00 PM", "7:30 PM", "8:00 PM", "8:30 PM", "9:00 PM", "9:30 PM", "10:00 PM", "10:00 PM" , "11:00 PM", "11:30 PM"]
+  startTime: string = "";
+  endTime: string = "";
+  times: string[] = ["12:00 AM", "12:30 AM", "01:00 AM", "01:30 AM", "02:00 AM",
+    "02:30 AM", "03:00 AM", "03:30 AM", "04:00 AM", "04:30 AM", "05:00 AM", "05:30 AM", "06:00 AM", "06:30 AM", "07:00 AM", "07:30 AM", "08:00 AM", "08:30 AM", "09:00 AM", "09:30 AM",
+    "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM", "12:00 PM", "12:30 PM", "01:00 PM", "01:30 PM", "02:00 PM", "02:30 PM", "03:00 PM", "03:30 PM", "04:00 PM", "04:30 PM",
+    "05:00 PM", "05:30 PM", "06:00 PM", "06:30 PM", "07:00 PM", "07:30 PM", "08:00 PM", "08:30 PM", "09:00 PM", "09:30 PM", "10:00 PM", "10:00 PM", "11:00 PM", "11:30 PM"]
 
-  
+
   //pre-booked dates validation
   dateFilter = (d: Date | null): boolean => {
     const day = (d || new Date()).getDay();
@@ -49,26 +50,27 @@ export class SelectDateTimeComponent implements OnInit {
   }
 
 
-  constructor( public _activeModal: NgbActiveModal, private _modalService: NgbModal ) {
-    
+  constructor(public _activeModal: NgbActiveModal, private _modalService: NgbModal) {
+
   }
 
   ngOnInit(): void {
   }
 
-  public onCancelClick(){
+  public onCancelClick() {
     this._activeModal.dismiss(null);
   }
 
-  public onReserveCarClick(){
+  public onReserveCarClick() {
     this._activeModal.dismiss(null);
-    const modalRef = this._modalService.open(BookingSummaryComponent, {size: 'm', backdrop: 'static'});
-    modalRef.componentInstance.carUuid = this.carUuid;
+    const modalRef = this._modalService.open(BookingSummaryComponent, { size: 'm', backdrop: 'static' });
+    modalRef.componentInstance.car = this.car;
     modalRef.componentInstance.startTime = this.startTime;
     modalRef.componentInstance.startDate = this.startDate;
     modalRef.componentInstance.endTime = this.endTime;
     modalRef.componentInstance.endDate = this.endDate;
   }
+
   startDateChange(type: string, event: MatDatepickerInputEvent<Date>) {
     this.startDate = event.value?.toLocaleDateString()!;
     this.validStartDate = true;
@@ -95,8 +97,8 @@ export class SelectDateTimeComponent implements OnInit {
     this.validateForm();
   }
 
-  validateForm(){
-    if(this.validStartDate && this.validEndDate && this.validStartTime && this.validEndTime){
+  validateForm() {
+    if (this.validStartDate && this.validEndDate && this.validStartTime && this.validEndTime) {
       this.validDates = true;
     }
   }

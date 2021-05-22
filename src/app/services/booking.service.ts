@@ -34,7 +34,7 @@ export class BookingService {
     }
 
     public async getBookingById(Uuid: string): Promise<GetOneBookingResponse>{
-      let response = await this._http.get<GetOneBookingResponse>( `${environment.apiBaseUrl}/api/booking/getbyid${Uuid}`, { headers: this._authService.generateAuthHeader() }).toPromise();
+      let response = await this._http.get<GetOneBookingResponse>( `${environment.apiBaseUrl}/api/booking/${Uuid}`, { headers: this._authService.generateAuthHeader() }).toPromise();
       return response;
     }
 

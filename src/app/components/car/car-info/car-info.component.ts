@@ -20,22 +20,6 @@ export class CarInfoComponent implements OnInit {
     public _activeModal: NgbActiveModal, private _modalService: NgbModal) { }
 
   ngOnInit(): void {
-    this.getCarData();
-  }
-
-  public async getCarData(){
-    try {        
-        let getCarResponse = await this._carService.getCarByCarId(this.carUuid);
-        if (getCarResponse.success) {
-          this.car = getCarResponse.car;
-        }
-        else {
-          this._toastr.error(getCarResponse.errorMessage, 'Unable to Get Car by parking ID');
-        }
-      }
-     catch (e) {
-      this._toastr.error(e, 'Unable to Get Single Car');
-    }
   }
 
   public onCancelClick(){
@@ -45,7 +29,7 @@ export class CarInfoComponent implements OnInit {
   public onReserveCarClick(){
     this._activeModal.dismiss(null);
     const modalRef = this._modalService.open(SelectDateTimeComponent, {size: 'm', backdrop: 'static'});
-    modalRef.componentInstance.carUuid = this.carUuid;
+    modalRef.componentInstance.car = this.car;
     modalRef.componentInstance.longitude = this.longitude;
     modalRef.componentInstance.latitude = this.latitude;
   }
