@@ -26,12 +26,15 @@ export class CarSearchComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getCarList()
-    this.getLocationList()
+    this.beginInit();    
   }
 
   public onCarMapClick(){
     const modalRef = this._modalService.open(CarInfoComponent, {size: 'm', backdrop: 'static'});
+  }
+
+  private async beginInit(){
+    this.getCarList();
   }
 
   public async getLocationList(){
@@ -51,6 +54,7 @@ export class CarSearchComponent implements OnInit {
 
     if(locationResp.success){
       this.cars = locationResp.cars;
+      this.getLocationList();
     }
     else{
       this._toastr.error(locationResp.errorMessage, 'Unable to get list of Locations.');
