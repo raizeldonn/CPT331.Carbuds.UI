@@ -18,7 +18,7 @@
           </thead>
           <tbody>
             <tr *ngFor="let item of currentBookings">
-              <th>{{item.startDate}}</th>
+              <th>{{item.startDateTimeUtc}}</th>
               <td>{{item.status}}</td>
               <th scope="col">
                 <div class="d-md-flex">
@@ -46,7 +46,7 @@
           </thead>
           <tbody>
             <tr *ngFor="let item of upcomingBookings">
-              <th>{{item.startDate}}</th>
+              <th>{{item.startDateTimeUtc}}</th>
               <td>{{item.status}}</td>
               <th scope="col">
                 <div class="d-md-flex">
@@ -74,7 +74,7 @@
           </thead>
           <tbody>
             <tr *ngFor="let item of pastBookings">
-              <th>{{item.startDate}}</th>
+              <th>{{item.startDateTimeUtc}}</th>
               <td>{{item.status}}</td>
               <th scope="col">
                 <div class="d-md-flex">

@@ -26,9 +26,8 @@ export class ViewBookingsComponent implements OnInit {
   }
 
   public async getClientBooking(){
-    // modified for demo 
-   //const locationResp = await this._bkService.getUserBookings(this._authService.idTokenProps?  this._authService.idTokenProps?.email : '');
-   const locationResp = await this._bkService.listAllBookings();
+   const locationResp = await this._bkService.getUserBookings(this._authService.idTokenProps?  this._authService.idTokenProps?.email : '');
+   //const locationResp = await this._bkService.listAllBookings();
     if(locationResp.success){
       this.clientBookings = locationResp.bookings;
       this.sortBookings();
