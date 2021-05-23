@@ -64,8 +64,9 @@ export class ViewBookingsComponent implements OnInit {
   }
 
   onViewDetialilsClick(Uuid: string){
+    const booking = this.clientBookings.find(b => b.uuid == Uuid);
     const modalRef = this._modalService.open(MyBookingComponent, {size: 'm', backdrop: 'static'});
-    modalRef.componentInstance.bookingId = Uuid;
+    modalRef.componentInstance.booking = booking;
   }
 
   public utcEpochToLocalString(epoch: number):string{

@@ -19,14 +19,12 @@
 
     <div class="row box">
         <div class="col">
-            <p>From</p>
-            <p class='emphasize'>{{booking.startTime}}</p>
-            <p>{{booking.startDate}}</p>
+            <p>Pickup</p>
+            <p>{{utcEpochToLocalString(booking.startDateTimeUtc)}}</p>
         </div>
         <div class="col">
-            <p>To</p>
-            <p class='emphasize'>{{booking.endTime}}</p>
-            <p>{{booking.endDate}}</p>
+            <p>Dropoff</p>
+            <p>{{utcEpochToLocalString(booking.endDateTimeUtc)}}</p>
         </div>
     </div>
 

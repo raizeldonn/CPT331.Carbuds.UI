@@ -9,10 +9,10 @@ import { NumberLiteralType } from 'typescript';
 })
 export class UnlockCarComponent implements OnInit {
 
-  public num1: Number = Math.round(Math.random() * 10);
-  public num2: Number = Math.round(Math.random() * 10);
-  public num3: Number = Math.round(Math.random() * 10);
-  public num4: Number = Math.round(Math.random() * 10);
+  public num1: Number = Math.floor((Math.random()*9)+1);;
+  public num2: Number = Math.floor((Math.random()*9)+1);;
+  public num3: Number = Math.floor((Math.random()*9)+1);;
+  public num4: Number = Math.floor((Math.random()*9)+1);;
 
   constructor( public _activeModal: NgbActiveModal ) { 
   }
