@@ -28,7 +28,12 @@ export class ViewBookingsComponent implements OnInit {
   }
 
   public async getClientBooking(){
-   const locationResp = await this._bkService.getUserBookings(this._authService.idTokenProps?  this._authService.idTokenProps?.email : '');
+    this.clientBookings = [];
+    this.currentBookings = [];
+    this.upcomingBookings = [];
+    this.pastBookings = [];
+   
+    const locationResp = await this._bkService.getUserBookings(this._authService.idTokenProps?  this._authService.idTokenProps?.email : '');
    //const locationResp = await this._bkService.listAllBookings();
     if(locationResp.success){
       this.clientBookings = locationResp.bookings;
@@ -50,6 +55,11 @@ export class ViewBookingsComponent implements OnInit {
         continue;
       }
 
+      if(booking.status == 'In Progress'){
+        this.currentBookings.push(booking);
+        continue;
+      }
+
       if(nowUtc >= booking.startDateTimeUtc && nowUtc <= booking.endDateTimeUtc){
         this.currentBookings.push(booking);
         continue;
@@ -68,8 +78,12 @@ export class ViewBookingsComponent implements OnInit {
     }
   }
 
-  public onUnlockCarClick(){
+  public onUnlockCarClick(booking: Booking){
+    const updateBooking = booking;
+    updateBooking.status = 'In Progress';
+
     const modalRef = this._modalService.open(UnlockCarComponent, {size: 'm', backdrop: 'static'});
+    this._bkService.addEditBooking(booking);
     modalRef.dismissed.subscribe(d => {
       this.getClientBooking();
     });
@@ -84,6 +98,9 @@ export class ViewBookingsComponent implements OnInit {
   public onReturnCarClick(booking: Booking){
     const modalRef = this._modalService.open(ReturnCarComponent, {size: 'm', backdrop: 'static'});
     modalRef.componentInstance.booking = booking;
+    modalRef.dismissed.subscribe(d => {
+      this.getClientBooking();
+    });
   }
 
   public utcEpochToLocalString(epoch: number):string{

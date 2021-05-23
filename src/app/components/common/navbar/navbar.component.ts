@@ -13,6 +13,7 @@ export class NavbarComponent implements OnInit {
 
   public navLinks: Navlink[] = []; 
   public amLoggedIn: boolean = false;
+  public isMenuCollapsed: boolean = false;
 
   constructor(private _router: Router, private _authService: AuthService, private _toastr: ToastrService) { 
     this._authService.visibleNavlinks.subscribe( l => {
@@ -28,6 +29,7 @@ export class NavbarComponent implements OnInit {
   }
 
   public onNavLinkClick(link:Navlink){
+    this.isMenuCollapsed = !this.isMenuCollapsed;
     this._router.navigateByUrl(link.path);
   }
 

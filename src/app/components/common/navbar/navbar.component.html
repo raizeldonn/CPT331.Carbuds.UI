@@ -1,11 +1,11 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark" *ngIf="amLoggedIn">
     <a class="navbar-brand" href="https://getbootstrap.com/docs/4.0/examples/starter-template/#">Carbuds</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" (click)="isMenuCollapsed = !isMenuCollapsed"
         aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
 
             <li class="nav-item" *ngFor="let link of navLinks">
