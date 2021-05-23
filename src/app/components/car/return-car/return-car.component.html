@@ -1,1 +1,40 @@
-<p>return-car works!</p>
+<div class="container main">
+
+    <div class="row">
+        <div class="col">
+            <div style=" text-align: right; color:red; font-size: 1.5em;">
+                <i class="fas fa-times-circle" (click)="onCancelClick();$event.preventDefault()"></i>
+            </div>
+        </div>
+    </div>
+
+    <p>Once the car is parked into its allocated parking location, please return the keys into the safe box on the vehicle using the code below.</p>
+    <p>Your code to unlock your car is:</p>
+
+    <div class="row justify-content-center">
+        <div class="col-2 box">
+            {{num1}}
+        </div>
+        <div class="col-2 box">
+            {{num2}}
+        </div>
+        <div class="col-2 box">
+            {{num3}}
+        </div>
+        <div class="col-2 box">
+            {{num4}}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 mt-2">
+            <p>Once complete, press the button below to finish this trip.</p>
+        </div>
+        <div class="col-12 mt-2">
+            <div class="btn btn-block btn-primary" (click)="onConfirmVehicleReturnClicked()">
+                Confirm Vehicle Returned
+            </div>
+        </div>
+    </div>
+
+</div>

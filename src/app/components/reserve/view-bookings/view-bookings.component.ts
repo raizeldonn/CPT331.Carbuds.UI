@@ -7,6 +7,7 @@ import { MyBookingComponent } from '../../reserve/my-booking/my-booking.componen
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from 'src/app/services/auth.service';
 import moment from 'moment';
+import { ReturnCarComponent } from '../../car/return-car/return-car.component';
 
 @Component({
   selector: 'app-view-bookings',
@@ -44,16 +45,24 @@ export class ViewBookingsComponent implements OnInit {
 
     for(let booking of this.clientBookings){
       
-      if(nowUtc >= booking.startDateTimeUtc && nowUtc <= booking.endDateTimeUtc){
-        this.currentBookings.push(booking);
+      if(booking.status == 'Completed'){
+        this.pastBookings.push(booking);
+        continue;
       }
 
-      if(nowUtc > booking.endDateTimeUtc && nowUtc > booking.startDateTimeUtc){
-        this.pastBookings.push(booking);
+      if(nowUtc >= booking.startDateTimeUtc && nowUtc <= booking.endDateTimeUtc){
+        this.currentBookings.push(booking);
+        continue;
       }
 
       if(nowUtc < booking.endDateTimeUtc && nowUtc < booking.startDateTimeUtc){
         this.upcomingBookings.push(booking);
+        continue;
+      }
+
+      if(nowUtc > booking.endDateTimeUtc && nowUtc > booking.startDateTimeUtc){
+        this.pastBookings.push(booking);
+        continue;
       }
       
     }
@@ -61,11 +70,19 @@ export class ViewBookingsComponent implements OnInit {
 
   public onUnlockCarClick(){
     const modalRef = this._modalService.open(UnlockCarComponent, {size: 'm', backdrop: 'static'});
+    modalRef.dismissed.subscribe(d => {
+      this.getClientBooking();
+    });
   }
 
   onViewDetialilsClick(Uuid: string){
     const booking = this.clientBookings.find(b => b.uuid == Uuid);
     const modalRef = this._modalService.open(MyBookingComponent, {size: 'm', backdrop: 'static'});
+    modalRef.componentInstance.booking = booking;
+  }
+
+  public onReturnCarClick(booking: Booking){
+    const modalRef = this._modalService.open(ReturnCarComponent, {size: 'm', backdrop: 'static'});
     modalRef.componentInstance.booking = booking;
   }
 

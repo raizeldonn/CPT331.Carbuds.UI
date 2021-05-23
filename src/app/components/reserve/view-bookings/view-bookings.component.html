@@ -24,8 +24,10 @@
                     <td>{{utcEpochToLocalString(item.endDateTimeUtc)}}</td>
                     <th scope="col">
                       <div class="d-md-flex">
-                        <button (click)="onViewDetialilsClick(item.uuid)" class="btn btn-primary">View Details</button>
-                        <button class="btn btn-primary">Return car</button>
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                          <button (click)="onViewDetialilsClick(item.uuid)" class="btn btn-primary">View Details</button>
+                          <button (click)="onReturnCarClick(item)" class="btn btn-secondary">Return car</button>
+                        </div>                        
                       </div>
                     </th>
                   </tr>
@@ -54,8 +56,10 @@
                     <td>{{utcEpochToLocalString(item.endDateTimeUtc)}}</td>
                     <th scope="col">
                       <div class="d-md-flex">
-                        <button (click)="onViewDetialilsClick(item.uuid)" class="btn btn-primary">View Details</button>
-                        <button (click)="onUnlockCarClick()" class="btn btn-primary">Unlock car</button>
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                          <button (click)="onViewDetialilsClick(item.uuid)" class="btn btn-primary">View Details</button>
+                        <button (click)="onUnlockCarClick()" class="btn btn-secondary">Unlock Car</button>
+                        </div>  
                       </div>
                     </th>
                   </tr>

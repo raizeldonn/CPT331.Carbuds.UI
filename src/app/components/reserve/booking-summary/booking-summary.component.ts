@@ -73,6 +73,7 @@ export class BookingSummaryComponent implements OnInit {
 
       if (addBookingResponse.success) {
         this._toastr.success('', 'Booking Added');
+        this.bookingStatus = 'Confirmed';
       }
       else {
         this._toastr.error(addBookingResponse.errorMessage, 'Unable to add booking');
