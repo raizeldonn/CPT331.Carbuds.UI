@@ -75,7 +75,7 @@ export class CarSearchComponent implements OnInit {
   }
 
   public markerClicked(marker: CarMapMarker){
-    const selectedCar = this.cars.find(c => c.uuid = marker.carUuid);
+    const selectedCar = this.cars.find(c => c.uuid == marker.carUuid);
     const modalRef = this._modalService.open(CarInfoComponent, {size: 'm', backdrop: 'static'});
     modalRef.componentInstance.car = selectedCar;
     modalRef.componentInstance.longitude = marker.mapLocation.lng;

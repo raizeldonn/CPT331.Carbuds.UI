@@ -34,9 +34,9 @@
         </div>
     </div>
 
-    <div class="row box">
+    <div class="row box" *ngIf="location">
         <div class="col">
-            <p class='emphasize'>2 KM away</p> <!-- rolys job : ) -->
+            <!-- <p class='emphasize'>2 KM away</p>  -->
             <p>{{location.friendlyName}}</p>
             <div (click)="viewOnMapClick()" class='view-on-map'>
                 <i class="fas fa-map-marker-alt"></i>
@@ -51,14 +51,14 @@
         </div>
     </div>
 
-    <div class="row box">
+    <div class="row box" *ngIf="car">
         <div class="col">
-            <p>Car description</p>
-            <p class='emphasize'>{{car.make}} {{car.model}}</p>
+            <p>Car Make/Model</p>
+            <p class='emphasize'> {{car.year}} {{car.make}} {{car.model}}</p>
         </div>
         <div class="col">
-            <p>Number Plate</p>
-            <p class='emphasize'>DE23KH</p>
+            <p>Type</p>
+            <p class='emphasize'>{{car.body}}</p>
         </div>
     </div>
     <div class="row buttons-div">

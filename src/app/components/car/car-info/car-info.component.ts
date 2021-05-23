@@ -23,7 +23,7 @@ export class CarInfoComponent implements OnInit {
   }
 
   public onCancelClick(){
-    this._activeModal.dismiss(null);
+    this._activeModal.close(null);
   }
 
   public onReserveCarClick(){
