@@ -18,15 +18,19 @@
     </div>
 
     <div class="row box">
-        <div class="col">
+        <div class="col-6">
             <p>From</p>
             <p class='emphasize'>{{startTime}}</p>
             <p>{{startDate}}</p>
         </div>
-        <div class="col">
+        <div class="col-6">
             <p>To</p>
             <p class='emphasize'>{{endTime}}</p>
             <p>{{endDate}}</p>
+        </div>
+        <div class="col-12">
+            <p class='emphasize'>Total Cost</p>
+            <p>$ {{bookingCost | number:'1.2-2' }}</p>
         </div>
     </div>
 
@@ -58,8 +62,8 @@
             <p class='emphasize'>{{car.make}} {{car.model}}</p>
         </div>
         <div class="col">
-            <p>Number Plate</p>
-            <p class='emphasize'> my-plate</p>
+            <p>Type</p>
+            <p class='emphasize'> {{car.body}}</p>
         </div>
     </div>
     <div class="row buttons-div">

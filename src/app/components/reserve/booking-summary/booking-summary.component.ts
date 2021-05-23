@@ -29,6 +29,7 @@ export class BookingSummaryComponent implements OnInit {
   public booking!: Booking;
   public location!: ParkingLocation;
   public bookingStatus = "unConfirmed";
+  public bookingCost: number = 0;
 
   constructor(public _activeModal: NgbActiveModal, private _modalService: NgbModal, private _plService: ParkingLocationService, private _toastr: ToastrService, private _bkService: BookingService,
     private _authService: AuthService, private _carService: CarService) { }
@@ -65,7 +66,7 @@ export class BookingSummaryComponent implements OnInit {
         startDateTimeUtc: + startDateTimeLocal.utc().format('X'),
         endDateTimeUtc: + endDateTimeLocal.utc().format('X'),
         status: "Confirmed",
-        cost: 123,
+        cost: this.bookingCost,
       };
 
       let addBookingResponse = await this._bkService.addEditBooking(newBooking);
@@ -90,6 +91,7 @@ export class BookingSummaryComponent implements OnInit {
       let getParkingLocationResponse = await this._plService.getParkingLocation(this.car.location);
       if (getParkingLocationResponse.success) {
         this.location = getParkingLocationResponse.location;
+        this.calculateCost();
       }
       else {
         this._toastr.error(getParkingLocationResponse.errorMessage, 'Unable to Get Parking Location');
@@ -98,5 +100,23 @@ export class BookingSummaryComponent implements OnInit {
     catch (e) {
       this._toastr.error(e, 'Unable to Get parking location');
     }
+  }
+
+  private calculateCost(){
+    const startDateTimeLocal = moment(`${this.startDate} ${this.startTime}`, "DD/MM/YYYY hh:mm a");
+    const endDateTimeLocal = moment(`${this.endDate} ${this.endTime}`, "DD/MM/YYYY hh:mm a");
+
+    const hireTimeMinutes =  moment.duration(endDateTimeLocal.diff(startDateTimeLocal)).as('minutes');
+
+    if(hireTimeMinutes >= 1440){
+      const days = Math.floor(hireTimeMinutes / 1440);
+      const residualHours = (hireTimeMinutes % 1440) / 60;
+      this.bookingCost = (this.car.priceDay * days) + (this.car.priceHour * residualHours);
+    }
+    else{
+      const hireHours = hireTimeMinutes / 60;
+      this.bookingCost = this.car.priceHour * hireHours;
+    }
+
   }
 }
