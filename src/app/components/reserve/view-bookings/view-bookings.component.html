@@ -5,88 +5,98 @@
   </div>
   <div class="row">
     <div class="col-12">
-      <!-- For current bookings -->
-      <h3>Current bookings</h3>
-      <div *ngIf="currentBookings.length > 0">
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">Booked for</th>
-              <th scope="col">Status</th>
-              <th scope="col">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let item of currentBookings">
-              <th>{{item.startDateTimeUtc}}</th>
-              <td>{{item.status}}</td>
-              <th scope="col">
-                <div class="d-md-flex">
-                  <button (click)="onViewDetialilsClick(item.uuid)" class="btn btn-primary">View Details</button>
-                  <button class="btn btn-primary">Return car</button>
-                </div>
-              </th>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div *ngIf="currentBookings.length == 0">
-        <p>You have no current bookings</p>
-      </div>
-      <!-- For upcoming bookings -->
-      <h3>Upcoming bookings</h3>
-      <div *ngIf="upcomingBookings.length > 0">
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">Booked for</th>
-              <th scope="col">Status</th>
-              <th scope="col">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let item of upcomingBookings">
-              <th>{{item.startDateTimeUtc}}</th>
-              <td>{{item.status}}</td>
-              <th scope="col">
-                <div class="d-md-flex">
-                  <button (click)="onViewDetialilsClick(item.uuid)" class="btn btn-primary">View Details</button>
-                  <button (click)="onUnlockCarClick()" class="btn btn-primary">Unlock car</button>
-                </div>
-              </th>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div *ngIf="upcomingBookings.length == 0">
-        <p>You have no upcoming bookings</p>
-      </div>
-      <!-- For Past bookings-->
-      <h3>Past bookings</h3>
-      <div *ngIf="pastBookings.length > 0">
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">Booked for</th>
-              <th scope="col">Status</th>
-              <th scope="col">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let item of pastBookings">
-              <th>{{item.startDateTimeUtc}}</th>
-              <td>{{item.status}}</td>
-              <th scope="col">
-                <div class="d-md-flex">
-                  <button (click)="onViewDetialilsClick(item.uuid)" class="btn btn-primary">View Details</button>
-                </div>
-              </th>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div *ngIf="pastBookings.length == 0">
-        <p>You have no past bookings</p>
-      </div>
+
+      <ngb-accordion [closeOthers]="true" activeIds="static-1">
+        <ngb-panel id="static-1" title="Current Bookings">
+          <ng-template ngbPanelContent>
+            <div *ngIf="currentBookings.length > 0">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Pickup</th>
+                    <th scope="col">Return</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of currentBookings">
+                    <td>{{utcEpochToLocalString(item.startDateTimeUtc)}}</td>
+                    <td>{{utcEpochToLocalString(item.endDateTimeUtc)}}</td>
+                    <th scope="col">
+                      <div class="d-md-flex">
+                        <button (click)="onViewDetialilsClick(item.uuid)" class="btn btn-primary">View Details</button>
+                        <button class="btn btn-primary">Return car</button>
+                      </div>
+                    </th>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div *ngIf="currentBookings.length == 0">
+              <p>You have no current bookings</p>
+            </div>
+          </ng-template>
+        </ngb-panel>
+        <ngb-panel id="static-2" title="Upcoming Bookings">
+          <ng-template ngbPanelContent>
+            <div *ngIf="upcomingBookings.length > 0">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Pickup</th>
+                    <th scope="col">Return</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of upcomingBookings">
+                    <td>{{utcEpochToLocalString(item.startDateTimeUtc)}}</td>
+                    <td>{{utcEpochToLocalString(item.endDateTimeUtc)}}</td>
+                    <th scope="col">
+                      <div class="d-md-flex">
+                        <button (click)="onViewDetialilsClick(item.uuid)" class="btn btn-primary">View Details</button>
+                        <button (click)="onUnlockCarClick()" class="btn btn-primary">Unlock car</button>
+                      </div>
+                    </th>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div *ngIf="upcomingBookings.length == 0">
+              <p>You have no upcoming bookings</p>
+            </div>
+          </ng-template>
+        </ngb-panel>
+        <ngb-panel id="static-3" title="Past Bookings">
+          <ng-template ngbPanelContent>
+            <div *ngIf="pastBookings.length > 0">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Pickup</th>
+                    <th scope="col">Return</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of pastBookings">
+                    <td>{{utcEpochToLocalString(item.startDateTimeUtc)}}</td>
+                    <td>{{utcEpochToLocalString(item.endDateTimeUtc)}}</td>
+                    <th scope="col">
+                      <div class="d-md-flex">
+                        <button (click)="onViewDetialilsClick(item.uuid)" class="btn btn-primary">View Details</button>
+                      </div>
+                    </th>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div *ngIf="pastBookings.length == 0">
+              <p>You have no past bookings</p>
+            </div>
+          </ng-template>
+        </ngb-panel>
+      </ngb-accordion>
+
     </div>
   </div>

@@ -6,6 +6,7 @@ import { UnlockCarComponent } from '../../car/unlock-car/unlock-car.component';
 import { MyBookingComponent } from '../../reserve/my-booking/my-booking.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from 'src/app/services/auth.service';
+import moment from 'moment';
 
 @Component({
   selector: 'app-view-bookings',
@@ -38,17 +39,23 @@ export class ViewBookingsComponent implements OnInit {
   }
 
   public sortBookings(){
+
+    const nowUtc = + moment().utc().format('X');
+
     for(let booking of this.clientBookings){
-      console.log(booking.status);
-      if(booking.status == "active"){
+      
+      if(nowUtc >= booking.startDateTimeUtc && nowUtc <= booking.endDateTimeUtc){
         this.currentBookings.push(booking);
       }
-      else if(booking.status == "upcoming"){
-        this.upcomingBookings.push(booking);
-      }
-      else if(booking.status == "complete"){
+
+      if(nowUtc > booking.endDateTimeUtc && nowUtc > booking.startDateTimeUtc){
         this.pastBookings.push(booking);
       }
+
+      if(nowUtc < booking.endDateTimeUtc && nowUtc < booking.startDateTimeUtc){
+        this.upcomingBookings.push(booking);
+      }
+      
     }
   }
 
@@ -59,5 +66,9 @@ export class ViewBookingsComponent implements OnInit {
   onViewDetialilsClick(Uuid: string){
     const modalRef = this._modalService.open(MyBookingComponent, {size: 'm', backdrop: 'static'});
     modalRef.componentInstance.bookingId = Uuid;
+  }
+
+  public utcEpochToLocalString(epoch: number):string{
+    return moment.utc(epoch, 'X').local().format('DD MMM YYYY hh:mm A');
   }
 }
