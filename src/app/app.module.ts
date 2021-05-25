@@ -31,6 +31,7 @@ import { MyBookingComponent } from './components/reserve/my-booking/my-booking.c
 import { BookingSummaryComponent } from './components/reserve/booking-summary/booking-summary.component';
 import { UnlockCarComponent } from './components/car/unlock-car/unlock-car.component';
 import { ReturnCarComponent } from './components/car/return-car/return-car.component';
+import { EditProfileComponent } from './components/user/edit-profile/edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { ReturnCarComponent } from './components/car/return-car/return-car.compo
     MyBookingComponent,
     UnlockCarComponent,
     BookingSummaryComponent,
-    ReturnCarComponent
+    ReturnCarComponent,
+    EditProfileComponent
   ],
   imports: [
     BrowserModule,
