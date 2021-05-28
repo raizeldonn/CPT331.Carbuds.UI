@@ -47,6 +47,7 @@ export class RegisterComponent implements OnInit {
         licenseCountry: this.registerForm.value['licenseCountry'],
         licenseNumber: this.registerForm.value['licenseNumber']
       }
+      
       var response = await this._userService.createUser(request);
 
       if(!response.success){

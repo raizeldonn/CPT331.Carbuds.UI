@@ -19,8 +19,13 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
+    path: 'register',
+    component: RegisterComponent
+  },
+  {
     path: 'admin',
-    component: CarAdminOverviewComponent
+    component: CarAdminOverviewComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'register',
@@ -28,7 +33,8 @@ const routes: Routes = [
   },
   {
     path: 'car-info',
-    component: CarInfoComponent
+    component: CarInfoComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'search',
@@ -77,9 +83,6 @@ const routes: Routes = [
   { path: '', 
     redirectTo: 'login',
     pathMatch : 'full'
-  },
-  { path: 'cars/:car.uuid', 
-    component: CarDetailsComponent 
   }
 ];
 

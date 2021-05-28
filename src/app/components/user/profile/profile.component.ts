@@ -37,4 +37,8 @@ export class ProfileComponent implements OnInit {
     }
   }
 
+  public async updateProfile(){
+    
+  }
+
 }
