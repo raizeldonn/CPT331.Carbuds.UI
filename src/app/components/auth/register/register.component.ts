@@ -48,15 +48,15 @@ export class RegisterComponent implements OnInit {
         licenseNumber: this.registerForm.value['licenseNumber']
       }
       
-      var response = await this._userService.createUser(request);
+      var response = await this._userService.selfServeSignupUser(request);
 
       if(!response.success){
         this._toastr.error(response.errorMessage, 'Sorry, there was a problem signing you up!');
       }
 
       if(response.success){
-        this._toastr.success('','Signed up Succesfully!');
-        this._router.navigateByUrl('/login');
+        this._toastr.success('Please check your email for a verification code to confirm your account information.','Signed up Succesfully!');
+        this._router.navigateByUrl(`/verifyAccount?email=${this.registerForm.value['emailAddress']}`);
       }
 
 

@@ -12,6 +12,7 @@ import { ViewBookingsComponent } from './components/reserve/view-bookings/view-b
 import { AuthGuardService as AuthGuard } from './services/auth-guard.service';
 import { ParkingLocationOverviewComponent } from './components/admin/parking-location-overview/parking-location-overview.component';
 import { AddEditParkingLocationComponent } from './components/admin/add-edit-parking-location/add-edit-parking-location.component';
+import { VerifyAccountComponent } from './components/auth/verify-account/verify-account.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
+  },
+  {
+    path: 'verifyAccount',
+    component: VerifyAccountComponent
   },
   {
     path: 'admin',

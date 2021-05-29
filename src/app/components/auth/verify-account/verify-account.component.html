@@ -1,0 +1,27 @@
+<div class="row">
+    <div class="col-12 col-md-6 offset-md-3 mt-3">
+        <div class="card p-2 ds-1 login-card">
+            <form [formGroup]="verifyAccountForm" (ngSubmit)="onVerificationFormSubmit()">
+                <div class="row">
+                    <div class="col-12">
+                        <p>Enter your verification code below and tap 'Verify' to complete the Verification Process.</p>
+                    </div>
+
+
+                    <div class="col-12 mt-2">
+                        <label for="verificationCode" class="form-label">Verification Code</label>
+                        <input type="text" class="form-control" id="verificationCode" formControlName="verificationCode">
+                    </div>
+                    <div class="col-12 col-md-4 offset-md-8 mt-2">
+                        <button class="btn btn-primary btn-block">
+                            Verify
+                        </button>
+                    </div>
+
+
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

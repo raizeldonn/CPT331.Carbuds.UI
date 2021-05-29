@@ -32,6 +32,7 @@ import { BookingSummaryComponent } from './components/reserve/booking-summary/bo
 import { UnlockCarComponent } from './components/car/unlock-car/unlock-car.component';
 import { ReturnCarComponent } from './components/car/return-car/return-car.component';
 import { EditProfileComponent } from './components/user/edit-profile/edit-profile.component';
+import { VerifyAccountComponent } from './components/auth/verify-account/verify-account.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { EditProfileComponent } from './components/user/edit-profile/edit-profil
     UnlockCarComponent,
     BookingSummaryComponent,
     ReturnCarComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    VerifyAccountComponent
   ],
   imports: [
     BrowserModule,
