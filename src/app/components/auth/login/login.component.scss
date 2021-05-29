@@ -8,3 +8,11 @@
     background-repeat: no-repeat;
     background-position: center;
 }
+
+.register-link{
+    font-weight: 600;
+    
+    &:hover{
+        cursor: pointer;
+    }
+}
