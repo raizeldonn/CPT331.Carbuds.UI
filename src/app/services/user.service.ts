@@ -13,6 +13,8 @@ import jwt_decode from 'jwt-decode';
 import { PostVerifyUserRequest } from '../contracts/user/post.verifyUser.request.model';
 import { PostVerifyUserResponse } from '../contracts/user/post.verifyUser.response.model';
 import { AuthService } from './auth.service';
+import { UpdateUserStatusRequest } from '../contracts/user/update.user.status.request.model';
+import { UpdateUserStatusResponse } from '../contracts/user/update.user.status.response.model';
 
 @Injectable({
   providedIn: 'root'
@@ -50,6 +52,18 @@ export class UserService {
 
   public async listAllUsers(): Promise<GetListUsersResponse>{
     let response = await this._http.get<GetListUsersResponse>( `${environment.apiBaseUrl}/api/users/list`, { headers: this._authService.generateAuthHeader() }).toPromise();
+    return response;
+  }
+
+  public async updateAccountStatus( email: string, accountState: boolean ): Promise<UpdateUserStatusResponse>{
+    let request: UpdateUserStatusRequest = {
+      userEmail: email,
+      accountEnabled: accountState
+    };
+    const requestHeaders = {
+      headers: this._authService.generateAuthHeader(), body: request
+    };
+    let response = await this._http.post<UpdateUserStatusResponse>(`${environment.apiBaseUrl}/api/users/accountStatus`, requestHeaders).toPromise();
     return response;
   }
 

@@ -3,6 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/models/user/user.model';
 import { UserService } from 'src/app/services/user.service';
 import { UtilityService } from 'src/app/services/utility.service';
+import { UserInfoComponent } from '../user-info/user-info.component'
 
 @Component({
   selector: 'app-user-admin-overview',
@@ -31,6 +32,33 @@ export class UserAdminOverviewComponent implements OnInit {
       }
     } catch (e) {
       this._toastr.error(e, 'Unable to Get List Of Users');
+    }
+  }
+
+  public onMoreInfoClick(user: User){
+    const modalRef = this._modalService.open(UserInfoComponent, {size: 'xl', backdrop: 'static'});
+    modalRef.componentInstance.userRecord = user;
+  }
+
+  public async onDisableUserClick(user: User){
+    const confirmation = window.confirm(`Are you sure you want to disable ${user.name} ${user.email}?`);
+
+    if(confirmation){
+      //then disable the user
+      try{
+        const disableResp = await this._userService.updateAccountStatus( user.email, false );
+        if(disableResp.success){
+          this._toastr.success('','User Account Disabled');
+          this.getUserData();
+        }else{
+          this._toastr.error('Problem Disabling User');
+          console.log(disableResp.errorMessage);
+        }
+
+      }catch (e) {
+        this._toastr.error(e, 'Unable to disable user');
+      }
+      
     }
   }
 

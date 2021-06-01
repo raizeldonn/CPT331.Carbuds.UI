@@ -30,12 +30,12 @@
             <td>{{user.licenseCountry}}</td>
             <td>{{user.licenseNumber}}</td>
             <!--<td>{{car.isActive ? 'Active' : 'Inactive'}}</td>-->
-            <!-- <th>
+            <th>
               <div class="btn-group" role="group">
-                <button type="button" class="btn btn-danger" (click)="onDeleteCarClick(car)"> Delete </button>
-                <button type="button" class="btn btn-info" (click)="onEditCarClick(car)"> Edit </button>
+                <button type="button" class="btn btn-info" (click)="onMoreInfoClick(user)"> More Info </button>
+                <button type="button" class="btn btn-danger" (click)="onDisableUserClick(user)"> Disable </button>
               </div>
-            </th> -->
+            </th>
           </tr>
         </tbody>
       </table>
