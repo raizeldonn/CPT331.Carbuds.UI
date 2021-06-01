@@ -11,6 +11,7 @@ import { IdTokenProps } from '../models/auth/idTokenProps.model';
 import jwt_decode from 'jwt-decode';
 import { PostVerifyUserRequest } from '../contracts/user/post.verifyUser.request.model';
 import { PostVerifyUserResponse } from '../contracts/user/post.verifyUser.response.model';
+import { GetListUsersResponse } from '../contracts/user/get.listUsers.response.model';
 
 @Injectable({
   providedIn: 'root'
@@ -42,7 +43,12 @@ export class UserService {
 
   public async getUser(email: string): Promise<GetUserResponse>{
 
-    let response = await this._http.get<GetUserResponse>( `${environment.apiBaseUrl}/api/users/${email}`).toPromise();
+    let response = await this._http.get<GetUserResponse>( `${environment.apiBaseUrl}/api/users/info?email=${email}`).toPromise();
+    return response;
+  }
+
+  public async listUsers(): Promise<GetListUsersResponse>{
+    let response = await this._http.get<GetListUsersResponse>( `${environment.apiBaseUrl}/api/users/list`).toPromise();
     return response;
   }
 

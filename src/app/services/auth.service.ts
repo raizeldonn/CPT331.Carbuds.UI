@@ -35,6 +35,12 @@ export class AuthService {
       requiredPermission: 'carbuds-admins'
     },
     {
+      title: 'Manage Users',
+      path: 'admin/listUsers',
+      faIcon: 'fas fa-users',
+      requiredPermission: 'carbuds-admins'
+    },
+    {
       title: 'Search Vehicles',
       path: 'search',
       faIcon: 'fas fa-search',

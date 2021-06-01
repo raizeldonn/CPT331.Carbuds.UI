@@ -33,6 +33,7 @@ import { UnlockCarComponent } from './components/car/unlock-car/unlock-car.compo
 import { ReturnCarComponent } from './components/car/return-car/return-car.component';
 import { EditProfileComponent } from './components/user/edit-profile/edit-profile.component';
 import { VerifyAccountComponent } from './components/auth/verify-account/verify-account.component';
+import { ListUsersComponent } from './components/admin/list-users/list-users.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { VerifyAccountComponent } from './components/auth/verify-account/verify-
     BookingSummaryComponent,
     ReturnCarComponent,
     EditProfileComponent,
-    VerifyAccountComponent
+    VerifyAccountComponent,
+    ListUsersComponent
   ],
   imports: [
     BrowserModule,

@@ -13,6 +13,7 @@ import { AuthGuardService as AuthGuard } from './services/auth-guard.service';
 import { ParkingLocationOverviewComponent } from './components/admin/parking-location-overview/parking-location-overview.component';
 import { AddEditParkingLocationComponent } from './components/admin/add-edit-parking-location/add-edit-parking-location.component';
 import { VerifyAccountComponent } from './components/auth/verify-account/verify-account.component';
+import { ListUsersComponent } from './components/admin/list-users/list-users.component';
 
 const routes: Routes = [
   {
@@ -78,6 +79,14 @@ const routes: Routes = [
       {
         path: 'parkingLocations',
         component: ParkingLocationOverviewComponent,
+        data: {
+          requiredGroups: ['carbuds-admins']
+        },
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'listUsers',
+        component: ListUsersComponent,
         data: {
           requiredGroups: ['carbuds-admins']
         },
