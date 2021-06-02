@@ -12,11 +12,6 @@
           <tr>
             <th scope="col">Name</th>
             <th scope="col">Email</th>
-            <th scope="col">Card Number</th>
-            <th scope="col">Card Expiry</th>
-            <th scope="col">Card cvv</th>
-            <th scope="col">License Country</th>
-            <th scope="col">License Number</th>
             <th></th>
           </tr>
         </thead>
@@ -24,11 +19,6 @@
           <tr *ngFor="let user of users">
             <th scope="row" >{{user.name}}</th>
             <td>{{user.email}}</td>
-            <td>{{user.paymentCardNumber}}</td>
-            <td>{{user.paymentCardExpiry}}</td>
-            <td>{{user.paymentCardCvv}}</td>
-            <td>{{user.licenseCountry}}</td>
-            <td>{{user.licenseNumber}}</td>
             <!--<td>{{car.isActive ? 'Active' : 'Inactive'}}</td>-->
             <th>
               <div class="btn-group" role="group">
