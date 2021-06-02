@@ -1,0 +1,65 @@
+<div class="container main">
+
+    <div class="row">
+        <div class="col">
+            <h3>User Details</h3>
+        </div>
+        <div class="col-1">
+            <div style=" text-align: right; color:red; font-size: 1.5em;">
+                <i class="fas fa-times-circle" (click)="onCancelClick();$event.preventDefault()"></i>
+            </div>
+        </div>
+      </div>
+
+
+<!--year, model, name-->
+<h6>{{userRecord?.name}}</h6>
+
+<div class="container">
+<hr class="thin">
+
+    <div class="row">
+      <div class="col-4">Email: </div>
+      <div class="col-4">{{userRecord?.email}}</div>
+    </div>
+
+    <div class="row">
+        <div class="col-4">Credit Card #: </div>
+        <div class="col-4">{{userRecord?.paymentCardNumber}}</div>
+    </div>
+
+    <div class="row">
+        <div class="col-4">Credit Card Expiry: </div>
+        <div class="col-4">{{userRecord?.paymentCardExpiry}}</div>
+    </div>
+
+    <div class="row">
+        <div class="col-4">Credit Card CVV: </div>
+        <div class="col-4">{{userRecord?.paymentCardCvv}}</div>
+    </div>
+
+    <div class="row">
+        <div class="col-4">License Country: </div>
+        <div class="col-4">{{userRecord?.licenseCountry}}</div>
+    </div>
+
+    <div class="row">
+        <div class="col-4">License Number: </div>
+        <div class="col-4">{{userRecord?.licenseNumber}}</div>
+    </div>
+
+    <div class="row">
+        <div class="col-4">Status </div>
+        <div class="col-4">{{(userStatus==true) ? 'Active' : 'Disabled'}}</div>
+    </div>
+
+    
+</div>
+
+
+
+
+
+
+
+</div>
