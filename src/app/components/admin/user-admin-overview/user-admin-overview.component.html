@@ -19,12 +19,8 @@
           <tr *ngFor="let user of users">
             <th scope="row" >{{user.name}}</th>
             <td>{{user.email}}</td>
-            <!--<td>{{car.isActive ? 'Active' : 'Inactive'}}</td>-->
             <th>
-              <div class="btn-group" role="group">
-                <button type="button" class="btn btn-info" (click)="onMoreInfoClick(user)"> More Info </button>
-                <button type="button" class="btn btn-danger" (click)="onDisableUserClick(user)">{{user.name ? 'disable': 'enable'}}</button>
-              </div>
+              <button type="button" class="btn btn-info" (click)="onMoreInfoClick(user)"> More Info </button>
             </th>
           </tr>
         </tbody>

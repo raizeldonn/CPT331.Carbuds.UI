@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import {User} from 'src/app/models/user/user.model';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-user-info',
@@ -11,9 +12,9 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 export class UserInfoComponent implements OnInit {
 
   public userRecord?: User;
-  public userStatus?: boolean;
+  public userActive: boolean = false;
 
-  constructor(private _userService: UserService, public _activeModal: NgbActiveModal) { }
+  constructor(private _userService: UserService, public _activeModal: NgbActiveModal, private _toastr:ToastrService) { }
 
   ngOnInit(): void {
     if(this.userRecord != undefined){
@@ -26,11 +27,25 @@ export class UserInfoComponent implements OnInit {
 
   public async getSingleUser(email: string){
     let userResponse = await this._userService.getUser(email);
-    this.userStatus = userResponse.userActive;
+    this.userActive = userResponse.userActive;
   }
 
   public onCancelClick(){
     this._activeModal.dismiss(null);
+  }
+
+  public async onEnableDisableUserClick(){
+    const userNewState = !this.userActive;    
+    const updateComplete = await this._userService.updateAccountStatus(this.userRecord?.email ? this.userRecord?.email : '', userNewState);
+    const updateMessage = userNewState ? 'User Account Reactivated' : 'User Account Disabled';
+    
+    if(updateComplete.success){
+      this._toastr.success('', updateMessage);
+      this.userActive = userNewState;
+    }
+    else{
+      this._toastr.error(updateComplete.errorMessage, 'Error updating User Account Status');
+    }
   }
 
 }

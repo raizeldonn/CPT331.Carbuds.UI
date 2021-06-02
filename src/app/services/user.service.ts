@@ -55,15 +55,13 @@ export class UserService {
     return response;
   }
 
-  public async updateAccountStatus( email: string, accountState: boolean ): Promise<UpdateUserStatusResponse>{
+  public async updateAccountStatus( email: string, accountNewState: boolean ): Promise<UpdateUserStatusResponse>{
     let request: UpdateUserStatusRequest = {
       userEmail: email,
-      accountEnabled: accountState
+      accountEnabled: accountNewState
     };
-    const requestHeaders = {
-      headers: this._authService.generateAuthHeader(), body: request
-    };
-    let response = await this._http.post<UpdateUserStatusResponse>(`${environment.apiBaseUrl}/api/users/accountStatus`, requestHeaders).toPromise();
+
+    let response = await this._http.post<UpdateUserStatusResponse>(`${environment.apiBaseUrl}/api/users/accountStatus`, request, { headers: this._authService.generateAuthHeader() }).toPromise(); 
     return response;
   }
 
