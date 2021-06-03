@@ -10,6 +10,7 @@ import { AuthService } from './auth.service';
 import { GetOneCarResponse } from '../contracts/car/get.oneCar.response.model';
 import { DeleteCarResponse } from '../contracts/car/delete.car.response.model';
 import { DeleteCarRequest } from '../contracts/car/delete.car.request.model';
+import { GetCarModelsResponse } from '../contracts/car/get.carModels.response.model'
 
 
 @Injectable({
@@ -49,5 +50,10 @@ export class CarService {
       };
       let resp = await this._http.delete<DeleteCarResponse>(`${environment.apiBaseUrl}/api/cars`, requestHeaders).toPromise();
       return resp;
+    }
+
+    public async getSupportedCars(): Promise<GetCarModelsResponse>{
+      let response = await this._http.get<GetCarModelsResponse>( `${environment.apiBaseUrl}/api/cars/supportedcars`, { headers: this._authService.generateAuthHeader() }).toPromise();
+      return response;
     }
 }
