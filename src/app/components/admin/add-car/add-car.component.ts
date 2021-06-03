@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CarService } from 'src/app/services/car.service';
 import { ToastrService } from 'ngx-toastr';
 import { Car } from 'src/app/models/car/car.model';
+import { CarModels } from 'src/app/models/car/car.models.model';
 import { v4 as uuidv4 } from 'uuid';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ParkingLocationService } from 'src/app/services/parking-location.service';
@@ -18,6 +19,10 @@ export class AddCarComponent implements OnInit {
   public addCarForm: FormGroup;
   public carRecord?: Car;
   public availableParkingLocations: ParkingLocation[] = [];
+  public supportedCars: CarModels[] = [];
+  public allMakes: string[] = [];
+  public filteredMakes: string[] = [];
+  public models: string[] = [];
 
   constructor(private _carService: CarService, private _toastr: ToastrService, public _activeModal: NgbActiveModal, private _plService: ParkingLocationService) {
     this.addCarForm = new FormGroup({
@@ -63,6 +68,7 @@ export class AddCarComponent implements OnInit {
     }
 
     this.getAvailableParkingLocations();
+    this.getSupportedCars();
 
   }
 
@@ -138,6 +144,29 @@ export class AddCarComponent implements OnInit {
 
   public onCancelClick(){
     this._activeModal.dismiss(null);
+  }
+
+  public async getSupportedCars(){
+    const modelsResp = await this._carService.getSupportedCars();
+    if(modelsResp.success){
+      this.supportedCars = modelsResp.supportedCars;
+    }
+    console.log(modelsResp.supportedCars);
+    for (let car of this.supportedCars)
+    {
+      this.allMakes.push(car.make);
+    }
+    this.filteredMakes = this.allMakes.filter((item, i, ar) => ar.indexOf(item) === i);
+  }
+
+  public updateModels(){
+    this.models = [];
+    for (let car of this.supportedCars)
+    {
+      if(car.make == this.addCarForm.value['carMake']){
+        this.models.push(car.model);
+      }
+    }
   }
 
 }

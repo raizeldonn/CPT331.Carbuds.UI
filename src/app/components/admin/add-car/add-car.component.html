@@ -5,14 +5,22 @@
         
                 <div class="col-md-6 mt-2">
                     <label for="carMake" class="form-label">Car Make</label>
-                    <input type="text" class="form-control" id="carMake"
+                    <select (change)="updateModels()" class="form-control" id="carMake"
                         formControlName="carMake">
+                        <option value="" disabled selected>Please select</option>
+                        <option *ngFor="let make of filteredMakes"
+                        value="{{make}}">{{make}}</option>
+                    </select>
                 </div>
         
                 <div class="col-md-6 mt-2">
                     <label for="carModel" class="form-label">Car Model</label>
-                    <input type="text" class="form-control" id="carModel"
+                    <select class="form-control" id="carModel"
                         formControlName="carModel">
+                        <option value="" disabled selected>Please select</option>
+                        <option *ngFor="let mod of models"
+                        value="{{mod}}">{{mod}}</option>
+                    </select>
                 </div>
         
                 <div class="col-md-6 mt-2">
@@ -25,6 +33,7 @@
                     <label for="transmission" class="form-label">Transmission</label>
                     <select name="transmission" id="transmission" class="form-select" 
                     class="form-control" formControlName="carTransmission">
+                        <option value="" disabled selected>Please select</option>
                         <option value="automatic">Automatic</option>
                         <option value="manual">Manual</option>
                     </select>
@@ -42,6 +51,7 @@
                     <label for="location" class="form-label">Location</label>
                     <select name="location" id="location" class="form-select" 
                     class="form-control" formControlName="carLocation">
+                        <option value="" disabled selected>Please select</option>
                         <option *ngFor="let location of availableParkingLocations" 
                         value="{{location.uuid}}">{{location.friendlyName}}</option>
                     </select>
@@ -51,6 +61,7 @@
                     <label for="body" class="form-label">Body Type</label>
                     <select name="body" id="body" class="form-select" 
                     class="form-control" formControlName="carBody">
+                        <option value="" disabled selected>Please select</option>
                         <option value="sedan">Sedan</option>
                         <option value="coupe">Coupe</option>
                         <option value="SUV">SUV</option>
@@ -67,6 +78,7 @@
                     <label for="status" class="form-label">Status</label>
                     <select name="status" id="status" class="form-select" 
                     class="form-control" formControlName="carStatus">
+                        <option value="" disabled selected>Please select</option>
                         <option value="Active">Active</option>
                         <option value="Inactive">Inactive</option>
                     </select>
