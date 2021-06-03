@@ -31,7 +31,7 @@ export class AuthService {
     {
       title: 'Manage Users',
       path: 'admin/users',
-      faIcon: 'fas fa-user',
+      faIcon: 'fas fa-users',
       requiredPermission: 'carbuds-admins'
     },
     {
