@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import {User} from 'src/app/models/user/user.model';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
+import { UpdatePasswordComponent } from '../../auth/updatePassword/updatePassword.component';
 
 @Component({
   selector: 'app-user-info',
@@ -14,7 +15,7 @@ export class UserInfoComponent implements OnInit {
   public userRecord?: User;
   public userActive: boolean = false;
 
-  constructor(private _userService: UserService, public _activeModal: NgbActiveModal, private _toastr:ToastrService) { }
+  constructor(private _userService: UserService, public _activeModal: NgbActiveModal, private _toastr:ToastrService, private _modalService: NgbModal) { }
 
   ngOnInit(): void {
     if(this.userRecord != undefined){
@@ -46,6 +47,12 @@ export class UserInfoComponent implements OnInit {
     else{
       this._toastr.error(updateComplete.errorMessage, 'Error updating User Account Status');
     }
+  }
+
+  public onResetPasswordClick() {
+    this._activeModal.dismiss(null);
+    const modalRef = this._modalService.open(UpdatePasswordComponent, {size: 'm', backdrop: 'static'});
+    modalRef.componentInstance.userEmail = this.userRecord!.email;
   }
 
 }

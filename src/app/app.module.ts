@@ -35,6 +35,7 @@ import { EditProfileComponent } from './components/user/edit-profile/edit-profil
 import { VerifyAccountComponent } from './components/auth/verify-account/verify-account.component';
 import { UserAdminOverviewComponent } from './components/admin/user-admin-overview/user-admin-overview.component';
 import { UserInfoComponent } from './components/admin/user-info/user-info.component';
+import { UpdatePasswordComponent } from './components/auth/updatePassword/updatePassword.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { UserInfoComponent } from './components/admin/user-info/user-info.compon
     CarSearchComponent,
     CarAdminOverviewComponent,
     RegisterComponent,
+    UpdatePasswordComponent,
     ProfileComponent,
     NgbdButtonsCheckbox,
     CarDetailsComponent,
