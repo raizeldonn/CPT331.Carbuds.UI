@@ -52,7 +52,6 @@ export class UserAdminOverviewComponent implements OnInit {
           this.getUserData();
         }else{
           this._toastr.error('Problem Disabling User');
-          console.log(disableResp.errorMessage);
         }
 
       }catch (e) {

@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
     this._router.navigateByUrl('register');
   }
 
-
+ 
   public async onSubmitLoginForm() {
     
     if(this.loginForm.valid){

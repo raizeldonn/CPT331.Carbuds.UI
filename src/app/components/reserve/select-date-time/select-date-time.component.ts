@@ -74,25 +74,21 @@ export class SelectDateTimeComponent implements OnInit {
   startDateChange(type: string, event: MatDatepickerInputEvent<Date>) {
     this.startDate = event.value?.toLocaleDateString()!;
     this.validStartDate = true;
-    console.log(event.value?.toLocaleDateString());
     this.validateForm();
   }
 
   endDateChange(type: string, event: MatDatepickerInputEvent<Date>) {
     this.endDate = event.value?.toLocaleDateString()!;
     this.validEndDate = true;
-    console.log(event.value?.toLocaleDateString());
     this.validateForm();
   }
 
   startTimeChange() {
-    console.log(this.startTime);
     this.validStartTime = true;
     this.validateForm();
   }
 
   endTimeChange() {
-    console.log(this.endTime);
     this.validEndTime = true;
     this.validateForm();
   }

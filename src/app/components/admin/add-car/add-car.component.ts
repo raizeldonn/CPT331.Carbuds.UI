@@ -138,7 +138,7 @@ export class AddCarComponent implements OnInit {
       }
     }
     else {
-      console.log('invalid')
+      //todo - handle error
     }
   }
 
@@ -151,7 +151,6 @@ export class AddCarComponent implements OnInit {
     if(modelsResp.success){
       this.supportedCars = modelsResp.supportedCars;
     }
-    console.log(modelsResp.supportedCars);
     for (let car of this.supportedCars)
     {
       this.allMakes.push(car.make);

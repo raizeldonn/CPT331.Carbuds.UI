@@ -21,9 +21,6 @@ export class UserInfoComponent implements OnInit {
     if(this.userRecord != undefined){
       this.getSingleUser(this.userRecord.email);
     }
-    else{
-      console.log('empy user');
-    }
   }
 
   public async getSingleUser(email: string){

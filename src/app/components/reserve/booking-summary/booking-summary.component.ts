@@ -52,9 +52,6 @@ export class BookingSummaryComponent implements OnInit {
     try {
       const bookingId = uuidv4();
 
-      console.log(this.startDate);
-      console.log(this.startTime);
-
       const startDateTimeLocal = moment(`${this.startDate} ${this.startTime}`, "DD/MM/YYYY hh:mm a");
       const endDateTimeLocal = moment(`${this.endDate} ${this.endTime}`, "DD/MM/YYYY hh:mm a");
 

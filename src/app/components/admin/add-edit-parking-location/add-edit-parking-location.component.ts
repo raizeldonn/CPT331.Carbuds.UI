@@ -55,7 +55,6 @@ export class AddEditParkingLocationComponent implements OnInit {
         longitude: this.mapMarkerLocation.lng
       }
 
-      console.log(locationToAdd);
       let resp = await this._parkingLocationService.addEditLocation(locationToAdd);
       if(resp.success){
         this._toastr.success('','Parking Location Saved');
