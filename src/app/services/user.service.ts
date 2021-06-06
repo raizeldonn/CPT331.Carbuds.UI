@@ -15,6 +15,8 @@ import { PostVerifyUserResponse } from '../contracts/user/post.verifyUser.respon
 import { AuthService } from './auth.service';
 import { UpdateUserStatusRequest } from '../contracts/user/update.user.status.request.model';
 import { UpdateUserStatusResponse } from '../contracts/user/update.user.status.response.model';
+import { UpdateResetUserPasswordRequest } from '../contracts/user/update.reset.user.password.request.model';
+import { UpdateUserPasswordResponse } from '../contracts/user/update.reset.user.password.response.model';
 
 @Injectable({
   providedIn: 'root'
@@ -62,6 +64,16 @@ export class UserService {
     };
 
     let response = await this._http.post<UpdateUserStatusResponse>(`${environment.apiBaseUrl}/api/users/accountStatus`, request, { headers: this._authService.generateAuthHeader() }).toPromise(); 
+    return response;
+  }
+
+  public async updatePassword(userEmail: string, newPassword: string): Promise<UpdateUserPasswordResponse>{
+    let request: UpdateResetUserPasswordRequest = {
+      userEmail: userEmail,
+      userPassword: newPassword
+    }
+
+    let response = await this._http.post<UpdateUserPasswordResponse>(`${environment.apiBaseUrl}/api/users/resetPassword`, request, { headers: this._authService.generateAuthHeader() }).toPromise();    
     return response;
   }
 
