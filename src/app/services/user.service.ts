@@ -48,7 +48,7 @@ export class UserService {
 
   public async getUser(email: string): Promise<GetUserResponse>{
 
-    let response = await this._http.get<GetUserResponse>( `${environment.apiBaseUrl}/api/users/info?email=${email}`).toPromise();
+    let response = await this._http.get<GetUserResponse>( `${environment.apiBaseUrl}/api/users/info?email=${email}`, { headers: this._authService.generateAuthHeader() }).toPromise();
     return response;
   }
 
