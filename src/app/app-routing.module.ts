@@ -75,18 +75,18 @@ const routes: Routes = [
           requiredGroups: ['carbuds-admins']
         },
         canActivate: [AuthGuard]
-      },
+      },      
       {
-        path: 'users',
-        component: UserAdminOverviewComponent,
+        path: 'parkingLocations',
+        component: ParkingLocationOverviewComponent,
         data: {
           requiredGroups: ['carbuds-admins']
         },
         canActivate: [AuthGuard]
       },
       {
-        path: 'parkingLocations',
-        component: ParkingLocationOverviewComponent,
+        path: 'users',
+        component: UserAdminOverviewComponent,
         data: {
           requiredGroups: ['carbuds-admins']
         },

@@ -27,17 +27,17 @@ export class AuthService {
       path: 'admin/vehicles',
       faIcon: 'fas fa-car',
       requiredPermission: 'carbuds-admins'
+    },    
+    {
+      title: 'Manage Parking Locations',
+      path: 'admin/parkingLocations',
+      faIcon: 'fas fa-parking',
+      requiredPermission: 'carbuds-admins'
     },
     {
       title: 'Manage Users',
       path: 'admin/users',
       faIcon: 'fas fa-users',
-      requiredPermission: 'carbuds-admins'
-    },
-    {
-      title: 'Manage Parking Locations',
-      path: 'admin/parkingLocations',
-      faIcon: 'fas fa-parking',
       requiredPermission: 'carbuds-admins'
     },
     {
